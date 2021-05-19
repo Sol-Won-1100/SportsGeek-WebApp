@@ -1,0 +1,84 @@
+.parent-container {
+    background-color: #353535;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    width: auto;
+    height: max-content;
+}
+
+.main-container {
+    padding: 0px;
+    padding-bottom: 20px;
+    background-color: #292929;
+    border: 1px solid gray;
+    border-radius: 10px;
+}
+
+.conatiner-header {
+    color: white;
+    background-color: #16191c;
+    padding: 10px 10px;
+    font-size: 20px;
+    border-radius: 10px 10px 0px 0px;
+}
+
+.right {
+    margin-left: 70%;
+}
+
+.inner-conatiner {
+    padding: 10px 30px 20px;
+    background-color: #383737;
+}
+
+table {
+    width: 100%;
+    background-color: #333333;
+}
+
+.highlight {
+    background-color: #282850;
+    font-size: 15px;
+    color: #fff;
+}
+
+.evenrow {
+    background-color: #3b3a3a;
+}
+
+td {
+    color: #fff;
+}
+
+.mat-row:hover {
+    background-color: #311f1f;
+}
+
+.mat-form-field {
+    width: 100%;
+}
+
+.hide {
+    display: none;
+}
+
+.add-button {
+    margin-left: 20px;
+    margin-top: 8px;
+}
+
+.inner-container-actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.mat-cell {
+    padding-right: 10px;
+}
+
+mat-paginator {
+    color: #fff;
+    background: #282850;
+}

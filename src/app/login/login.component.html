@@ -1,0 +1,57 @@
+<div class="section" fxLayoutAlign="center center" fxFlexFill *ngIf="!authservice2.isLoggedIn()">
+    <div class="container">
+        <div class="row no-gutters">
+            <div class="col-lg-5">
+                <img src="../assets/img/ipl.jpg" class="img-fluid" alt="">
+            </div>
+            <div class="col-lg-7 px-5 pt-5">
+                <form class="form1" *ngIf="!isLoggedIn" (ngSubmit)="login()" [formGroup]="loginform">
+                    <div class="form-row">
+                        <mat-toolbar color="primary"> Welcome &nbsp; <i class="fas fa-strikethrough"></i> <i>portsGeek, Sign in to start Winning Big</i>
+                        </mat-toolbar>
+                        <br>
+                        <div class="col-lg-7">
+
+                            <h6 *ngIf="userType==='User'" class="mat-subheading-2">USER LOGIN</h6>
+                            <p *ngIf="userType==='Admin'">ADMIN LOGIN</p>
+
+                            <mat-form-field appearance="fill" color="accent">
+                                <!-- <mat-icon>account_circle</mat-icon> -->
+                                <mat-label>Username</mat-label>
+                                <input matInput autocomplete="off" formControlName="username" />
+                                <mat-error *ngIf="form.username.errors?.required">username is reqiured</mat-error>
+                                <mat-error *ngIf="form.username.errors?.minlength">username must have atleast 5 characters
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-lg-7">
+                            <mat-form-field appearance="fill" color="accent">
+                                <mat-label>Password</mat-label>
+                                <input matInput formControlName="password" [type]="hide ? 'password' : 'text'">
+                                <mat-error *ngIf="form.password.errors?.required">password is reqiured</mat-error>
+                                <mat-error *ngIf="form.password.errors?.minlength">password must have atleast 5 characters
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-lg-7">
+                            <button type="submit" mat-raised-button class="btnlog mt-3 mb-5">Login</button>
+                            <!-- [disabled]="f.invalid" -->
+                        </div>
+                    </div>
+                    <hr>
+                    <a [routerLink]="['/forgot-password']">Forgot Password?</a> <br>
+                    <p> Wanna Start Placing Bets? <a mat-icon-button class="nav-link" [routerLink]="['/register']"><i
+                                class="fas fa-sign-in-alt">Hit me to
+                                Register</i></a></p>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

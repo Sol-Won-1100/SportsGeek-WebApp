@@ -1,0 +1,54 @@
+<div class="sub-container-1-inner">
+    <form [formGroup]="matchResultForm" (ngSubmit)="updateResult()">
+        <div class="title">
+            <span>Match Information</span>
+        </div>
+        <div class="signup-container">
+            <div class="first">
+
+                <div class="field-container">
+                    <mat-form-field appearance="fill" color="accent">
+                        <mat-label>Match ID</mat-label>
+                        <input matInput formControlName="matchId" autocomplete="off">
+                        <mat-error *ngIf="form.matchId.errors?.required">matchId is reqiured
+                        </mat-error>
+                        <!-- <mat-error *ngIf="form.matchId.errors?.maxlength">matchId must have less than 3 digits</mat-error> -->
+                        <mat-error *ngIf="form.matchId.errors?.pattern">matchId should be digits</mat-error>
+                    </mat-form-field>
+                </div>
+
+
+                <div class="field-container">
+                    <mat-form-field appearance="fill" color="accent">
+                        <mat-label>Result Status</mat-label>
+                        <input matInput formControlName="resultStatus" autocomplete="off">
+                        <mat-error *ngIf="form.resultStatus.errors?.required">resultStatus is reqiured
+                        </mat-error>
+                        <!-- <mat-error *ngIf="form.resultStatus.errors?.minlength">resultStatus must have atleast 1 digit</mat-error>
+                        <mat-error *ngIf="form.resultStatus.errors?.maxlength">resultStatus must have 1 digits</mat-error> -->
+                        <mat-error *ngIf="form.resultStatus.errors?.pattern">resultStatus should be digits</mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="field-container">
+                    <mat-form-field appearance="fill" color="accent">
+                        <mat-label>Winner Team ID</mat-label>
+                        <input matInput formControlName="winnerTeamId" autocomplete="off">
+                        <mat-error *ngIf="form.winnerTeamId.errors?.required">winnerTeamId is reqiured
+                        </mat-error>
+                        <!-- <mat-error *ngIf="form.resultStatus.errors?.minlength">winnerTeamIdmust must have atmost 1 digit</mat-error>
+                        <mat-error *ngIf="form.winnerTeamId.errors?.maxlength">winnerTeamIdmust have 1 digit</mat-error> -->
+                        <mat-error *ngIf="form.winnerTeamId.errors?.pattern">winnerTeamId should be digits</mat-error>
+                    </mat-form-field>
+                </div>
+
+
+            </div>
+        </div>
+        <div class="action-container">
+            <!-- <button mat-raised-button *ngIf="matchData" color="accent" type="submit">Update</button> -->
+            <button mat-raised-button *ngIf="!matchResultData" color="accent" type="submit" (click)="$event.stopPropagation()">Update</button>
+            <span (click)="closeDialogBox()" class="cancel-btn">Cancel</span>
+        </div>
+    </form>
+</div>

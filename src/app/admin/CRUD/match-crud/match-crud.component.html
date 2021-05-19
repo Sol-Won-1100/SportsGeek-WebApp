@@ -1,0 +1,198 @@
+<div class="sub-container-1-inner">
+    <form [formGroup]="matchForm" (ngSubmit)="addMatch()">
+        <div class="title">
+            <span>Match Information</span>
+        </div>
+        <div class="signup-container">
+            <div class="first">
+                <div class="field-container">
+                    <mat-form-field appearance="fill">
+                        <mat-label>ID</mat-label>
+                        <input matInput formControlName="matchId" autocomplete="off" type="number">
+                        <mat-error *ngIf="form.matchId.errors?.required">matchId is reqiured
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="field-container">
+                    <mat-form-field appearance="fill" color="accent">
+                        <mat-label>Tournament ID</mat-label>
+                        <input matInput formControlName="tournamentId" autocomplete="off">
+                        <mat-error *ngIf="form.tournamentId.errors?.required">tournamentId is reqiured
+                        </mat-error>
+                        <mat-error *ngIf="form.tournamentId.errors?.maxlength">tournamentId must have less than 3 digits</mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="field-container">
+                    <mat-form-field appearance="fill" color="accent">
+                        <mat-label>Name</mat-label>
+                        <input matInput formControlName="name" autocomplete="off">
+                        <mat-error *ngIf="form.name.errors?.required">name is reqiured
+                        </mat-error>
+                        <mat-error *ngIf="form.name.errors?.minlength">name must have atleast 5 characters</mat-error>
+                        <mat-error *ngIf="form.name.errors?.maxlength"> name must have less than 50 characters</mat-error>
+                        <mat-error *ngIf="form.name.errors?.pattern">name is invalid</mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="field-container">
+                    <mat-form-field appearance="fill" color="accent">
+                        <mat-label>Start Date time</mat-label>
+                        <input [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1" matInput formControlName="startDatetime" autocomplete="off">
+                        <owl-date-time #dt1></owl-date-time>
+                        <mat-error *ngIf="form.startDatetime.errors?.required"> startDatetime is reqiured
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <!-- 
+                <div class="field-container">
+                    <mat-form-field appearance="fill" color="accent">
+                        <mat-label>Team 1</mat-label>
+                        <input matInput formControlName="team1" autocomplete="off">
+                        <mat-error *ngIf="form.team1.errors?.required"> team1 is reqiured
+                        </mat-error>
+                        <mat-error *ngIf="form.team1.errors?.minlength"> team1 must have atleast 5 characters</mat-error>
+                        <mat-error *ngIf="form.team1.errors?.maxlength"> team1 must have less than 50 characters</mat-error>
+                        <mat-error *ngIf="form.team1.errors?.pattern"> team1 is invalid</mat-error>
+                    </mat-form-field>
+                </div>
+                 -->
+
+            </div>
+            <div class="second">
+
+                <div class="field-container">
+                    <mat-form-field appearance="fill" color="accent">
+                        <mat-label>Venue ID</mat-label>
+                        <input matInput formControlName="venue" autocomplete="off">
+                        <mat-error *ngIf="form.venue.errors?.required">venue is reqiured
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+
+                <!-- <div class="field-container">
+                    <mat-form-field appearance="fill" color="accent">
+                        <mat-label>Team1 Logo</mat-label>
+                        <input matInput formControlName="team1Logo" autocomplete="off">
+                        <mat-error *ngIf="form.team1Logo.errors?.required"> team1Logo is reqiured
+                        </mat-error>
+                        <mat-error *ngIf="form.team1Logo.errors?.minlength"> team1Logo must have atleast 6 characters</mat-error>
+                        <mat-error *ngIf="form.team1Logo.errors?.maxlength"> team2Logo must have less than 100 characters</mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="field-container">
+                    <mat-form-field appearance="fill" color="accent">
+                        <mat-label>Team1 Short</mat-label>
+                        <input matInput formControlName="team1Short" autocomplete="off">
+                        <mat-error *ngIf="form.team1Short.errors?.required">team1Short is reqiured
+                        </mat-error>
+                        <mat-error *ngIf="form.team1Short.errors?.maxlength">team1Short must have less than 5 characters</mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="field-container">
+                    <mat-form-field appearance="fill" color="accent">
+                        <mat-label>Team 2</mat-label>
+                        <input matInput formControlName="team2" autocomplete="off">
+                        <mat-error *ngIf="form.team2.errors?.required"> team2 is reqiured
+                        </mat-error>
+                        <mat-error *ngIf="form.team2.errors?.minlength"> team2 must have atleast 5 characters</mat-error>
+                        <mat-error *ngIf="form.team2.errors?.maxlength"> team2 must have less than 50 characters</mat-error>
+                        <mat-error *ngIf="form.team2.errors?.pattern"> team2 must contain alphabets only</mat-error>
+                    </mat-form-field>
+                </div>
+               
+                <div class="field-container">
+                    <mat-form-field appearance="fill" color="accent">
+                        <mat-label>Team2 Logo</mat-label>
+                        <input matInput formControlName="team2Logo" autocomplete="off">
+                        <mat-error *ngIf="form.team2Logo.errors?.required"> team2Logo is reqiured
+                        </mat-error>
+                        <mat-error *ngIf="form.team2Logo.errors?.minlength"> team2Logo must have atleast 6 characters</mat-error>
+                        <mat-error *ngIf="form.team2Logo.errors?.maxlength"> team2Logo must have less than 100 characters</mat-error>
+                    </mat-form-field>
+                </div>
+
+            </div>
+            <div class="second">
+
+                <div class="field-container">
+                    <mat-form-field appearance="fill" color="accent">
+                        <mat-label>Team2 Short</mat-label>
+                        <input matInput formControlName="team2Short" autocomplete="off">
+                        <mat-error *ngIf="form.team2Short.errors?.required">team2Short is reqiured
+                        </mat-error>
+                        <mat-error *ngIf="form.team2Short.errors?.maxlength">team2Short must have less than 5 characters</mat-error>
+                    </mat-form-field>
+                </div>       
+ -->
+
+                <div class="field-container">
+                    <mat-form-field appearance="fill" color="accent">
+                        <mat-label>Team1 ID</mat-label>
+                        <input matInput formControlName="team1Id" autocomplete="off">
+                        <mat-error *ngIf="form.team1Id.errors?.required">team1Id is reqiured</mat-error>
+                        <mat-error *ngIf="form.team1Id.errors?.minlength || form.team1Id.errors?.maxlength ||form.team1Id.errors?.pattern">
+                            team1Id no. is invalid
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="field-container">
+                    <mat-form-field appearance="fill" color="accent">
+                        <mat-label>Team2 ID</mat-label>
+                        <input matInput formControlName="team2Id" autocomplete="off">
+                        <mat-error *ngIf="form.team2Id.errors?.required">team2Id is reqiured</mat-error>
+                        <mat-error *ngIf="form.team2Id.errors?.minlength || form.team2Id.errors?.maxlength || form.team2Id.errors?.pattern">
+                            team2Id is invalid
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <!-- <div class="field-container">
+                    <mat-form-field appearance="fill" color="accent">
+                        <mat-label>Winner Team ID</mat-label>
+                        <input matInput formControlName="winnerTeamId" autocomplete="off">
+                        <mat-error *ngIf="form.winnerTeamId.errors?.required">winnerTeamId is reqiured
+                        </mat-error>
+                        <mat-error *ngIf="form.winnerTeamId.errors?.maxlength">winnerTeamId must have less than 3 characters</mat-error>
+                    </mat-form-field>
+                </div>
+
+
+                <div class="field-container">
+                    <mat-form-field appearance="fill" color="accent">
+                        <mat-label>Result</mat-label>
+                        <input matInput formControlName="resultStatus" autocomplete="off">
+                        <mat-error *ngIf="form.resultStatus.errors?.required">resultStatus is reqiured</mat-error>
+                        <mat-error *ngIf="form.resultStatus.errors?.reqiured">
+                            resultStatus is invalid
+                        </mat-error>
+                    </mat-form-field>
+                </div> -->
+
+                <div class="field-container">
+                    <mat-form-field appearance="fill" color="accent">
+                        <mat-label>Min Bet</mat-label>
+                        <input matInput formControlName="minimumPoints" autocomplete="off">
+                        <mat-error *ngIf="form.minimumPoints.errors?.required">minimum bet is reqiured</mat-error>
+                        <mat-error *ngIf="form.minimumPoints.errors?.minlength">minimum bet must have atleast 2 digit
+                        </mat-error>
+                        <mat-error *ngIf="form.minimumPoints.errors?.maxlength">minimum bet must have less than 3 digit
+                        </mat-error>
+                        <!-- <mat-error *ngIf="form.minimumPoints.errors?.pattern">only digits allowed</mat-error> -->
+                    </mat-form-field>
+                </div>
+
+            </div>
+        </div>
+        <div class="action-container">
+            <!-- <button mat-raised-button *ngIf="matchData" color="accent" type="submit">Update</button> -->
+            <button mat-raised-button *ngIf="!matchData" color="accent" type="submit" (click)="$event.stopPropagation()">Add</button>
+            <span (click)="closeDialogBox()" class="cancel-btn">Cancel</span>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,80 @@
+<div class="sub-container-1-inner">
+    <form [formGroup]="userForm" (ngSubmit)="updateUser()">
+        <div class="title">
+            <span>User Information</span>
+        </div>
+        <div class="signup-container">
+            <div class="first">
+                <div class="field-container">
+                    <mat-form-field appearance="fill" color="accent">
+                        <mat-label>User Id</mat-label>
+                        <input matInput formControlName="userId">
+                    </mat-form-field>
+                </div>
+                <div class="field-container">
+                    <mat-form-field appearance="fill" color="accent">
+                        <mat-label>Username</mat-label>
+                        <input matInput formControlName="username" autocomplete="off">
+                        <mat-error *ngIf="form.username.errors?.required">username is reqiured</mat-error>
+                        <mat-error *ngIf="form.username.errors?.minlength">username must have atleast 6 characters
+                        </mat-error>
+                        <mat-error *ngIf="form.username.errors?.maxlength">username must have less than 50 characters
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="field-container">
+                    <mat-form-field appearance="fill" color="accent">
+                        <mat-label>First Name</mat-label>
+                        <input matInput formControlName="firstname" autocomplete="off">
+                        <mat-error *ngIf="form.firstname.errors?.required">first name is reqiured
+                        </mat-error>
+                        <mat-error *ngIf="form.firstname.errors?.minlength">first name must have atleast 4 characters</mat-error>
+                        <mat-error *ngIf="form.firstname.errors?.maxlength">first name must have less than 100 characters</mat-error>
+                        <mat-error *ngIf="form.firstname.errors?.pattern">first name is invalid</mat-error>
+                    </mat-form-field>
+                </div>
+
+            </div>
+            <div class="second">
+
+                <div class="field-container">
+                    <mat-form-field appearance="fill" color="accent">
+                        <mat-label>Last Name</mat-label>
+                        <input matInput formControlName="lastname" autocomplete="off">
+                        <mat-error *ngIf="form.firstname.errors?.required">last name is reqiured
+                        </mat-error>
+                        <mat-error *ngIf="form.lastname.errors?.minlength">last name must have atleast 4 characters</mat-error>
+                        <mat-error *ngIf="form.lastname.errors?.maxlength">last name must have less than 100 characters</mat-error>
+                        <mat-error *ngIf="form.lastname.errors?.pattern">last name is invalid</mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="field-container">
+                    <mat-form-field appearance="fill" color="accent">
+                        <mat-label>Email</mat-label>
+                        <input matInput formControlName="email" autocomplete="off">
+                        <mat-error *ngIf="form.email.errors?.required">email is reqiured
+                        </mat-error>
+                        <mat-error *ngIf="form.email.errors?.maxlength">email must have less than 200 characters</mat-error>
+                        <mat-error *ngIf="form.email.errors?.email">email is invalid</mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="field-container">
+                    <mat-form-field appearance="fill" color="accent">
+                        <mat-label>Phone no.</mat-label>
+                        <input matInput formControlName="mobilenumber" autocomplete="off">
+                        <mat-error *ngIf="form.mobilenumber.errors?.required">phone no. is reqiured</mat-error>
+                        <mat-error *ngIf="form.mobilenumber.errors?.minlength || form.mobilenumber.errors?.maxlength || form.mobilenumber.errors?.pattern">
+                            phone no. is invalid
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+            </div>
+        </div>
+        <div class="action-container">
+            <button mat-raised-button color="accent" type="submit">Update</button>
+            <button type="reset" mat-raised-button (click)="closeDialogBox()" color="warn">Cancel</button>
+        </div>
+    </form>
+</div>

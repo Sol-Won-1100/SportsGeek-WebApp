@@ -1,0 +1,59 @@
+<div class="sub-container-1-inner">
+    <form [formGroup]="rechargeForm" (ngSubmit)="addRecharge()">
+        <div class="title">
+            <span>User Information</span>
+        </div>
+        <div class="signup-container">
+            <div class="first">
+                <div class="field-container" *ngIf="rechargeData">
+                    <mat-form-field appearance="fill">
+                        <mat-label>ID</mat-label>
+                        <input matInput formControlName="rechargeId">
+                    </mat-form-field>
+                </div>
+                <div class="field-container">
+                    <mat-form-field appearance="fill" color="accent">
+                        <mat-label>User ID</mat-label>
+                        <input matInput formControlName="userId" autocomplete="off">
+                        <mat-error *ngIf="form.userId.errors?.required">userId is reqiured</mat-error>
+                        <mat-error *ngIf="form.userId.errors?.minlength">userId must have atleast 3 digits
+                        </mat-error>
+                        <mat-error *ngIf="form.userId.errors?.maxlength">userId must have less than 5 digits
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+
+                <div class="field-container">
+                    <mat-form-field appearance="fill" color="accent">
+                        <mat-label>Points</mat-label>
+                        <input matInput formControlName="points" autocomplete="off">
+
+                        <mat-error *ngIf="form.points.errors?.required">points is reqiured</mat-error>
+                        <mat-error *ngIf="form.points.errors?.minlength">points must have atleast 3 digits
+                        </mat-error>
+                        <mat-error *ngIf="form.points.errors?.maxlength">points must have less than 4 digits
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <!-- <div class="field-container">
+                    <mat-form-field appearance="fill" color="accent">
+                        <mat-label>Recharge Date</mat-label>
+                        <input [owlDateTime]="dt2" [owlDateTimeTrigger]="dt2" matInput formControlName="rechargeDate"
+                            autocomplete="off">
+                        <owl-date-time #dt2></owl-date-time>
+                        <mat-error *ngIf="form.rechargeDate.errors?.required">rechargeDate is reqiured</mat-error>
+
+                    </mat-form-field>
+                </div> -->
+
+            </div>
+        </div>
+        <div class="action-container">
+            <button mat-raised-button *ngIf="rechargeData" color="accent" type="submit">Update</button>
+            <button mat-raised-button *ngIf="!rechargeData" color="accent" type="submit">Add</button>
+            <span (click)="closeDialogBox()" class="cancel-btn">Cancel</span>
+        </div>
+    </form>
+</div>

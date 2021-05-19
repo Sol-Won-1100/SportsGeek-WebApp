@@ -1,0 +1,20 @@
+<body [style.background-image]="'url(' + stadium + ')'">
+    <div class="card" *ngFor="let matchdata of matchData" routerLink="betting-page/{{matchdata.matchId}}">
+        <h2>Upcoming Match No. {{matchdata.matchId}}</h2>
+        <div class="match-details">
+            <div class="team1">
+                <img loading="lazy" style="border-radius: 50%; " src={{matchdata.team1Logo}} />
+                <h3 class="team-name"> {{matchdata.team1}} </h3>
+            </div>
+            <div class="details">
+                <h3 class="date"> {{matchdata.startDatetime | date :'medium':'UTC' }} </h3>
+                <h1 class="versus">VS</h1>
+                <h4 class="venue"> {{matchdata.venue}} </h4>
+            </div>
+            <div class="team2">
+                <img loading="lazy" style="border-radius: 50%; " src="{{matchdata.team2Logo}}" />
+                <h3 class="team-name">{{matchdata.team2}} </h3>
+            </div>
+        </div>
+    </div>
+</body>

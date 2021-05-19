@@ -1,0 +1,48 @@
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+.space {
+    margin-right: 10px;
+}
+
+.ahome {
+    color: aliceblue;
+    text-decoration: none;
+}
+
+.dropdownbtn {
+    margin-right: 20px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.home {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+mat-icon {
+    font-size: x-large;
+}
+
+.bets {
+    margin-left: 10px;
+    text-decoration: none;
+}
+
+.leader-board {
+    margin-left: 20px;
+    text-decoration: none;
+}
+
+.my-matches {
+    margin-left: 20px;
+    text-decoration: none;
+}
+
+.profile {
+    margin-right: 20px;
+}

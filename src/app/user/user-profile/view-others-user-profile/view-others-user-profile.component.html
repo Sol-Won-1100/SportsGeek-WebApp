@@ -1,0 +1,53 @@
+<body [style.background-image]="'url(' + profile + ')'">
+    <div class="wrapper">
+        <div class="left">
+            <!-- <img src="{{userData?.profilePicture}}" alt="user" width="100"> -->
+            <h4> {{userData?.firstName | uppercase}} {{userData?.lastName | uppercase}} </h4>
+            <p> @{{userData?.username}}</p>
+        </div>
+        <div class="right">
+            <div class="info">
+                <h3>information</h3>
+                <div class="info_data">
+                    <div class="data">
+                        <!-- <h4>Email</h4> -->
+                        <mat-icon class="emicon">email</mat-icon>
+                        <p> {{userData?.email}} </p>
+                    </div>
+                    <div class="data">
+                        <!-- <h4>Phone</h4> -->
+                        <mat-icon class="emicon">phone_iphone</mat-icon>
+                        <p>{{userData?.mobileNumber}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="projects">
+                <h3>Betting history</h3>
+                <div class="projects_data">
+                    <div class="data">
+                        <h4>Available Points</h4>
+                        <p> {{userData?.availablePoints}} </p>
+                    </div>
+                    <div class="data">
+                        <h4>Winning Points</h4>
+                        <p> {{usersWinningPoints?.winningPoints}} </p>
+                    </div>
+                    <div class="data">
+                        <h4>Loosing Points</h4>
+                        <p> {{usersLoosingPoints?.loosingPoints}} </p>
+                    </div>
+                </div>
+            </div>
+            <div class="social_media">
+                <ul>
+                    <!-- <li href=""><i class="fab fa-facebook-f"></i></li>
+                    <li href=""><i class="fab fa-twitter"></i></li>
+                    <li href=""><i class="fab fa-instagram-square"></i></li> -->
+                    <!-- <li>
+                        <mat-icon>manage_accounts</mat-icon>
+                    </li> -->
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>

@@ -1,0 +1,75 @@
+<body>
+    <mat-tab-group mat-align-tabs="center">
+
+        <mat-tab label="Upcoming">
+
+            <div class="card" *ngFor="let upcomingmatches of upcomingMatches" routerLink="/User/match-list/betting-page/{{upcomingmatches.matchId}}">
+                <h2>Upcoming Match No. {{upcomingmatches?.matchId}}</h2>
+                <div class="match-details">
+                    <div class="team1">
+                        <img loading="lazy" style="border-radius: 50%; " src="{{upcomingmatches?.team1Logo}}" />
+                        <h3 class="team-name">{{upcomingmatches?.team1Short}} </h3>
+                    </div>
+                    <div class="details">
+                        <h3 class="date">{{upcomingmatches?.startDatetime | date: 'medium'}} </h3>
+                        <h1 class="versus">VS</h1>
+                        <h4 class="venue">{{upcomingmatches?.venue}} </h4>
+                    </div>
+                    <div class="team2">
+                        <img loading="lazy" style="border-radius: 50%; " src="{{upcomingmatches?.team2Logo}}" />
+                        <h3 class="team-name">{{upcomingmatches?.team2Short}} </h3>
+                    </div>
+                </div>
+            </div>
+
+        </mat-tab>
+
+        <mat-tab label="Live">
+
+            <div class="card" *ngFor="let livematch of liveMatch" routerLink="view-live-match/{{livematch.matchId}}">
+                <h2>Live Match No. {{livematch?.matchId}}</h2>
+                <div class="match-details">
+                    <div class="team1">
+                        <img loading="lazy" style="border-radius: 50%; " src="{{livematch?.team1Logo}}" />
+                        <h3 class="team-name">{{livematch?.team1Short}} </h3>
+                    </div>
+                    <div class="details">
+                        <h3 class="date">{{livematch?.startDatetime | date: 'medium'}} </h3>
+                        <h1 class="versus">VS</h1>
+                        <h4 class="venue">{{livematch?.venue}} </h4>
+                    </div>
+                    <div class="team2">
+                        <img loading="lazy" style="border-radius: 50%; " src="{{livematch?.team2Logo}}" />
+                        <h3 class="team-name">{{livematch?.team2Short}} </h3>
+                    </div>
+                </div>
+            </div>
+
+        </mat-tab>
+
+        <mat-tab label="Results">
+
+            <div class="card" *ngFor="let oldmatches of oldMatches" routerLink="view-old-match/{{oldmatches.matchId}}">
+                <h2>Match No. {{oldmatches?.matchId}} Winner : {{oldmatches.winnerTeamName}} </h2>
+                <div class="match-details">
+                    <div class="team1">
+                        <img loading="lazy" style="border-radius: 50%; " src="{{oldmatches?.team1Logo}}" />
+                        <h3 class="team-name">{{oldmatches?.team1Short}} </h3>
+                    </div>
+                    <div class="details">
+                        <h3 class="date">{{oldmatches?.startDatetime | date: 'medium'}} </h3>
+                        <h1 class="versus">VS</h1>
+                        <h4 class="venue">{{oldmatches?.venue}} </h4>
+                    </div>
+                    <div class="team2">
+                        <img loading="lazy" style="border-radius: 50%; " src="{{oldmatches?.team2Logo}}" />
+                        <h3 class="team-name">{{oldmatches?.team2Short}} </h3>
+                    </div>
+                </div>
+            </div>
+
+        </mat-tab>
+
+    </mat-tab-group>
+
+</body>
