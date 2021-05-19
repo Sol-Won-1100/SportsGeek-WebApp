@@ -324,3 +324,17 @@ mat-paginator {
 .mat-cell {
     padding-right: 10px;
 }
+
+.points {
+    background: conic-gradient( #fd004c, #fe9000, #fff020, #3edf4b, #fd004c);
+    animation: rotate 1.5s infinite linear;
+}
+
+@keyframes rotate {
+    0% {
+        filter: hue-rotate(0deg);
+    }
+    100% {
+        filter: hue-rotate(360deg);
+    }
+}
