@@ -23,7 +23,7 @@ export class AdminManageMatchesComponent implements OnInit {
 
   matchData: MatchModel[] = [];
 
-  displayedColumns: string[] = ['matchId', 'minimumPoints','startDatetime', 'team1', 'team1Id', 'team1Logo', 'team1Short', 'team2', 'team2Id', 'team2Logo', 'team2Short','tournamentId','venue','resultStatus','winnerTeamId'];
+  displayedColumns: string[] = ['matchId', 'minimumPoints','startDatetime', 'team1', 'team1Id', 'team1Logo', 'team1Short', 'team2', 'team2Id', 'team2Logo', 'team2Short','tournamentId','venue','resultStatus','winnerTeamId','delete'];
 
   dataSource: MatTableDataSource<MatchModel> = new MatTableDataSource();
   // dataSource = new MatTableDataSource<UserModel>(this.userData);
@@ -53,39 +53,6 @@ export class AdminManageMatchesComponent implements OnInit {
   getResultStatus(matchId: any) {
     return this.matchData.find(obj => obj.matchId === matchId)?.resultStatus;
   }
-
-  // async changeMatchWinner(matchId: number, resultStatus: boolean, winnerTeamId:number) {
-
-  //   let panelClass = 'green';
-  //   let snackbarMsg = '';
-  //   let snackbarRef = null;
-  //   const dialogRef = this.dialog.open(LoadingComponent, { disableClose: true });
-  //   let msg;
-  //   let resp = null;
-  //   try {
-  //     resp = await this.matchservice.updateMatchWinner(matchId, resultStatus, winnerTeamId);
-  //     msg = resp.message;
-  //     if (msg) {
-  //       dialogRef.close();
-  //       const i = this.matchData.findIndex(obj => obj.matchId === matchId);
-  //       this.matchData[i].resultStatus = resultStatus;
-  //       snackbarMsg = msg;
-  //     } else {
-  //       snackbarMsg = NO_RESP;
-  //       panelClass = 'red';
-  //     }
-  //   } catch (ex) {
-  //     snackbarMsg = getErrorMessage(ex);
-  //     panelClass = 'red';
-  //   } finally {
-  //     dialogRef.close();
-  //   }
-  //   if (snackbarMsg) {
-  //     snackbarRef = this.snackbar.openFromComponent(SnackbarComponent,
-  //       getSnackbarProperties(snackbarMsg, panelClass));
-  //   }
-  // }
-
 
   async getMatches(): Promise<any> {
     let panelClass = 'green';
@@ -117,33 +84,34 @@ export class AdminManageMatchesComponent implements OnInit {
     return [];
   }
 
-  // async deleteUser(userData:UserModel): Promise<any>
-  // {
-  //   let panelClass = 'green';
-  //   let snackbarMsg = '';
-  //   let snackbarRef = null;
-  //   let userModel: UserModel[] = [];
-  //   let resp = null;
-  //   try {
-  //     resp = await this.userservice.delete(userData.userId);
-  //     userModel = resp.body.data;
-  //     if (userModel) {
-  //       return userModel;
-  //     } else {
-  //       snackbarMsg = NO_RESP;
-  //       panelClass = 'red';
-  //     }
-  //   } catch (ex) {
-  //     snackbarMsg = getErrorMessage(ex);
-  //     panelClass = 'red';
-  //   } finally {
-  //   }
-  //   if (snackbarMsg) {
-  //     snackbarRef = this.snackbar.openFromComponent(SnackbarComponent,
-  //       getSnackbarProperties(snackbarMsg, panelClass));
-  //   }
-  //   return [];
-  // }
+  async deleteMatch(matchData:MatchModel): Promise<any>
+  {
+    let panelClass = 'green';
+    let snackbarMsg = '';
+    let snackbarRef = null;
+    let matchModel: MatchModel[] = [];
+    let resp = null;
+    try {
+      resp = await this.matchservice.deleteMatch(matchData.matchId);
+      matchModel = resp.body;
+      if (matchModel) {
+        return matchModel;
+      } else {
+        snackbarMsg = NO_RESP;
+        panelClass = 'red';
+        location.reload();
+      }
+    } catch (ex) {
+      snackbarMsg = getErrorMessage(ex);
+      panelClass = 'red';
+    } finally {
+    }
+    if (snackbarMsg) {
+      snackbarRef = this.snackbar.openFromComponent(SnackbarComponent,
+        getSnackbarProperties(snackbarMsg, panelClass));
+    }
+    return [];
+  }
 
   openMatchForm() {
     const dialogRef = this.dialog.open(MatchCRUDComponent,
@@ -152,6 +120,7 @@ export class AdminManageMatchesComponent implements OnInit {
       if (data) {
         this.matchData.push(data);
         this.dataSource.data = this.matchData;
+        location.reload();
       }
     });
   }
@@ -162,6 +131,7 @@ export class AdminManageMatchesComponent implements OnInit {
       if (data) {
         this.matchData.push(data);
         this.dataSource.data = this.matchData;
+        location.reload();
       }
     });
   }
@@ -171,8 +141,7 @@ export class AdminManageMatchesComponent implements OnInit {
       { panelClass: 'no-padding-dialog', disableClose: true });
     dialogRef.afterClosed().toPromise().then(data => {
       if (data) {
-        console.log("result updated");
-        
+        console.log("result updated");        
       }
     });
   }

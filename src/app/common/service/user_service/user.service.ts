@@ -32,7 +32,7 @@ export class UserService {
   }
 
   async addUser(userModel: UserModel): Promise<any> {
-    return await this.http.post<UserWithPasswordModel>(usersBaseURL + '/add-user', userModel, { observe: 'response' }).toPromise();
+    return await this.http.post<UserWithPasswordModel>(usersBaseURL + '/register', userModel, { observe: 'response' }).toPromise();
   }
 
   async updateUser(userId: number, model: UserModel): Promise<any> {
@@ -52,6 +52,6 @@ export class UserService {
   }
 
   async signup(userWithPasswordModel: UserWithPasswordModel): Promise<any> {
-    return await this.http.post<UserWithPasswordModel>(usersBaseURL + '/add-user', userWithPasswordModel, { observe: 'response' }).toPromise();
+    return await this.http.post<UserWithPasswordModel>(usersBaseURL + '/register', userWithPasswordModel, { observe: 'response' }).toPromise();
   }
 }

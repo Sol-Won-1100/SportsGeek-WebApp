@@ -99,27 +99,18 @@
                     <td mat-cell *matCellDef="let element"> {{element.winnerTeamId}} </td>
                 </ng-container>
 
-                <!-- <ng-container matColumnDef="delete">
-            <th mat-header-cell mat-sort-header *matHeaderCellDef class="highlight"> Delete </th>
-            <td mat-cell *matCellDef="let element" class="highlight" (click)="$event.stopPropagation(); deleteUser(element);"> 
-              <button mat-fab>
+                <ng-container matColumnDef="delete">
+                    <th mat-header-cell mat-sort-header *matHeaderCellDef class="highlight"> Delete </th>
+                    <td mat-cell *matCellDef="let element" (click)="$event.stopPropagation(); deleteMatch(element);">
+                        <button mat-fab>
                 <mat-icon> delete </mat-icon>
-              </button>  
-            </td>
-          </ng-container> -->
-
-                <!-- <ng-container matColumnDef="resultStatus">
-            <th mat-header-cell mat-sort-header *matHeaderCellDef class="highlight"> Status </th>
-            <td mat-cell *matCellDef="let element" class="highlight">
-              <mat-slide-toggle (change)="changeMatchWinner(element.matchId,!element.resultStatus,element.resultStatus)"
-                (click)="$event.stopPropagation()" [checked]="getResultStatus(element.userId)">
-              </mat-slide-toggle>
-            </td>
-          </ng-container> -->
+              </button>
+                    </td>
+                </ng-container>
 
                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                <tr mat-row [ngClass]="{'evenrow': index%2 == 1}" *matRowDef="let row; columns: displayedColumns; let index=index"></tr>
-                <!-- (click)="updateMatchForm(row)" -->
+                <tr mat-row [ngClass]="{'evenrow': index%2 == 1}" *matRowDef="let row; columns: displayedColumns; let index=index" (click)="updateMatchForm(row)"></tr>
+
             </table>
             <mat-paginator color="accent" [pageSizeOptions]="[5,10,20]" showFirstLastButtons></mat-paginator>
         </div>

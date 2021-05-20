@@ -17,4 +17,5 @@ export class MatchModel
     venue!: string;
     winnerTeamId!: number;
     startDatetime!:any;
+    venueId!:number;
 }

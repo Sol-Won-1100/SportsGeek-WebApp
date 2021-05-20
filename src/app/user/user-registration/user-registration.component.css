@@ -115,6 +115,7 @@ a:hover {
 .right .copy {
     color: black;
     text-align: center;
+    padding-bottom: 10px;
 }
 
 .right .copy p {
