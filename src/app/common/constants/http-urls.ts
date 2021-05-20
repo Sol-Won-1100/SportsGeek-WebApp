@@ -1,5 +1,5 @@
-export const baseURL = 'http://localhost:8080'
-// export const baseURL = 'https://sports-geek.herokuapp.com'
+// export const baseURL = 'http://localhost:8080'
+export const baseURL = 'https://sports-geek.herokuapp.com'
 export const usersBaseURL = baseURL +'/users'
 export const matchBaseURL = baseURL + '/matches'
 export const contestBaseURL = baseURL + '/contest'
