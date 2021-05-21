@@ -1,5 +1,11 @@
 # SportsGeekWebApp
 
+This is Sports Betting WebApp Developed in Angular.
+
+Here is the Demo of This Project :- https://sportsgeek-webapp.herokuapp.com/login
+
+Backend was Developed in Spring Boot.
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.0.
 
 ## Development server
