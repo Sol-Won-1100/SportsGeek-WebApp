@@ -89,13 +89,15 @@ export class AdminManageMatchesComponent implements OnInit {
     let panelClass = 'green';
     let snackbarMsg = '';
     let snackbarRef = null;
-    let matchModel: MatchModel[] = [];
+    const dialogRef = this.dialog.open(LoadingComponent, { disableClose: true });
+    // let matchModel: MatchModel[] = [];
+    let msg;
     let resp = null;
     try {
       resp = await this.matchservice.deleteMatch(matchData.matchId);
-      matchModel = resp.body;
-      if (matchModel) {
-        return matchModel;
+      msg = resp.body;
+      if (msg) {
+        return msg;
       } else {
         snackbarMsg = NO_RESP;
         panelClass = 'red';
@@ -105,6 +107,8 @@ export class AdminManageMatchesComponent implements OnInit {
       snackbarMsg = getErrorMessage(ex);
       panelClass = 'red';
     } finally {
+      dialogRef.close();
+      location.reload();
     }
     if (snackbarMsg) {
       snackbarRef = this.snackbar.openFromComponent(SnackbarComponent,

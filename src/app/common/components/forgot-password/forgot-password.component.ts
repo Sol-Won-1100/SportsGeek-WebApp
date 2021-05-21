@@ -5,6 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router, RouterLink } from '@angular/router';
 import { getErrorMessage, NO_RESP } from '../../constants/error-message';
 import { getSnackbarProperties } from '../../constants/snackbar-properties';
+import { ChangeForgotPassword } from '../../model/change-password/change-forgot-password';
 import { SendOtpForForgotPassword } from '../../model/change-password/sendotp';
 import { ResetPasswordWithOtpService } from '../../service/fotgot-password/reset-password-with-otp.service';
 import { LoadingComponent } from '../loading/loading.component';
@@ -65,8 +66,9 @@ export class ForgotPasswordComponent implements OnInit {
       let resp = null;
       try{
         resp = await this.resetPassword.sendOtp(sendOtpModel);
-        const msg = resp.body.message;
+        const msg = resp.body;
         if (msg) {
+          localStorage.setItem('userId',resp.body.userId);
           snackbarMsg = msg + '! please check your email for otp.';
           // this.matDialogRef.close();
         } else {
@@ -86,11 +88,13 @@ export class ForgotPasswordComponent implements OnInit {
     }
   }
 
+  userId=localStorage.getItem('userId');
+
   async newPasswordWithOtp() {
     if (this.otpWithNewPassword.valid) {
-      const otpWithNewPassword: SendOtpForForgotPassword = new SendOtpForForgotPassword();
+      const otpWithNewPassword: ChangeForgotPassword = new ChangeForgotPassword();
       otpWithNewPassword.otp = this.otpWithNewPasswordForm.otp.value;
-      otpWithNewPassword.userId = 2;
+      otpWithNewPassword.userId = this.userId;
       otpWithNewPassword.password = this.otpWithNewPasswordForm.newPassword.value;
 
       let panelClass = 'green';
@@ -101,16 +105,19 @@ export class ForgotPasswordComponent implements OnInit {
       let resp = null;
       try{
         resp = await this.resetPassword.updateForgotPassword(otpWithNewPassword);
-        const msg = resp.body.message;
+        const msg = resp.body;
         if (msg) {
           snackbarMsg = msg + '! Please Login to Continue.';
           this.router.navigate(['/login']);
+          localStorage.removeItem('userId');
           // this.matDialogRef.close();
         } else {
           snackbarMsg = NO_RESP;
           panelClass = 'red';
         }
       } catch (ex) {
+        this.router.navigate(['/login']);
+          localStorage.removeItem('userId');
         snackbarMsg = getErrorMessage(ex);
         panelClass = 'red';
       } finally {

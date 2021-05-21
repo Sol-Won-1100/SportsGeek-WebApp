@@ -13,19 +13,34 @@
 
     <div class="bets" *ngIf="isRoleUser()">
         <a routerLink="User/match-list" class="ahome">
-            <mat-icon>monetization_on</mat-icon>Place Bets
+            <div *ngIf="deviceXs">
+                <mat-icon>monetization_on</mat-icon>
+            </div>
+            <div *ngIf="!deviceXs">
+                <mat-icon>monetization_on</mat-icon>Place Bets
+            </div>
         </a>
     </div>
 
     <div class="leader-board" *ngIf="isRoleUser()">
         <a routerLink="User/leader-board" class="ahome">
-            <mat-icon>leaderboard</mat-icon>Leader Board
+            <div *ngIf="deviceXs">
+                <mat-icon>leaderboard</mat-icon>
+            </div>
+            <div *ngIf="!deviceXs">
+                <mat-icon>leaderboard</mat-icon>Leader Board
+            </div>
         </a>
     </div>
 
     <div class="my-matches" *ngIf="isRoleUser()">
         <a routerLink="User/my-matches" class="ahome">
-            <mat-icon>sports_cricket</mat-icon>My Matches
+            <div *ngIf="deviceXs">
+                <mat-icon>sports_cricket</mat-icon>
+            </div>
+            <div *ngIf="!deviceXs">
+                <mat-icon>sports_cricket</mat-icon>My Matches
+            </div>
         </a>
     </div>
 

@@ -63,6 +63,10 @@ import { ViewOldMatchesComponent } from './user/my-matches/view-old-matches/view
 import { ViewOthersUserProfileComponent } from './user/user-profile/view-others-user-profile/view-others-user-profile.component';
 import { UpdateMatchResultComponent } from './admin/CRUD/update-match-result/update-match-result.component';
 import { ConfirmBoxComponent } from './common/components/confirm-box/confirm-box.component';
+import {MatCardModule} from '@angular/material/card';
+import { LayoutModule } from '@angular/cdk/layout';
+import { InsertUpdateContestComponent } from './user/betting-page/insert-update-contest/insert-update-contest.component';
+
 
 @NgModule({
   declarations: [
@@ -100,6 +104,7 @@ import { ConfirmBoxComponent } from './common/components/confirm-box/confirm-box
     ViewOthersUserProfileComponent,
     UpdateMatchResultComponent,
     ConfirmBoxComponent,
+    InsertUpdateContestComponent
 
   ],
   imports: [
@@ -133,7 +138,9 @@ import { ConfirmBoxComponent } from './common/components/confirm-box/confirm-box
     OwlNativeDateTimeModule,
     MatRadioModule,
     MatSortModule,
-    MatTabsModule
+    MatTabsModule,
+    MatCardModule,
+    LayoutModule
   ],
   providers: [
     {

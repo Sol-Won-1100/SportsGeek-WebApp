@@ -83,7 +83,7 @@ export class UserRegistrationComponent implements OnInit {
         userWithPasswordModel = resp.body;
         if (userWithPasswordModel != null && userWithPasswordModel.userId > 0) {
           snackbarMsg = 'Your data has been Submitted, Please wait for the Admin to Approve!';
-          this.router.navigate(['/User/login']);
+          this.router.navigate(['/login']);
         } else {
           snackbarMsg = NO_RESP;
           panelClass = 'red';

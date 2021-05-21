@@ -1,3 +1,4 @@
+import { Input } from '@angular/core';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -13,6 +14,7 @@ import { LoginstateService } from '../../service/login_state/loginstate.service'
 })
 export class HeaderComponent implements OnInit {
 
+  @Input() deviceXs!:boolean;
   // isAuthenticated = false;
   constructor(
     public authservice1: AuthenticationService,

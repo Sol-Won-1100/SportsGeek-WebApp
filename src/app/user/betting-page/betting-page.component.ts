@@ -19,6 +19,7 @@ import { BotService } from 'src/app/common/service/bot/bot.service';
 import { LoginstateService } from 'src/app/common/service/login_state/loginstate.service';
 import { MatchesService } from 'src/app/common/service/matches_service/matches.service';
 import { UserService } from 'src/app/common/service/user_service/user.service';
+import { InsertUpdateContestComponent } from './insert-update-contest/insert-update-contest.component';
 
 @Component({
   selector: 'app-betting-page',
@@ -27,9 +28,9 @@ import { UserService } from 'src/app/common/service/user_service/user.service';
 })
 export class BettingPageComponent implements OnInit {
 
-  fetchBotDetails: BotModel[] = [];
+  botData: BotModel[] = [];
   calc!:MatchModel;
-  botData!:BotModel;
+  
   userData!: UserModel;
   checkk!:CheckContestByUserAndMatchId;
 
@@ -43,7 +44,7 @@ export class BettingPageComponent implements OnInit {
   placebets = "../assets/img/placebets.jpg";
   matchId!:number;
   matchData!: MatchModel;
-  botForm!: FormGroup;
+  
 
   constructor(
     private fb: FormBuilder,
@@ -54,47 +55,20 @@ export class BettingPageComponent implements OnInit {
     private matchservice:MatchesService,
     private userservice: UserService,
     private loginStateService:LoginstateService
-  ){}
+  ){
+   
+  }
 
   async ngOnInit(){
      this.route.params.subscribe(data=>{
        this.matchId=data.id;
      })    
-
-     if (this.botData) {
-      this.botForm = this.fb.group({
-        // contestId: [{ value: this.botData.contestId, disabled: true }],
-
-        // userId: [{value: localStorage.getItem('userId'),disabled:true}],
-
-        matchId: [{value: this.matchId, disabled:true}],
-
-        contestPoints: [this.botData.contestPoints, [Validators.required, Validators.minLength(2), Validators.maxLength(4), Validators.pattern('[0-9]+')]],
-
-        selectTeam: [this.botData.teamId, [Validators.required]]
-
-      });
-    } else {
-      this.botForm = this.fb.group({
-
-        // contestId: [{  disabled: true }],
-
-        // userId: [{value: localStorage.getItem('userId'),disabled:true}],
-
-        matchId: [{value: this.matchId, disabled:true}],
-
-        contestPoints: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(4), Validators.pattern('[0-9]+')]],
-
-        selectTeam: ['', [Validators.required]]
-
-      });
-    }
     this.calc = await this.getAllPlayerBetsByMatchIdForCalculation(this.matchId);
 
-     this.fetchBotDetails = await this.getAllPlayerBetsByMatchId(this.matchId);
-    console.log(this.fetchBotDetails);
+     this.botData = await this.getAllPlayerBetsByMatchId(this.matchId);
+    console.log(this.botData);
 
-    this.dataSource.data = this.fetchBotDetails;
+    this.dataSource.data = this.botData;
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
    
@@ -244,119 +218,27 @@ export class BettingPageComponent implements OnInit {
 
   //  ADD BETS AND UPDATE BETS
 
-  reload() {
-    location.reload();
-  }
-
-  get form() {
-    return this.botForm.controls;
-  }
-
-  reset(field: string) {
-    this.form[field].setValue('');
-  }
- 
   loginState = this.loginStateService.getLoginState();
 
-  async PlaceBet() {
-    if(this.dialog.openDialogs.length==0){
-    const dialogRef1 = this.dialog.open(ConfirmBoxComponent,{
-      panelClass:'no-padding-dialog',
-      data:'Nobody has ever Bet Enough on Winning Horse'
-    });
-    const closeResp = await dialogRef1.afterClosed().toPromise();
-    if(closeResp){
-    if (this.botForm.valid) {
-      if (!this.botData) {
-        this.botData = new BotModel();
-        this.botData.contestId = 0;
-        this.botData.userId = this.loginState.userId;
-        this.botData.matchId = this.matchId;
-        this.botData.contestPoints = this.form.contestPoints.value;
-        this.botData.teamId = this.form.selectTeam.value;
-        // this.botData.winningPoints = 0;
-
-        let panelClass = 'green';
-        let snackbarMsg = '';
-        let snackbarRef = null;
-        this.snackbar.dismiss();
-        const dialogRef = this.dialog.open(LoadingComponent, { disableClose: true });
-        let resp = null;
-        try {
-          resp = await this.botservice.addBet(this.botData);
-          this.botData = resp;
-          if (this.botData != null )
-          // && this.botData.contestId > 0
-          {
-            snackbarMsg = 'Bet successfully Placed!';
-            this.reload();
-          } else {
-            snackbarMsg = NO_RESP;
-            panelClass = 'red';
-          }
-        } catch (ex) {
-          snackbarMsg = getErrorMessage(ex);
-          panelClass = 'red';
-        } finally {
-          dialogRef.close();
-          if (snackbarMsg) {
-            snackbarRef = this.snackbar.openFromComponent(SnackbarComponent,
-              getSnackbarProperties(snackbarMsg, panelClass));
-          }
-        }
-      } 
-    }
-  }
-  }
-}
-
-async updateBets(){
-  if(this.dialog.openDialogs.length==0){
-  const dialogRef2 = this.dialog.open(ConfirmBoxComponent,{
-    panelClass:'no-padding-dialog',
-    data:'Looks like you have intel on winning team'
-  });
-  const closeResp2 = await dialogRef2.afterClosed().toPromise();
-  if(closeResp2){
-  if (this.botForm.valid) {
-    if (!this.botData) {
-        this.botData = new BotModel();
-        this.botData.contestId = this.checkk.contestId;
-        this.botData.userId = this.loginState.userId;
-        this.botData.matchId = this.matchId;
-        this.botData.teamId = this.form.selectTeam.value;
-        this.botData.contestPoints = this.form.contestPoints.value;
-
-        let panelClass = 'green';
-        let snackbarMsg = '';
-        let snackbarRef = null;
-        this.snackbar.dismiss();
-        const dialogRef = this.dialog.open(LoadingComponent, { disableClose: true });
-        let resp = null;
-        try {
-          resp = await this.botservice.updateBet(this.botData.contestId, this.botData);
-          this.botData = resp.body;
-          if (this.botData != null) {
-            snackbarMsg = 'Bet successfully updated!';
-            this.reload();
-          } else {
-            snackbarMsg = NO_RESP;
-            panelClass = 'red';
-          }
-        } catch (ex) {
-          snackbarMsg = getErrorMessage(ex);
-          panelClass = 'red';
-        } finally {
-          dialogRef.close();
-          if (snackbarMsg) {
-            snackbarRef = this.snackbar.openFromComponent(SnackbarComponent,
-              getSnackbarProperties(snackbarMsg, panelClass));
-          }
-        }
+  openInsertDialog() {
+    const dialogRef = this.dialog.open(InsertUpdateContestComponent,
+      { panelClass: 'no-padding-dialog', disableClose: true, data:{matchId:this.matchId} });
+    dialogRef.afterClosed().toPromise().then(data => {
+      if (data) {
+        this.botData.push(data);
+        this.dataSource.data = this.botData;
       }
-    }
+    });
   }
-  }
+  openUpdateDialog(data: any) {
+    const dialogRef = this.dialog.open(InsertUpdateContestComponent,
+      { panelClass: 'no-padding-dialog', disableClose: true, data });
+    dialogRef.afterClosed().toPromise().then(data => {
+      if (data) {
+        this.botData.push(data);
+        this.dataSource.data = this.botData;
+      }
+    });
   }
 
   // THIS IS FOR CALCULATION PURPOSE ONLY

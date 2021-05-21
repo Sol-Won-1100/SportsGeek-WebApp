@@ -64,7 +64,7 @@ export class AdminManageUserComponent implements OnInit {
     let resp = null;
     try {
       resp = await this.userservice.updateActiveStatus(userId, isActive);
-      msg = resp.message;
+      msg = resp;
       if (msg) {
         dialogRef.close();
         const i = this.userData.findIndex(obj => obj.userId === userId);
@@ -122,13 +122,15 @@ export class AdminManageUserComponent implements OnInit {
     let panelClass = 'green';
     let snackbarMsg = '';
     let snackbarRef = null;
-    let userModel: UserModel[] = [];
+    const dialogRef = this.dialog.open(LoadingComponent, { disableClose: true });
+    // let userModel: UserModel[] = [];
+    let msg;
     let resp = null;
     try {
       resp = await this.userservice.deleteUser(userData.userId);
-      userModel = resp.body;
-      if (userModel) {
-        return userModel;
+      msg = resp.body.message;
+      if (msg) {
+        snackbarMsg= msg;
       } else {
         snackbarMsg = NO_RESP;
         panelClass = 'red';
@@ -137,6 +139,8 @@ export class AdminManageUserComponent implements OnInit {
       snackbarMsg = getErrorMessage(ex);
       panelClass = 'red';
     } finally {
+      dialogRef.close();
+      // location.reload();
     }
     if (snackbarMsg) {
       snackbarRef = this.snackbar.openFromComponent(SnackbarComponent,

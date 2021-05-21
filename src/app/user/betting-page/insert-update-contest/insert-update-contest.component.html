@@ -1,0 +1,49 @@
+<div class="sub-container-1-inner">
+    <form [formGroup]="botForm" (ngSubmit)="PlaceBet()">
+        <div class="title">
+            <span>Place Bet</span>
+        </div>
+        <!-- <div class="field-container">
+            <mat-form-field appearance="fill" *ngIf="botData">
+                <mat-label>ID</mat-label>
+                <input matInput formControlName="contestId">
+            </mat-form-field>
+        </div> -->
+
+        <div class="field-container">
+            <!-- <mat-form-field appearance="fill" color="accent"> -->
+            <mat-label>Select Team</mat-label>
+
+            <mat-radio-group formControlName="selectTeam">
+                <mat-radio-button value="{{matchData?.team1Id}}" type="number" [checked]="matchData?.team1Id === checkk?.teamId">{{matchData?.team1}}</mat-radio-button>
+                <mat-radio-button value="{{matchData?.team2Id}}" type="number" [checked]="matchData?.team2Id === checkk?.teamId">{{matchData?.team2}}</mat-radio-button>
+            </mat-radio-group>
+            <!-- <input matInput formControlName="selectTeam" autocomplete="off"> -->
+            <mat-error *ngIf="form.selectTeam.errors?.required "> Select a Team to place bet</mat-error>
+
+
+            <!-- </mat-form-field> -->
+        </div>
+
+        <div class="field-container">
+            <mat-form-field appearance="fill" color="accent">
+                <mat-label>Contest Points</mat-label>
+                <input matInput formControlName="contestPoints" type="number" autocomplete="off">
+                <mat-error *ngIf="form.contestPoints.errors?.required">minimum contestPoints is reqiured</mat-error>
+                <mat-error *ngIf="form.contestPoints.errors?.minlength">minimum contestPoints must have atleast 2 digit
+                </mat-error>
+                <mat-error *ngIf="form.contestPoints.errors?.maxlength">minimum contestPoints must have less than 3 digit
+                </mat-error>
+                <mat-error *ngIf="form.contestPoints.errors?.pattern">only digits allowed</mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="action-container">
+            <button mat-raised-button *ngIf="checkk?.userId" color="accent" type="submit">Update Bet</button>
+            <!-- [disabled]="!botForm.valid" -->
+            <button mat-raised-button *ngIf="!checkk?.userId" color="accent" type="submit"> Place Bets</button>
+            <!-- {{fetchBotDetails.contestPoints === ''? 'Place Bet' : 'Update Bet'}} -->
+            <span class="cancel-btn" (click)="closeDialogBox()">Cancel</span>
+        </div>
+    </form>
+</div>
