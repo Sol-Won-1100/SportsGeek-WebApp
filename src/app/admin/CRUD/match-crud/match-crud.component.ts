@@ -7,7 +7,13 @@ import { SnackbarComponent } from 'src/app/common/components/snackbar/snackbar.c
 import { getErrorMessage, NO_RESP } from 'src/app/common/constants/error-message';
 import { getSnackbarProperties } from 'src/app/common/constants/snackbar-properties';
 import { MatchModel } from 'src/app/common/model/match/match-model';
+import { TeamModel } from 'src/app/common/model/team/team-model';
+import { TournamentModel } from 'src/app/common/model/tournament/tournament';
+import { VenueModel } from 'src/app/common/model/venue/venue';
 import { MatchesService } from 'src/app/common/service/matches_service/matches.service';
+import { TeamService } from 'src/app/common/service/team_service/team.service';
+import { TournamentService } from 'src/app/common/service/tournament/tournament.service';
+import { VenueService } from 'src/app/common/service/venue/venue.service';
 
 @Component({
   selector: 'app-match-crud',
@@ -18,8 +24,14 @@ export class MatchCRUDComponent implements OnInit {
 
   matchForm!: FormGroup;
   matchData!: MatchModel;
+  teamData: TeamModel[] = [];
+  venueData: VenueModel[]=[];
+  tournamentData:TournamentModel[]=[];
 
   constructor(
+    private teamservice: TeamService,
+    private tournamentservice: TournamentService,
+    private venueservice:VenueService,
     private fb: FormBuilder,
     private matchservice: MatchesService,
     private dialog: MatDialog,
@@ -36,8 +48,8 @@ export class MatchCRUDComponent implements OnInit {
         minimumPoints: [ this.data.minimumPoints ,[Validators.required, Validators.minLength(2)
         , Validators.maxLength(3), Validators.pattern('[0-9]+') ]],
 
-        name: [this.data.name, [Validators.required, Validators.minLength(5)
-          , Validators.maxLength(50), Validators.pattern('[a-zA-Z ]+')]],
+        // name: [this.data.name, [Validators.required, Validators.minLength(5)
+        //   , Validators.maxLength(50), Validators.pattern('[a-zA-Z ]+')]],
 
         startDatetime: [this.data.startDatetime, [Validators.required]],
         
@@ -61,8 +73,8 @@ export class MatchCRUDComponent implements OnInit {
         minimumPoints: [ '' ,[Validators.required, Validators.minLength(2)
         , Validators.maxLength(3)]],
 
-        name: ['', [Validators.required, Validators.minLength(5)
-          , Validators.maxLength(50), Validators.pattern('[a-zA-Z ]+')]],
+        // name: ['', [Validators.required, Validators.minLength(5)
+        //   , Validators.maxLength(50), Validators.pattern('[a-zA-Z ]+')]],
 
         startDatetime: ['', [Validators.required]],
 
@@ -80,14 +92,65 @@ export class MatchCRUDComponent implements OnInit {
     }
   }
 
+  
+  async ngOnInit() {
+    this.teamData = await this.getTeams();
+    console.log(this.teamData);
+
+    this.venueData = await this.getVenue();
+    console.log(this.venueData);
+
+    this.tournamentData = await this.getTournament();
+    console.log(this.tournamentData);
+    
+    
+  }
+
+  // get Tournament to fill mat-select
+
+  async getTournament(): Promise<any> {
+    
+    let tournamentModel: TournamentModel[] = [];
+    let resp = null;
+      resp = await this.tournamentservice.getAllTournament();
+      tournamentModel = resp.body;
+      if (tournamentModel) {
+        return tournamentModel;
+      }
+    return [];
+  }
+
+   // get Venue to fill mat-select
+
+   async getVenue(): Promise<any> {
+    
+    let venueModel: VenueModel[] = [];
+    let resp = null;
+      resp = await this.venueservice.getAllVenue();
+      venueModel = resp.body;
+      if (venueModel) {
+        return venueModel;
+      }
+    return [];
+  }
+
+  // get teams to fill mat-select
+
+  async getTeams(): Promise<any> {
+    
+    let teamModel: TeamModel[] = [];
+    let resp = null;
+      resp = await this.teamservice.getAllTeams();
+      teamModel = resp.body;
+      if (teamModel) {
+        return teamModel;
+      }
+    return [];
+  }
+
   reload()
   {
     location.reload();
-  }
-
-
-  ngOnInit(): void {
-    
   }
 
   get form() {
@@ -108,7 +171,7 @@ export class MatchCRUDComponent implements OnInit {
         this.matchData = new MatchModel();
         this.matchData.matchId = this.form.matchId.value;
         this.matchData.minimumPoints = this.form.minimumPoints.value;
-        this.matchData.name = this.form.name.value;
+        // this.matchData.name = this.form.name.value;
         // this.matchData.startDatetime = this.form.startDatetime.value;
         this.matchData.startDatetime ="2021-07-21T19:30:00";
         this.matchData.team1 = this.form.team1.value;
@@ -148,7 +211,7 @@ export class MatchCRUDComponent implements OnInit {
       else {
         this.matchData.matchId = this.form.matchId.value;
         this.matchData.minimumPoints = this.form.minimumPoints.value;
-        this.matchData.name = this.form.name.value;
+        // this.matchData.name = this.form.name.value;
         this.matchData.startDatetime = "2021-07-21T19:30:00";
 
 

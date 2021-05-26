@@ -57,8 +57,12 @@
                 </div>
                 <div class="field-container">
                     <mat-form-field appearance="fill" color="accent">
-                        <mat-label>Gender Id</mat-label>
-                        <input matInput formControlName="genderId" autocomplete="off">
+                        <mat-label>Gender</mat-label>
+                        <!-- <input matInput formControlName="genderId" autocomplete="off"> -->
+                        <mat-select formControlName="genderId">
+                            <mat-option value="1"> Male </mat-option>
+                            <mat-option value="2"> Female </mat-option>
+                        </mat-select>
                         <mat-error *ngIf="form.genderId.errors?.required">genderId is reqiured</mat-error>
                         <mat-error *ngIf="form.genderId.errors?.minlength">genderId must have atleast 1 digit
                         </mat-error>
@@ -69,14 +73,35 @@
                     </mat-form-field>
                 </div>
 
+                <div class="field-container">
+                    <mat-form-field appearance="fill" color="accent">
+                        <mat-label>Profile Pic</mat-label>
+                        <ngx-mat-file-input formControlName="profilePicture">
+                            <i class="fa fa-folder-open-o" aria-hidden="true"></i>
+                        </ngx-mat-file-input>
+                        <mat-error *ngIf="form.profilePicture.errors?.required">
+                            is reqiured
+                        </mat-error>
+                        <mat-error *ngIf="form.profilePicture.errors?.minlength">
+                            must have atleast 4 characters
+                        </mat-error>
+                        <mat-error *ngIf="form.profilePicture.errors?.maxlength">
+                            must have less than 500 characters
+                        </mat-error>
+                    </mat-form-field>
+                </div>
 
             </div>
             <div class="second">
 
                 <div class="field-container">
                     <mat-form-field appearance="fill" color="accent">
-                        <mat-label>Role ID</mat-label>
-                        <input matInput formControlName="roleId" autocomplete="off">
+                        <mat-label>Role</mat-label>
+                        <!-- <input matInput formControlName="roleId" autocomplete="off"> -->
+                        <mat-select formControlName="roleId">
+                            <mat-option value="1"> Admin </mat-option>
+                            <mat-option value="2"> User </mat-option>
+                        </mat-select>
                         <mat-error *ngIf="form.roleId.errors?.required">roleId is reqiured</mat-error>
                         <mat-error *ngIf="form.roleId.errors?.minlength">roleId must have atleast 1 digit
                         </mat-error>

@@ -23,7 +23,9 @@ export class AdminManageMatchesComponent implements OnInit {
 
   matchData: MatchModel[] = [];
 
-  displayedColumns: string[] = ['matchId', 'minimumPoints','startDatetime', 'team1', 'team1Id', 'team1Logo', 'team1Short', 'team2', 'team2Id', 'team2Logo', 'team2Short','tournamentId','venue','resultStatus','winnerTeamId','delete'];
+  displayedColumns: string[] = ['matchId','startDatetime', 'team1Logo', 'team1Short', 'team2Logo', 'team2Short','venue','minimumPoints','resultStatus','winnerTeamId','delete'];
+
+  // 'team1','team1Id', 'team2', 'team2Id',
 
   dataSource: MatTableDataSource<MatchModel> = new MatTableDataSource();
   // dataSource = new MatTableDataSource<UserModel>(this.userData);
@@ -95,20 +97,20 @@ export class AdminManageMatchesComponent implements OnInit {
     let resp = null;
     try {
       resp = await this.matchservice.deleteMatch(matchData.matchId);
-      msg = resp.body;
+      msg = resp.message;
       if (msg) {
-        return msg;
+        dialogRef.close();
+        snackbarMsg = msg;
+      location.reload();
       } else {
         snackbarMsg = NO_RESP;
         panelClass = 'red';
-        location.reload();
       }
     } catch (ex) {
       snackbarMsg = getErrorMessage(ex);
       panelClass = 'red';
     } finally {
       dialogRef.close();
-      location.reload();
     }
     if (snackbarMsg) {
       snackbarRef = this.snackbar.openFromComponent(SnackbarComponent,
@@ -139,15 +141,4 @@ export class AdminManageMatchesComponent implements OnInit {
       }
     });
   }
-
-  openResultForm() {
-    const dialogRef = this.dialog.open(UpdateMatchResultComponent,
-      { panelClass: 'no-padding-dialog', disableClose: true });
-    dialogRef.afterClosed().toPromise().then(data => {
-      if (data) {
-        console.log("result updated");        
-      }
-    });
-  }
-
 }

@@ -10,10 +10,6 @@ import { AuthenticationService } from '../authentication_service/authentication.
 // let userBaseUrl = 'http://localhost:8081/users';
 // let addUserUrl = 'http://localhost:8081/users/add-user';
 
-const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-};
-
 @Injectable({
   providedIn: 'root'
 })
@@ -31,12 +27,19 @@ export class UserService {
     return await this.http.get<UserModel>(usersBaseURL + '/' + userId , { observe: 'response' }).toPromise();
   }
 
-  async addUser(userModel: UserModel): Promise<any> {
-    return await this.http.post<UserWithPasswordModel>(usersBaseURL + '/register', userModel, { observe: 'response' }).toPromise();
+  // async signup(userWithPasswordModel: UserWithPasswordModel): Promise<any> 
+  async signup(formData:FormData): Promise<any> 
+  {
+    return await this.http.post<UserWithPasswordModel>(usersBaseURL + '/register-with-profile-picture', formData, { observe: 'response' }).toPromise();
   }
 
-  async updateUser(userId: number, model: UserModel): Promise<any> {
-    return await this.http.put<UserModel>(usersBaseURL + '/' + userId, model, { observe: 'response' }).toPromise();
+  // async addUser(userModel: UserModel): Promise<any> {
+  //   return await this.http.post<UserWithPasswordModel>(usersBaseURL + '/register', userModel, { observe: 'response' }).toPromise();
+  // }
+
+  // async updateUser(userId: number, model: UserModel): Promise<any> {
+  async updateUser(userId: number, formData: FormData): Promise<any> {
+    return await this.http.put<UserModel>(usersBaseURL + '/' + userId, formData, { observe: 'response' }).toPromise();
   }
 
   async deleteUser(userId: number): Promise<any> {
@@ -49,9 +52,5 @@ export class UserService {
 
   async updatePassword(newPasswordModel: NewPasswordModel): Promise<any> {
     return await this.http.put<NewPasswordModel>(usersBaseURL + '/update-password', newPasswordModel, { observe: 'response' }).toPromise();
-  }
-
-  async signup(userWithPasswordModel: UserWithPasswordModel): Promise<any> {
-    return await this.http.post<UserWithPasswordModel>(usersBaseURL + '/register', userWithPasswordModel, { observe: 'response' }).toPromise();
   }
 }

@@ -36,7 +36,7 @@ export const menuItems = {
                 },
                 {
                     label: 'Login',
-                    routeLink: '/user/login'
+                    routeLink: '/login'
                 },
                 {
                     label: 'Register',
@@ -70,7 +70,7 @@ export const menuItems = {
             inactive: [
                 {
                     label: 'Login',
-                    routeLink: '/admin/login'
+                    routeLink: '/login'
                 }
             ]
         }

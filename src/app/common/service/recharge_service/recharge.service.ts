@@ -24,7 +24,8 @@ export class RechargeService {
     return await this.http.put<RechargeModel>(rechargeBaseURL + '/' + rechargeId, model, { observe: 'response' }).toPromise();
   }
 
-  // async updateActiveStatus(rechargeId: number, isActive: boolean): Promise<any> {
-  //   return await this.http.put<any>(updatestatus + '/' + userId + '/' + isActive, { observe: 'response' }).toPromise();
-  // }
+  async deleteRecharge(rechargeId: number): Promise<any> {
+    return await this.http.delete<RechargeModel>(rechargeBaseURL + '/' + rechargeId , { observe: 'response' }).toPromise();
+  }
+
 }

@@ -6,11 +6,8 @@ import { Router } from '@angular/router';
 import { LoadingComponent } from 'src/app/common/components/loading/loading.component';
 import { SnackbarComponent } from 'src/app/common/components/snackbar/snackbar.component';
 import { getErrorMessage, NO_RESP } from 'src/app/common/constants/error-message';
-import { RU } from 'src/app/common/constants/roles';
 import { getSnackbarProperties } from 'src/app/common/constants/snackbar-properties';
-import { LoginStateModel } from 'src/app/common/model/login/LoginStateModel';
 import { UserWithPasswordModel } from 'src/app/common/model/user/user-with-password-model';
-import { LoginstateService } from 'src/app/common/service/login_state/loginstate.service';
 import { UserService } from 'src/app/common/service/user_service/user.service';
 
 @Component({
@@ -41,7 +38,8 @@ export class UserRegistrationComponent implements OnInit {
       firstname: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(100), Validators.pattern('[a-zA-Z ]+')]],
       lastname: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(100), Validators.pattern('[a-zA-Z ]+')]],
       email: ['', [Validators.required, Validators.email, Validators.maxLength(30), Validators.pattern(/^[A-Za-z0-9._%+-]+@bbd.co.za$/)]],
-      gender : ['',Validators.required]
+      gender : ['',Validators.required],
+      profilePicture: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(500)]]
     });
   }
 
@@ -52,25 +50,32 @@ export class UserRegistrationComponent implements OnInit {
     return this.signupForm.controls;
   }
 
-  reset(field: string) {
-    this.form[field].setValue('');
-  }
-
   async signup() {
     if (this.signupForm.valid) {
       let userWithPasswordModel: UserWithPasswordModel = new UserWithPasswordModel();
-      userWithPasswordModel.userId = 0;
-      userWithPasswordModel.username = this.form.username.value;
-      userWithPasswordModel.password = this.form.password.value;
-      userWithPasswordModel.firstName = this.form.firstname.value;
-      userWithPasswordModel.lastName = this.form.lastname.value;
-      userWithPasswordModel.email = this.form.email.value;
-      userWithPasswordModel.mobileNumber = this.form.phone.value;
-      userWithPasswordModel.genderId = this.form.gender.value;
-      userWithPasswordModel.status = false;
-      userWithPasswordModel.roleId = 2;
-      userWithPasswordModel.availablePoints = 500;
-      
+      // userWithPasswordModel.userId = 0;
+      // userWithPasswordModel.username = this.form.username.value;
+      // userWithPasswordModel.password = this.form.password.value;
+      // userWithPasswordModel.firstName = this.form.firstname.value;
+      // userWithPasswordModel.lastName = this.form.lastname.value;
+      // userWithPasswordModel.email = this.form.email.value;
+      // userWithPasswordModel.mobileNumber = this.form.phone.value;
+      // userWithPasswordModel.genderId = this.form.gender.value;
+      // userWithPasswordModel.status = false;
+      // userWithPasswordModel.roleId = 2;
+      // userWithPasswordModel.availablePoints = 500;
+
+      var formData: any = new FormData();
+        formData.append("username", this.form.username.value);
+        formData.append("password", this.form.password.value);
+        formData.append("firstName", this.form.firstname.value);
+        formData.append("lastName", this.form.lastname.value);
+        formData.append("email", this.form.email.value);
+        formData.append("mobileNumber", this.form.phone.value);
+        formData.append("genderId", this.form.gender.value);
+        formData.append("roleId", 2);
+        formData.append("availablePoints", 500);
+        formData.append("profilePicture", this.form.profilePicture.value);
 
       let panelClass = 'green';
       let snackbarMsg = '';
@@ -79,7 +84,7 @@ export class UserRegistrationComponent implements OnInit {
       const dialogRef = this.dialog.open(LoadingComponent, { disableClose: true });
       let resp = null;
       try {
-        resp = await this.userService.signup(userWithPasswordModel);
+        resp = await this.userService.signup(formData);
         userWithPasswordModel = resp.body;
         if (userWithPasswordModel != null && userWithPasswordModel.userId > 0) {
           snackbarMsg = 'Your data has been Submitted, Please wait for the Admin to Approve!';

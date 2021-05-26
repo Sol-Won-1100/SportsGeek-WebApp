@@ -20,6 +20,7 @@ import { SnackbarComponent } from '../snackbar/snackbar.component';
 export class ChangePasswordComponent implements OnInit {
 
   changePasswordForm: FormGroup;
+  hide=true;
 
   constructor(
     private fb: FormBuilder,
@@ -70,7 +71,7 @@ export class ChangePasswordComponent implements OnInit {
           snackbarMsg = msg + '! please login again.';
           this.loginStateService.destroySession(loginState.role);
           this.matDialogRef.close();
-          this.router.navigate(['/' + loginState.role + '/login']);
+          this.router.navigate(['/login']);
         } else {
           snackbarMsg = NO_RESP;
           panelClass = 'red';

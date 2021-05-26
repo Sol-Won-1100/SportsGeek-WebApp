@@ -17,14 +17,17 @@
                 <div class="field-container">
                     <mat-form-field appearance="fill" color="accent">
                         <mat-label>Tournament ID</mat-label>
-                        <input matInput formControlName="tournamentId" autocomplete="off">
+                        <!-- <input matInput formControlName="tournamentId" autocomplete="off"> -->
+                        <mat-select formControlName="tournamentId">
+                            <mat-option *ngFor="let tournament of tournamentData" [value]="tournament.tournamentId"> {{tournament.name}} </mat-option>
+                        </mat-select>
                         <mat-error *ngIf="form.tournamentId.errors?.required">tournamentId is reqiured
                         </mat-error>
                         <mat-error *ngIf="form.tournamentId.errors?.maxlength">tournamentId must have less than 3 digits</mat-error>
                     </mat-form-field>
                 </div>
 
-                <div class="field-container">
+                <!-- <div class="field-container">
                     <mat-form-field appearance="fill" color="accent">
                         <mat-label>Name</mat-label>
                         <input matInput formControlName="name" autocomplete="off">
@@ -34,7 +37,7 @@
                         <mat-error *ngIf="form.name.errors?.maxlength"> name must have less than 50 characters</mat-error>
                         <mat-error *ngIf="form.name.errors?.pattern">name is invalid</mat-error>
                     </mat-form-field>
-                </div>
+                </div> -->
 
                 <div class="field-container">
                     <mat-form-field appearance="fill" color="accent">
@@ -46,22 +49,29 @@
                     </mat-form-field>
                 </div>
 
-            </div>
-            <div class="second">
-
                 <div class="field-container">
                     <mat-form-field appearance="fill" color="accent">
-                        <mat-label>Venue ID</mat-label>
-                        <input matInput formControlName="venueId" type="number" autocomplete="off">
+                        <mat-label>Venue</mat-label>
+                        <!-- <input matInput formControlName="venueId" type="number" autocomplete="off"> -->
+                        <mat-select formControlName="venueId">
+                            <mat-option *ngFor="let venue of venueData" [value]="venue.venueId"> {{venue.name}} </mat-option>
+                        </mat-select>
                         <mat-error *ngIf="form.venueId.errors?.required">venueId is reqiured
                         </mat-error>
                     </mat-form-field>
                 </div>
 
+            </div>
+            <div class="second">
+
+
                 <div class="field-container">
                     <mat-form-field appearance="fill" color="accent">
-                        <mat-label>Team1 ID</mat-label>
-                        <input matInput formControlName="team1" autocomplete="off">
+                        <mat-label>Team 1</mat-label>
+                        <!-- <input matInput formControlName="team1" autocomplete="off"> -->
+                        <mat-select formControlName="team1">
+                            <mat-option *ngFor="let team of teamData" [value]="team.teamId"> {{team.name}} </mat-option>
+                        </mat-select>
                         <mat-error *ngIf="form.team1.errors?.required">team1 is reqiured</mat-error>
                         <mat-error *ngIf="form.team1.errors?.minlength || form.team1.errors?.maxlength ||form.team1.errors?.pattern">
                             team1 no. is invalid
@@ -71,7 +81,10 @@
                 <div class="field-container">
                     <mat-form-field appearance="fill" color="accent">
                         <mat-label>Team2 ID</mat-label>
-                        <input matInput formControlName="team2" autocomplete="off">
+                        <!-- <input matInput formControlName="team2" autocomplete="off"> -->
+                        <mat-select formControlName="team2">
+                            <mat-option *ngFor="let team of teamData" [value]="team.teamId"> {{team.name}} </mat-option>
+                        </mat-select>
                         <mat-error *ngIf="form.team2.errors?.required">team2 is reqiured</mat-error>
                         <mat-error *ngIf="form.team2.errors?.minlength || form.team2.errors?.maxlength || form.team2.errors?.pattern">
                             team2 is invalid

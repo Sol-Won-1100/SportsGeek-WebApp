@@ -32,8 +32,8 @@ export class UserInsertComponent implements OnInit {
       this.userForm = this.fb.group({
         userId: [{ value: this.data.userId, disabled: true }],
 
-        username: [ this.data.username, [Validators.required, Validators.minLength(4), Validators.maxLength(10), Validators.pattern('[a-zA-Z ]+')]],
-
+        username: [ this.data.username,[Validators.required, Validators.minLength(4), Validators.maxLength(10), Validators.pattern('[a-zA-Z ]+')]],
+        
         firstName: [this.data.firstName, [Validators.required, Validators.minLength(4)
           , Validators.maxLength(10), Validators.pattern('[a-zA-Z ]+')]],
 
@@ -47,11 +47,13 @@ export class UserInsertComponent implements OnInit {
 
         genderId: [this.data.genderId, [Validators.required, Validators.minLength(1), Validators.maxLength(1), Validators.pattern('[1-2]+')]],
 
-        roleId: [this.data.roleId, [Validators.required, Validators.minLength(1), Validators.maxLength(1), Validators.pattern('[1-2]+')]],
+        roleId: [{value:this.data.roleId, disabled:true}],
+        // [Validators.required, Validators.minLength(1), Validators.maxLength(1), Validators.pattern('[1-2]+')]
 
-        availablePoints: [this.data.availablePoints, [Validators.required, Validators.minLength(2), Validators.maxLength(4), Validators.pattern('[0-9]+')]],
+        availablePoints: [{value:this.data.availablePoints,disabled:true}],
+        // [Validators.required, Validators.minLength(2), Validators.maxLength(4), Validators.pattern('[0-9]+')]
 
-        status: [this.data.status, [Validators.required]]
+        profilePicture: [this.data.profilePicture, [Validators.required, Validators.minLength(4), Validators.maxLength(500)]]
 
       });
     } else {
@@ -76,7 +78,8 @@ export class UserInsertComponent implements OnInit {
 
         roleId: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(1), Validators.pattern('[1-2]+')]],
 
-        availablePoints: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(4), Validators.pattern('[0-9]+')]]
+        availablePoints: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(4), Validators.pattern('[0-9]+')]],
+        profilePicture: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(500)]]
 
       });
     }
@@ -87,9 +90,7 @@ export class UserInsertComponent implements OnInit {
   }
 
 
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void { }
 
   get form() {
     return this.userForm.controls;
@@ -99,23 +100,33 @@ export class UserInsertComponent implements OnInit {
     this.form[field].setValue('');
   }
 
-
   async addEmployee() {
     if (this.userForm.valid) {
       if (!this.userData) {
         this.userData = new UserModel();
-        this.userData.userId = 0;
-        this.userData.username = this.form.username.value;
-        this.userData.password = '12345';
-        this.userData.firstName = this.form.firstName.value;
-        this.userData.lastName = this.form.lastName.value;
-        this.userData.mobileNumber = this.form.mobileNumber.value;
-        this.userData.email = this.form.email.value;
-        this.userData.genderId = this.form.genderId.value;
-        this.userData.roleId = this.form.roleId.value;
-        this.userData.availablePoints = this.form.availablePoints.value;
+        // this.userData.userId = 0;
+        // this.userData.username = this.form.username.value;
+        // this.userData.password = '12345';
+        // this.userData.firstName = this.form.firstName.value;
+        // this.userData.lastName = this.form.lastName.value;
+        // this.userData.mobileNumber = this.form.mobileNumber.value;
+        // this.userData.email = this.form.email.value;
+        // this.userData.genderId = this.form.genderId.value;
+        // this.userData.roleId = this.form.roleId.value;
+        // this.userData.availablePoints = this.form.availablePoints.value;
+        // this.userData.status = true;
 
-        this.userData.status = true;
+        var formData: any = new FormData();
+        formData.append("username", this.form.username.value);
+        formData.append("password", 123456);
+        formData.append("firstName", this.form.firstName.value);
+        formData.append("lastName", this.form.lastName.value);
+        formData.append("email", this.form.email.value);
+        formData.append("mobileNumber", this.form.mobileNumber.value);
+        formData.append("genderId", this.form.genderId.value);
+        formData.append("roleId", 2);
+        formData.append("availablePoints", this.form.availablePoints.value);
+        formData.append("profilePicture", this.form.profilePicture.value);
 
         let panelClass = 'green';
         let snackbarMsg = '';
@@ -124,11 +135,11 @@ export class UserInsertComponent implements OnInit {
         const dialogRef = this.dialog.open(LoadingComponent, { disableClose: true });
         let resp = null;
         try {
-          resp = await this.userservice.addUser(this.userData);
+          resp = await this.userservice.signup(formData);
           this.userData = resp.body;
           if (this.userData != null && this.userData.userId > 0)
-          
           {
+            location.reload();
             snackbarMsg = 'User successfully added!';
             this.matDialogRef.close(this.userData);
           } else {
@@ -147,14 +158,26 @@ export class UserInsertComponent implements OnInit {
         }
       } else {
 
-        this.userData.username = this.form.username.value;
-        this.userData.firstName = this.form.firstName.value;
-        this.userData.lastName = this.form.lastName.value;
-        this.userData.mobileNumber = this.form.mobileNumber.value;
-        this.userData.email = this.form.email.value;
-        this.userData.genderId = this.form.genderId.value;
-        this.userData.roleId = this.form.roleId.value;
-        this.userData.availablePoints = this.form.availablePoints.value;
+        // this.userData.username = this.form.username.value;
+
+        // this.userData.firstName = this.form.firstName.value;
+        // this.userData.lastName = this.form.lastName.value;
+        // this.userData.mobileNumber = this.form.mobileNumber.value;
+        // this.userData.email = this.form.email.value;
+        // this.userData.genderId = this.form.genderId.value;
+
+        // this.userData.roleId = this.form.roleId.value;
+        // this.userData.availablePoints = this.form.availablePoints.value;
+
+        var formData: any = new FormData();
+        formData.append("username", this.form.username.value);
+        formData.append("firstName", this.form.firstName.value);
+        formData.append("lastName", this.form.lastName.value);
+        formData.append("email", this.form.email.value);
+        formData.append("mobileNumber", this.form.mobileNumber.value);
+        formData.append("genderId", this.form.genderId.value);
+        formData.append("profilePicture", this.form.profilePicture.value);
+
 
         let panelClass = 'green';
         let snackbarMsg = '';
@@ -163,7 +186,7 @@ export class UserInsertComponent implements OnInit {
         const dialogRef = this.dialog.open(LoadingComponent, { disableClose: true });
         let resp = null;
         try {
-          resp = await this.userservice.updateUser(this.userData.userId, this.userData);
+          resp = await this.userservice.updateUser(this.userData.userId, formData);
           this.userData = resp.body;
           if (this.userData != null) {
             snackbarMsg = 'User successfully updated!';

@@ -4,10 +4,12 @@ export class UserModel
     firstName!:string;
     lastName!:string;
     genderId!:number;
+    genderName!:string;
     username!:string;
     password!:string;
-    profilePicture!:string;
+    profilePicture!:any;
     roleId!:number;
+    roleName!:string;
     availablePoints!:number;
     status!:boolean;
     // CreatedOn!:Date;

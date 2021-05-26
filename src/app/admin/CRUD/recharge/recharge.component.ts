@@ -7,7 +7,9 @@ import { SnackbarComponent } from 'src/app/common/components/snackbar/snackbar.c
 import { getErrorMessage, NO_RESP } from 'src/app/common/constants/error-message';
 import { getSnackbarProperties } from 'src/app/common/constants/snackbar-properties';
 import { RechargeModel } from 'src/app/common/model/recharge/recharge-model';
+import { UserModel } from 'src/app/common/model/user/user-model';
 import { RechargeService } from 'src/app/common/service/recharge_service/recharge.service';
+import { UserService } from 'src/app/common/service/user_service/user.service';
 
 @Component({
   selector: 'app-recharge',
@@ -18,9 +20,11 @@ export class RechargeComponent implements OnInit {
 
   rechargeForm!: FormGroup;
   rechargeData!: RechargeModel;
+  userData: UserModel[] = [];
 
   constructor(
     private fb: FormBuilder,
+    private userservice:UserService,
     private rechargeservice: RechargeService,
     private dialog: MatDialog,
     private snackbar: MatSnackBar,
@@ -55,9 +59,22 @@ export class RechargeComponent implements OnInit {
   }
 
 
-  ngOnInit(): void {
-    
+  async ngOnInit(){
+    this.userData = await this.getUsers();
+    console.log(this.userData);  
   }
+
+  async getUsers(): Promise<any> {
+    let userModel: UserModel[] = [];
+    let resp = null;
+      resp = await this.userservice.getAllUser();
+      userModel = resp.body;
+      if (userModel) {
+        return userModel;
+      }
+          return [];
+  }
+
 
   get form() {
     return this.rechargeForm.controls;

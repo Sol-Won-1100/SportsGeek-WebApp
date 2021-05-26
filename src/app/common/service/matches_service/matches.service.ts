@@ -19,6 +19,16 @@ export class MatchesService {
     return await this.http.get<MatchModel>(matchBaseURL , { observe:'response' }).toPromise();
   }
 
+  async getAllUpcomingMatches(): Promise<any>
+  {
+    return await this.http.get<MatchModel>(matchBaseURL + '/upcoming', { observe:'response' }).toPromise();
+  }
+
+  async getAllOldMatches(): Promise<any>
+  {
+    return await this.http.get<MatchModel>(matchBaseURL + '/old-matches', { observe:'response' }).toPromise();
+  }
+
   async addMatches(matchModel:MatchModel):Promise<any>
   // async addMatches(formData:FormData):Promise<any>
   {

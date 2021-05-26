@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminHomeComponent } from './admin/admin-home/admin-home.component';
-import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
 import { AdminManageMatchesComponent } from './admin/admin-manage-matches/admin-manage-matches.component';
+import { AdminManageOldMatchesComponent } from './admin/admin-manage-old-matches/admin-manage-old-matches.component';
 import { AdminManageRechargeComponent } from './admin/admin-manage-recharge/admin-manage-recharge.component';
 import { AdminManageTeamComponent } from './admin/admin-manage-team/admin-manage-team.component';
 import { AdminManageUserComponent } from './admin/admin-manage-user/admin-manage-user.component';
@@ -20,7 +20,6 @@ import { ViewLiveMatchesComponent } from './user/my-matches/view-live-matches/vi
 import { ViewOldMatchesComponent } from './user/my-matches/view-old-matches/view-old-matches.component';
 import { ViewUpcomingMatchComponent } from './user/my-matches/view-upcoming-match/view-upcoming-match.component';
 import { UserDashboardComponent } from './user/user-dashboard/user-dashboard.component';
-import { UserLoginComponent } from './user/user-login/user-login.component';
 import { ViewOthersUserProfileComponent } from './user/user-profile/view-others-user-profile/view-others-user-profile.component';
 import { ViewUserProfileComponent } from './user/user-profile/view-user-profile/view-user-profile.component';
 import { UserRegistrationComponent } from './user/user-registration/user-registration.component';
@@ -38,15 +37,14 @@ const routes: Routes = [
   {path : 'login' , component : LoginComponent},
   {path : 'register' , component : UserRegistrationComponent},
   { path: 'forgot-password', component: ForgotPasswordComponent },  
-  { path: 'Admin/login', component: AdminLoginComponent },
   { path: 'Admin/home', component: AdminHomeComponent, canActivate: [AuthGuard], data: { roles: ['Admin'] } },
   { path: 'Admin/manage-matches', component: AdminManageMatchesComponent, canActivate: [AuthGuard], data: { roles: ['Admin'] } },
+  { path: 'Admin/manage-old-matches', component: AdminManageOldMatchesComponent, canActivate: [AuthGuard], data: { roles: ['Admin'] } },
   { path: 'Admin/manage-recharge', component: AdminManageRechargeComponent, canActivate: [AuthGuard], data: { roles: ['Admin'] } },
   { path: 'Admin/manage-team', component: AdminManageTeamComponent, canActivate: [AuthGuard], data: { roles: ['Admin'] } },
   { path: 'Admin/manage-user', component: AdminManageUserComponent, canActivate: [AuthGuard], data: { roles: ['Admin'] } },
   { path: 'not-found', component: NotFoundComponent },
   { path: 'loading', component: LoadingComponent },  
-  { path: 'User/login', component: UserLoginComponent },
   { path: 'User/home', component: UserDashboardComponent, canActivate: [AuthGuard], data: { roles: ['User'] }  },
   { path: 'User/match-list', component: MatchListComponent, canActivate: [AuthGuard], data: { roles: ['User'] }  },
   { path: 'User/leader-board', component: LeaderBoardComponent, canActivate: [AuthGuard], data: { roles: ['User'] }  },

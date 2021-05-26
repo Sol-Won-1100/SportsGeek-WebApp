@@ -19,34 +19,42 @@
 
                 <ng-container matColumnDef="rechargeId">
                     <th mat-header-cell mat-sort-header *matHeaderCellDef class="highlight"> Recharge ID </th>
-                    <td mat-cell *matCellDef="let element" class="highlight"> {{element.rechargeId}} </td>
+                    <td mat-cell *matCellDef="let element"> {{element.rechargeId}} </td>
                 </ng-container>
 
                 <ng-container matColumnDef="userId">
                     <th mat-header-cell mat-sort-header *matHeaderCellDef class="highlight"> User ID </th>
-                    <td mat-cell *matCellDef="let element" class="highlight"> {{element.userId}} </td>
+                    <td mat-cell *matCellDef="let element"> {{element.userId}} </td>
                 </ng-container>
 
                 <ng-container matColumnDef="userName">
                     <th mat-header-cell mat-sort-header *matHeaderCellDef class="highlight"> Username </th>
-                    <td mat-cell *matCellDef="let element" class="highlight"> {{element.username}} </td>
+                    <td mat-cell *matCellDef="let element"> {{element.username}} </td>
                 </ng-container>
 
                 <ng-container matColumnDef="points">
                     <th mat-header-cell mat-sort-header *matHeaderCellDef class="highlight"> Points </th>
-                    <td mat-cell *matCellDef="let element" class="highlight"> {{element.points}} </td>
+                    <td mat-cell *matCellDef="let element"> {{element.points}} </td>
                 </ng-container>
 
                 <ng-container matColumnDef="rechargeDate">
                     <th mat-header-cell mat-sort-header *matHeaderCellDef class="highlight"> Recharge Date </th>
-                    <td mat-cell *matCellDef="let element" class="highlight"> {{element.rechargeDate | date:'medium'}} </td>
+                    <td mat-cell *matCellDef="let element"> {{element.rechargeDate | date:'medium'}} </td>
                 </ng-container>
 
+                <ng-container matColumnDef="delete">
+                    <th mat-header-cell mat-sort-header *matHeaderCellDef class="highlight"> Delete </th>
+                    <td mat-cell *matCellDef="let element" (click)="$event.stopPropagation(); deleteRecharge(element);">
+                        <button mat-fab>
+                        <mat-icon> delete </mat-icon>
+                    </button>
+                    </td>
+                </ng-container>
 
                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                 <tr mat-row [ngClass]="{'evenrow': index%2 == 1}" *matRowDef="let row; columns: displayedColumns; let index=index" (click)="updateRechargeForm(row)"></tr>
             </table>
-            <mat-paginator color="accent" [pageSizeOptions]="[5,10,20]" showFirstLastButtons></mat-paginator>
+            <mat-paginator color="accent" [pageSizeOptions]="[10,20]" showFirstLastButtons></mat-paginator>
         </div>
     </div>
 </div>

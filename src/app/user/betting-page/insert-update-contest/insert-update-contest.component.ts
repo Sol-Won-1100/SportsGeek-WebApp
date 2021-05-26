@@ -134,10 +134,10 @@ export class InsertUpdateContestComponent implements OnInit {
     } finally {
       dialogRef.close();
     }
-    if (snackbarMsg) {
-      snackbarRef = this.snackbar.openFromComponent(SnackbarComponent,
-        getSnackbarProperties(snackbarMsg, panelClass));
-    }
+    // if (snackbarMsg) {
+    //   snackbarRef = this.snackbar.openFromComponent(SnackbarComponent,
+    //     getSnackbarProperties(snackbarMsg, panelClass));
+    // }
     return [];
   }
 

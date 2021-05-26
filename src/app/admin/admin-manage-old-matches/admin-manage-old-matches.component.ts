@@ -8,38 +8,40 @@ import { LoadingComponent } from 'src/app/common/components/loading/loading.comp
 import { SnackbarComponent } from 'src/app/common/components/snackbar/snackbar.component';
 import { getErrorMessage, NO_RESP } from 'src/app/common/constants/error-message';
 import { getSnackbarProperties } from 'src/app/common/constants/snackbar-properties';
-import { TeamModel } from 'src/app/common/model/team/team-model';
-import { TeamService } from 'src/app/common/service/team_service/team.service';
-import { TeamComponent } from '../CRUD/team/team.component';
+import { MatchModel } from 'src/app/common/model/match/match-model';
+import { UserModel } from 'src/app/common/model/user/user-model';
+import { MatchesService } from 'src/app/common/service/matches_service/matches.service';
+import { UpdateMatchResultComponent } from '../CRUD/update-match-result/update-match-result.component';
 
 @Component({
-  selector: 'app-admin-manage-team',
-  templateUrl: './admin-manage-team.component.html',
-  styleUrls: ['./admin-manage-team.component.css']
+  selector: 'app-admin-manage-old-matches',
+  templateUrl: './admin-manage-old-matches.component.html',
+  styleUrls: ['./admin-manage-old-matches.component.css']
 })
-export class AdminManageTeamComponent implements OnInit {
+export class AdminManageOldMatchesComponent implements OnInit {
 
-  teamData: TeamModel[] = [];
+  oldMatchData: MatchModel[] = [];
 
-  displayedColumns: string[] = ['teamId', 'name', 'shortName', 'teamLogo', 'delete'];
+  displayedColumns: string[] = ['matchId','startDatetime', 'team1Logo', 'team1Short', 'team2Logo', 'team2Short','venue','minimumPoints','resultStatus','winnerTeamId','delete'];
 
-  dataSource: MatTableDataSource<TeamModel> = new MatTableDataSource();
-  // dataSource = new MatTableDataSource<RechargeModel>(this.teamData);
+  // 'team1','team1Id', 'team2', 'team2Id',
+
+  dataSource: MatTableDataSource<MatchModel> = new MatTableDataSource();
+  // dataSource = new MatTableDataSource<UserModel>(this.userData);
 
   @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort!: MatSort;
 
-  constructor(
-    private teamservice: TeamService,
+  constructor(private matchservice: MatchesService,
     private dialog: MatDialog,
     private snackbar: MatSnackBar
   ) { }
 
   async ngOnInit() {
-    this.teamData = await this.getTeams();
-    console.log(this.teamData);
+    this.oldMatchData = await this.getOldMatches();
+    console.log(this.oldMatchData);
 
-    this.dataSource.data = this.teamData;
+    this.dataSource.data = this.oldMatchData;
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
   }
@@ -49,18 +51,52 @@ export class AdminManageTeamComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  async deleteTeam(teamData:TeamModel): Promise<any>
+  getResultStatus(matchId: any) {
+    return this.oldMatchData.find(obj => obj.matchId === matchId)?.resultStatus;
+  }
+
+  async getOldMatches(): Promise<any> {
+    let panelClass = 'green';
+    let snackbarMsg = '';
+    let snackbarRef = null;
+    const dialogRef = this.dialog.open(LoadingComponent, { disableClose: true });
+    let userModel: UserModel[] = [];
+    let resp = null;
+    try {
+      resp = await this.matchservice.getAllOldMatches();
+      userModel = resp.body;
+      if (userModel) {
+        dialogRef.close();
+        return userModel;
+      } else {
+        snackbarMsg = NO_RESP;
+        panelClass = 'red';
+      }
+    } catch (ex) {
+      snackbarMsg = getErrorMessage(ex);
+      panelClass = 'red';
+    } finally {
+      dialogRef.close();
+    }
+    if (snackbarMsg) {
+      snackbarRef = this.snackbar.openFromComponent(SnackbarComponent,
+        getSnackbarProperties(snackbarMsg, panelClass));
+    }
+    return [];
+  }
+
+  async deleteMatch(oldMatchData:MatchModel): Promise<any>
   {
     let panelClass = 'green';
     let snackbarMsg = '';
     let snackbarRef = null;
     const dialogRef = this.dialog.open(LoadingComponent, { disableClose: true });
-    // let recharegeModel: RechargeModel[] = [];
+    // let matchModel: MatchModel[] = [];
     let msg;
     let resp = null;
     try {
-      resp = await this.teamservice.deleteTeam(teamData.teamId);
-      msg = resp.body.message;
+      resp = await this.matchservice.deleteMatch(oldMatchData.matchId);
+      msg = resp.message;
       if (msg) {
         dialogRef.close();
         snackbarMsg = msg;
@@ -82,54 +118,14 @@ export class AdminManageTeamComponent implements OnInit {
     return [];
   }
 
-  async getTeams(): Promise<any> {
-    let panelClass = 'green';
-    let snackbarMsg = '';
-    let snackbarRef = null;
-    const dialogRef = this.dialog.open(LoadingComponent, { disableClose: true });
-    let teamModel: TeamModel[] = [];
-    let resp = null;
-    try {
-      resp = await this.teamservice.getAllTeams();
-      teamModel = resp.body;
-      if (teamModel) {
-        dialogRef.close();
-        return teamModel;
-      } else {
-        snackbarMsg = NO_RESP;
-        panelClass = 'red';
-      }
-    } catch (ex) {
-      snackbarMsg = getErrorMessage(ex);
-      panelClass = 'red';
-    } finally {
-      dialogRef.close();
-    }
-    if (snackbarMsg) {
-      snackbarRef = this.snackbar.openFromComponent(SnackbarComponent,
-        getSnackbarProperties(snackbarMsg, panelClass));
-    }
-    return [];
-  }
-
-
-  openTeamForm() {
-    const dialogRef = this.dialog.open(TeamComponent,
-      { panelClass: 'no-padding-dialog', disableClose: true });
-    dialogRef.afterClosed().toPromise().then(data => {
-      if (data) {
-        this.teamData.push(data);
-        this.dataSource.data = this.teamData;
-      }
-    });
-  }
-  updateTeamForm(data: any) {
-    const dialogRef = this.dialog.open(TeamComponent,
+  updateMatchForm(data: any) {
+    const dialogRef = this.dialog.open(UpdateMatchResultComponent,
       { panelClass: 'no-padding-dialog', disableClose: true, data });
     dialogRef.afterClosed().toPromise().then(data => {
       if (data) {
-        this.teamData.push(data);
-        this.dataSource.data = this.teamData;
+        this.oldMatchData.push(data);
+        this.dataSource.data = this.oldMatchData;
+        location.reload();
       }
     });
   }

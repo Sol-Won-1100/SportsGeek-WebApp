@@ -62,6 +62,7 @@
                 <button class="btn btn-primary" id="dropdownBasic1" ngbDropdownToggle *ngIf="authservice1.isLoggedIn() &&isRoleAdmin()">Manage</button>
                 <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
                     <button ngbDropdownItem routerLink="Admin/manage-matches">Matches</button>
+                    <button ngbDropdownItem routerLink="Admin/manage-old-matches">Update Match Result</button>
                     <button ngbDropdownItem routerLink="Admin/manage-user">Users</button>
                     <button ngbDropdownItem routerLink="Admin/manage-team">Team</button>
                     <button ngbDropdownItem routerLink="Admin/manage-recharge">Recharge</button>

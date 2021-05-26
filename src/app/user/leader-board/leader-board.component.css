@@ -48,7 +48,7 @@
 }
 
 .item2 {
-    order: 1;
+    /* order: 1; */
     padding: 60px;
     background: linear-gradient(315deg, #7953e2 0%, #aac988);
     /* background-image: */
@@ -59,6 +59,7 @@
 }
 
 .item3 {
+    order: 1;
     padding: 60px;
     /* margin: 10px; */
     background: linear-gradient(to left, #CD7F32, #CD7F99);
@@ -133,4 +134,10 @@ mat-paginator {
 
 .mat-cell {
     padding-right: 10px;
+}
+
+.profile-picture {
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
 }

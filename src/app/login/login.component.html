@@ -20,7 +20,7 @@
                                 <mat-label>Username</mat-label>
                                 <input matInput autocomplete="off" formControlName="username" />
                                 <mat-error *ngIf="form.username.errors?.required">username is reqiured</mat-error>
-                                <mat-error *ngIf="form.username.errors?.minlength">username must have atleast 5 characters
+                                <mat-error *ngIf="form.username.errors?.minlength">username must have atleast 4 characters
                                 </mat-error>
                             </mat-form-field>
                         </div>
@@ -31,6 +31,11 @@
                             <mat-form-field appearance="fill" color="accent">
                                 <mat-label>Password</mat-label>
                                 <input matInput formControlName="password" [type]="hide ? 'password' : 'text'">
+
+                                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                  </button>
+
                                 <mat-error *ngIf="form.password.errors?.required">password is reqiured</mat-error>
                                 <mat-error *ngIf="form.password.errors?.minlength">password must have atleast 5 characters
                                 </mat-error>

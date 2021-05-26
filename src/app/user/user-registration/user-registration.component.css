@@ -135,7 +135,7 @@ mat-label {
     font-size: 0.75rem;
 }
 
-@media screen and (min-width: 900px) {
+@media screen and (min-width: 1200px) {
     .split-screen {
         flex-direction: row;
         height: 100vh;
@@ -170,4 +170,12 @@ input {
 
 .mat-button-container {
     cursor: pointer;
+}
+
+.field-icon {
+    float: right;
+    margin-left: -25px;
+    margin-top: -25px;
+    position: relative;
+    z-index: 2;
 }

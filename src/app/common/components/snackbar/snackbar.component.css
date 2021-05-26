@@ -6,6 +6,10 @@
     background-color: #0c8048;
 }
 
+.blue {
+    background-color: #2263b9;
+}
+
 .data {
     display: flex;
     flex-direction: row;

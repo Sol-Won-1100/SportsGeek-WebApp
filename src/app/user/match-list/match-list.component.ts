@@ -41,7 +41,7 @@ export class MatchListComponent implements OnInit {
     let matchModel: MatchModel[] = [];
     let resp = null;
     try {
-      resp = await this.matchservice.getAllMatches();
+      resp = await this.matchservice.getAllUpcomingMatches();
       matchModel = resp.body;
       if (matchModel) {
         dialogRef.close();

@@ -21,7 +21,7 @@ export class AdminManageRechargeComponent implements OnInit {
 
   rechargeData: RechargeModel[] = [];
 
-  displayedColumns: string[] = ['rechargeId' , 'userId' , 'userName', 'points', 'rechargeDate'];
+  displayedColumns: string[] = ['rechargeId' , 'userId' , 'userName', 'points', 'rechargeDate', 'delete'];
 
   dataSource: MatTableDataSource<RechargeModel> = new MatTableDataSource();
   // dataSource = new MatTableDataSource<RechargeModel>(this.rechargeData);
@@ -47,6 +47,39 @@ export class AdminManageRechargeComponent implements OnInit {
   applyFilter(event:Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  async deleteRecharge(rechargeData:RechargeModel): Promise<any>
+  {
+    let panelClass = 'green';
+    let snackbarMsg = '';
+    let snackbarRef = null;
+    const dialogRef = this.dialog.open(LoadingComponent, { disableClose: true });
+    // let recharegeModel: RechargeModel[] = [];
+    let msg;
+    let resp = null;
+    try {
+      resp = await this.rechargeservice.deleteRecharge(rechargeData.rechargeId);
+      msg = resp.body.message;
+      if (msg) {
+        dialogRef.close();
+        snackbarMsg = msg;
+      location.reload();
+      } else {
+        snackbarMsg = NO_RESP;
+        panelClass = 'red';
+      }
+    } catch (ex) {
+      snackbarMsg = getErrorMessage(ex);
+      panelClass = 'red';
+    } finally {
+      dialogRef.close();
+    }
+    if (snackbarMsg) {
+      snackbarRef = this.snackbar.openFromComponent(SnackbarComponent,
+        getSnackbarProperties(snackbarMsg, panelClass));
+    }
+    return [];
   }
 
   async getRecharge(): Promise<any> {

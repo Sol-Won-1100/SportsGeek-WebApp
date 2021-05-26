@@ -205,7 +205,7 @@ export class BettingPageComponent implements OnInit {
       }
     } catch (ex) {
       snackbarMsg = getErrorMessage(ex);
-      panelClass = 'red';
+      panelClass = 'blue';
     } finally {
       dialogRef.close();
     }

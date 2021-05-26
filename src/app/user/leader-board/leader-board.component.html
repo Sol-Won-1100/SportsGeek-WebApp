@@ -1,17 +1,20 @@
 <div class="container1">
     <div class="item1">
         <img src="../assets/img/first.png" class="card-image" alt="">
+        <!-- <img src="{{userStats[0]?.profilePicture}}" loading="lazy" class="card-image" alt=""> -->
         <p class="card-name">{{userStats[0]?.firstName}}</p>
         <p>Points: {{userStats[0]?.totalWinningPoints}} </p>
     </div>
     <div class="item2">
         <img src="../assets/img/second.png" class="card-image2" alt="">
+        <!-- <img src="{{userStats[1]?.profilePicture}}" loading="lazy" class="card-image2" alt=""> -->
         <p class="card-name">{{userStats[1]?.firstName}}</p>
         <p>Points: {{userStats[1]?.totalWinningPoints}} </p>
 
     </div>
     <div class="item3">
         <img src="../assets/img/third.png" class="card-image3" alt="">
+        <!-- <img src="{{userStats[2]?.profilePicture}}" loading="lazy" class="card-image3" alt=""> -->
         <p class="card-name">{{userStats[2]?.firstName}}</p>
         <p>Points: {{userStats[2]?.totalWinningPoints}} </p>
 
@@ -37,6 +40,11 @@
                 <ng-container matColumnDef="rank">
                     <th mat-header-cell *matHeaderCellDef class="highlight"> RANK </th>
                     <td mat-cell *matCellDef="let element; let i = index;"> {{this.paginator.pageIndex * this.paginator.pageSize + i+1}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="profilePicture">
+                    <th mat-header-cell *matHeaderCellDef class="highlight"> Pic </th>
+                    <td mat-cell *matCellDef="let element"> <img src="{{element.profilePicture }}" class="profile-picture" loading="lazy" alt="lazy-user"> </td>
                 </ng-container>
 
                 <ng-container matColumnDef="firstName">

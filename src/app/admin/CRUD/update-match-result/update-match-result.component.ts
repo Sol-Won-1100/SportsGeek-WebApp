@@ -8,6 +8,7 @@ import { LoadingComponent } from 'src/app/common/components/loading/loading.comp
 import { SnackbarComponent } from 'src/app/common/components/snackbar/snackbar.component';
 import { getErrorMessage, NO_RESP } from 'src/app/common/constants/error-message';
 import { getSnackbarProperties } from 'src/app/common/constants/snackbar-properties';
+import { MatchModel } from 'src/app/common/model/match/match-model';
 import { MatchResult } from 'src/app/common/model/match/update-winner-team';
 import { MatchesService } from 'src/app/common/service/matches_service/matches.service';
 
@@ -20,6 +21,7 @@ export class UpdateMatchResultComponent implements OnInit {
 
   matchResultForm!: FormGroup;
   matchResultData!: MatchResult;
+  matchById!: MatchModel;
 
   constructor(
     private fb: FormBuilder,
@@ -27,42 +29,57 @@ export class UpdateMatchResultComponent implements OnInit {
     private dialog: MatDialog,
     private snackbar: MatSnackBar,
     private matDialogRef: MatDialogRef<UpdateMatchResultComponent>,
-    // @Optional() @Inject(MAT_DIALOG_DATA) public data: MatchResult
+    @Optional() @Inject(MAT_DIALOG_DATA) public data: MatchResult
   ) {
-    // this.matchResultData = this.matchResultData;
-    if (this.matchResultData) {
+    this.matchResultData = data;
+    if (data) {
       this.matchResultForm = this.fb.group({
 
-        matchId: [ this.matchResultData.matchId, [Validators.required,Validators.pattern('[0-9]+')] ],
+        // matchId: [ this.matchResultData.matchId, [Validators.required,Validators.pattern('[0-9]+')] ],
 
-        resultStatus: [ this.matchResultData.resultStatus ,[Validators.required, Validators.pattern('[0-2]+') ]],
+        resultStatus: [ this.data.resultStatus ,[Validators.required, Validators.pattern('[0-2]+') ]],
         
-        winnerTeamId: [this.matchResultData.winnerTeamId,[Validators.required, Validators.pattern('[1-9]+')]],
+        winnerTeamId: [this.data.winnerTeamId,[Validators.required, Validators.pattern('[0-9]+')]],
         
       });
-    } else {
-      this.matchResultForm = this.fb.group({
+    } 
+    // else {
+    //   this.matchResultForm = this.fb.group({
 
         
-        matchId: ['', [Validators.required,Validators.pattern('[0-9]+')] ],
+    //     matchId: ['', [Validators.required,Validators.pattern('[0-9]+')] ],
 
-        resultStatus: ['' ,[Validators.required, Validators.pattern('[0-2]+') ]],
+    //     resultStatus: ['' ,[Validators.required, Validators.pattern('[0-2]+') ]],
 
         
-        winnerTeamId: ['',[Validators.required, Validators.pattern('[0-9]+')]],
+    //     winnerTeamId: ['',[Validators.required, Validators.pattern('[0-9]+')]],
         
-      });
-    }
+    //   });
+    // }
+  }
+  async ngOnInit() {
+    // this.matchResultData = await this.updateResult();
+    this.matchById = await this.getMatchById();
+    console.log(this.matchById);
+  }
+
+  // GET MATCH BY ID
+
+  async getMatchById(): Promise<any> {
+    
+    let matchById: MatchModel[] = [];
+    let resp = null;
+      resp = await this.matchservice.viewMatchById(this.data.matchId);
+      matchById = resp.body;
+      if (matchById) {
+        return matchById;
+      }
+    return [];
   }
 
   reload()
   {
     location.reload();
-  }
-
-
-  async ngOnInit() {
-    // this.matchResultData = await this.updateResult();
   }
 
   get form() {
@@ -79,10 +96,10 @@ export class UpdateMatchResultComponent implements OnInit {
     
     if (this.matchResultForm.valid) {
       console.log(this.form.validators);
-      if (!this.matchResultData) {
+      if (this.matchResultData) {
 
         this.matchResultData = new MatchResult();
-        this.matchResultData.matchId = this.form.matchId.value;
+        this.matchResultData.matchId = this.data.matchId;
         this.matchResultData.resultStatus = this.form.resultStatus.value;       
         this.matchResultData.winnerTeamId = this.form.winnerTeamId.value;
 
@@ -95,8 +112,8 @@ export class UpdateMatchResultComponent implements OnInit {
         try {
           // resp = await this.matchservice.addMatches(this.matchResultData);
           resp = await this.matchservice.updateMatchResult(this.matchResultData.matchId,this.matchResultData.resultStatus,this.matchResultData.winnerTeamId);
-          this.matchResultData = resp.body;
-          if (this.matchResultData != null && this.matchResultData.matchId > 0)
+          const msg = resp.body.message;
+          if (msg != null && this.matchResultData.matchId > 0)
           // && this.matchResultData.matchId > 0
           {
             snackbarMsg = 'Match Result Successfully Updated!';
@@ -107,20 +124,20 @@ export class UpdateMatchResultComponent implements OnInit {
           }
         } catch (ex) {
           snackbarMsg = getErrorMessage(ex);
-          panelClass = 'red';
+          panelClass = 'green';
         } finally {
           dialogRef.close();
           this.matDialogRef.close(this.matchResultData);
+          snackbarMsg = "Match Result Updated";
           if (snackbarMsg) {
             snackbarRef = this.snackbar.openFromComponent(SnackbarComponent,
               getSnackbarProperties(snackbarMsg, panelClass));
           }
         }
       } 
-      else {
-       console.log("wrong");
+      // else {
        
-         }
+      //    }
     }
   }
 

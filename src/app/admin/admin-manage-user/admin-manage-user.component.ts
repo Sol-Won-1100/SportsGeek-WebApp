@@ -23,7 +23,7 @@ export class AdminManageUserComponent implements OnInit {
 
   userData: UserModel[] = [];
 
-  displayedColumns: string[] = ['userId', 'firstName', 'genderId', 'roleId', 'username', 'availablePoints', 'email', 'mobileNumber', 'status', 'delete'];
+  displayedColumns: string[] = ['userId', 'firstName', 'genderName', 'roleName', 'username', 'availablePoints', 'email', 'mobileNumber', 'status', 'delete'];
 
   dataSource: MatTableDataSource<UserModel> = new MatTableDataSource();
   // dataSource = new MatTableDataSource<UserModel>(this.userData);
@@ -64,7 +64,7 @@ export class AdminManageUserComponent implements OnInit {
     let resp = null;
     try {
       resp = await this.userservice.updateActiveStatus(userId, isActive);
-      msg = resp;
+      msg = resp.message;
       if (msg) {
         dialogRef.close();
         const i = this.userData.findIndex(obj => obj.userId === userId);
@@ -85,7 +85,6 @@ export class AdminManageUserComponent implements OnInit {
         getSnackbarProperties(snackbarMsg, panelClass));
     }
   }
-
 
   async getUsers(): Promise<any> {
     let panelClass = 'green';
@@ -130,7 +129,9 @@ export class AdminManageUserComponent implements OnInit {
       resp = await this.userservice.deleteUser(userData.userId);
       msg = resp.body.message;
       if (msg) {
-        snackbarMsg= msg;
+        dialogRef.close();
+        snackbarMsg = msg;
+      location.reload();
       } else {
         snackbarMsg = NO_RESP;
         panelClass = 'red';
@@ -140,7 +141,6 @@ export class AdminManageUserComponent implements OnInit {
       panelClass = 'red';
     } finally {
       dialogRef.close();
-      // location.reload();
     }
     if (snackbarMsg) {
       snackbarRef = this.snackbar.openFromComponent(SnackbarComponent,

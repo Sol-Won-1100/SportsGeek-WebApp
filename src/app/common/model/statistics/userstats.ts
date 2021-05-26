@@ -3,5 +3,6 @@ export class UserStats{
     firstName!:string;
     lastName!:string;
     userName!:string;
+    profilePicture!:any;
     totalWinningPoints!:number;
 }

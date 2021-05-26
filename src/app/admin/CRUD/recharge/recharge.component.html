@@ -13,8 +13,11 @@
                 </div>
                 <div class="field-container">
                     <mat-form-field appearance="fill" color="accent">
-                        <mat-label>User ID</mat-label>
-                        <input matInput formControlName="userId" autocomplete="off">
+                        <mat-label>User</mat-label>
+                        <!-- <input matInput formControlName="userId" autocomplete="off"> -->
+                        <mat-select formControlName="userId">
+                            <mat-option *ngFor="let user of userData" [value]="user.userId"> {{user.username}} </mat-option>
+                        </mat-select>
                         <mat-error *ngIf="form.userId.errors?.required">userId is reqiured</mat-error>
                         <mat-error *ngIf="form.userId.errors?.minlength">userId must have atleast 3 digits
                         </mat-error>

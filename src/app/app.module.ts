@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
 import { AdminManageUserComponent } from './admin/admin-manage-user/admin-manage-user.component';
 import { AdminManageRechargeComponent } from './admin/admin-manage-recharge/admin-manage-recharge.component';
 import { AdminManageTeamComponent } from './admin/admin-manage-team/admin-manage-team.component';
@@ -43,7 +42,6 @@ import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 import { RechargeComponent } from './admin/CRUD/recharge/recharge.component';
 import { TeamComponent } from './admin/CRUD/team/team.component';
 import { LoginComponent } from './login/login.component';
-import { UserLoginComponent } from './user/user-login/user-login.component';
 import { UserDashboardComponent } from './user/user-dashboard/user-dashboard.component';
 import { UserRegistrationComponent } from './user/user-registration/user-registration.component';
 import {MatRadioModule} from '@angular/material/radio';
@@ -66,12 +64,14 @@ import { ConfirmBoxComponent } from './common/components/confirm-box/confirm-box
 import {MatCardModule} from '@angular/material/card';
 import { LayoutModule } from '@angular/cdk/layout';
 import { InsertUpdateContestComponent } from './user/betting-page/insert-update-contest/insert-update-contest.component';
+import {MatSelectModule} from '@angular/material/select';
+import { AdminManageOldMatchesComponent } from './admin/admin-manage-old-matches/admin-manage-old-matches.component';
+import { NgxMatFileInputModule } from '@angular-material-components/file-input';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    AdminLoginComponent,
     AdminManageUserComponent,
     AdminManageRechargeComponent,
     AdminManageTeamComponent,
@@ -87,7 +87,6 @@ import { InsertUpdateContestComponent } from './user/betting-page/insert-update-
     RechargeComponent,
     TeamComponent,
     LoginComponent,
-    UserLoginComponent,
     UserDashboardComponent,
     UserRegistrationComponent,
     MatchListComponent,
@@ -104,7 +103,8 @@ import { InsertUpdateContestComponent } from './user/betting-page/insert-update-
     ViewOthersUserProfileComponent,
     UpdateMatchResultComponent,
     ConfirmBoxComponent,
-    InsertUpdateContestComponent
+    InsertUpdateContestComponent,
+    AdminManageOldMatchesComponent
 
   ],
   imports: [
@@ -140,7 +140,9 @@ import { InsertUpdateContestComponent } from './user/betting-page/insert-update-
     MatSortModule,
     MatTabsModule,
     MatCardModule,
-    LayoutModule
+    LayoutModule,
+    MatSelectModule,
+    NgxMatFileInputModule
   ],
   providers: [
     {

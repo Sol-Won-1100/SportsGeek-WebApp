@@ -36,16 +36,20 @@
                     <td mat-cell *matCellDef="let element"> <img loading="lazy" src="{{element.teamLogo}}" style="border-radius: 50%; width: 50px; height: 50px;" /></td>
                 </ng-container>
 
-                <!-- <ng-container matColumnDef="createdOn">
-            <th mat-header-cell mat-sort-header *matHeaderCellDef class="highlight"> createdOn </th>
-            <td mat-cell *matCellDef="let element" class="highlight"> {{element.createdOn}} </td>
-          </ng-container> -->
+                <ng-container matColumnDef="delete">
+                    <th mat-header-cell mat-sort-header *matHeaderCellDef class="highlight"> Delete </th>
+                    <td mat-cell *matCellDef="let element" (click)="$event.stopPropagation(); deleteTeam(element);">
+                        <button mat-fab>
+                        <mat-icon> delete </mat-icon>
+                    </button>
+                    </td>
+                </ng-container>
 
 
                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                 <tr mat-row [ngClass]="{'evenrow': index%2 == 1}" *matRowDef="let row; columns: displayedColumns; let index=index" (click)="updateTeamForm(row)"></tr>
             </table>
-            <mat-paginator color="accent" [pageSizeOptions]="[5,10,20]" showFirstLastButtons></mat-paginator>
+            <mat-paginator color="accent" [pageSizeOptions]="[10,20]" showFirstLastButtons></mat-paginator>
         </div>
     </div>
 </div>

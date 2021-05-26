@@ -34,9 +34,9 @@ export class TeamComponent implements OnInit {
 
         name: [this.data.name, [Validators.required, Validators.minLength(5), Validators.maxLength(50), Validators.pattern('[a-zA-Z ]+')]],
 
-        shortName: [this.data.shortName, [Validators.required, Validators.maxLength(5)]],
+        shortName: [this.data.shortName, [Validators.required, Validators.minLength(2)]],
 
-        teamLogo: [this.data.teamLogo, [Validators.required, Validators.minLength(6), Validators.maxLength(100)]],
+        teamLogo: [this.data.teamLogo, [Validators.required, Validators.minLength(6), Validators.maxLength(200)]],
 
         // createdOn: [this.data.createdOn, [Validators.required]],
 
@@ -44,11 +44,13 @@ export class TeamComponent implements OnInit {
     } else {
       this.teamForm = this.fb.group({
 
+        teamId: [{ value: '', disabled: true }],
+
         name: ['', [Validators.required, Validators.minLength(5) , Validators.maxLength(50), Validators.pattern('[a-zA-Z ]+')]],
 
-        shortName: ['', [Validators.required, Validators.maxLength(5)]],
+        shortName: ['', [Validators.required, Validators.minLength(2)]],
 
-        teamLogo: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(100)]],
+        teamLogo: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(200)]],
 
         // createdOn: ['', [Validators.required]],
 
@@ -81,11 +83,15 @@ export class TeamComponent implements OnInit {
       console.log(this.form.validators);
       if (!this.teamData) {
         this.teamData = new TeamModel();
-        this.teamData.teamId = 0;
-        this.teamData.name = this.form.name.value;
-        this.teamData.shortName = this.form.shortName.value;
-        this.teamData.teamLogo = this.form.teamLogo.value;
-        // this.teamData.createdOn = this.form.createdOn.value;
+        // this.teamData.teamId = 0;
+        // this.teamData.name = this.form.name.value;
+        // this.teamData.shortName = this.form.shortName.value;
+        // this.teamData.teamLogo = this.form.teamLogo.value;
+
+        var formData: any = new FormData();
+        formData.append("name", this.form.name.value);
+        formData.append("shortName", this.form.shortName.value);
+        formData.append("teamLogo", this.form.teamLogo.value);
 
         let panelClass = 'green';
         let snackbarMsg = '';
@@ -94,7 +100,7 @@ export class TeamComponent implements OnInit {
         const dialogRef = this.dialog.open(LoadingComponent, { disableClose: true });
         let resp = null;
         try {
-          resp = await this.teamservice.addTeam(this.teamData);
+          resp = await this.teamservice.addTeam(formData);
           this.teamData = resp.body;
           if (this.teamData != null && this.teamData.teamId > 0) {
             snackbarMsg = 'User successfully added!';
@@ -115,10 +121,14 @@ export class TeamComponent implements OnInit {
         }
       }
       else {
-        this.teamData.name = this.form.name.value;
-        this.teamData.shortName = this.form.shortName.value;
-        this.teamData.teamLogo = this.form.teamLogo.value;
-        // this.teamData.createdOn = this.form.createdOn.value;
+        // this.teamData.name = this.form.name.value;
+        // this.teamData.shortName = this.form.shortName.value;
+        // this.teamData.teamLogo = this.form.teamLogo.value;
+
+        var formData: any = new FormData();
+        formData.append("name", this.form.name.value);
+        formData.append("shortName", this.form.shortName.value);
+        formData.append("teamLogo", this.form.teamLogo.value);
 
         let panelClass = 'green';
         let snackbarMsg = '';
@@ -127,7 +137,7 @@ export class TeamComponent implements OnInit {
         const dialogRef = this.dialog.open(LoadingComponent, { disableClose: true });
         let resp = null;
         try {
-          resp = await this.teamservice.updateTeam(this.teamData.teamId, this.teamData);
+          resp = await this.teamservice.updateTeam(this.teamData.teamId,formData);
           this.teamData = resp.body;
           if (this.teamData != null) {
             snackbarMsg = 'Team successfully updated!';

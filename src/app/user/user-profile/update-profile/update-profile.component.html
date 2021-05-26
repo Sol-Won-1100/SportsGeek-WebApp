@@ -5,18 +5,18 @@
         </div>
         <div class="signup-container">
             <div class="first">
-                <div class="field-container">
+                <!-- <div class="field-container">
                     <mat-form-field appearance="fill" color="accent">
                         <mat-label>User Id</mat-label>
                         <input matInput formControlName="userId">
                     </mat-form-field>
-                </div>
+                </div> -->
                 <div class="field-container">
                     <mat-form-field appearance="fill" color="accent">
                         <mat-label>Username</mat-label>
                         <input matInput formControlName="username" autocomplete="off">
                         <mat-error *ngIf="form.username.errors?.required">username is reqiured</mat-error>
-                        <mat-error *ngIf="form.username.errors?.minlength">username must have atleast 6 characters
+                        <mat-error *ngIf="form.username.errors?.minlength">username must have atleast 4 characters
                         </mat-error>
                         <mat-error *ngIf="form.username.errors?.maxlength">username must have less than 50 characters
                         </mat-error>
@@ -34,9 +34,6 @@
                     </mat-form-field>
                 </div>
 
-            </div>
-            <div class="second">
-
                 <div class="field-container">
                     <mat-form-field appearance="fill" color="accent">
                         <mat-label>Last Name</mat-label>
@@ -48,6 +45,46 @@
                         <mat-error *ngIf="form.lastname.errors?.pattern">last name is invalid</mat-error>
                     </mat-form-field>
                 </div>
+
+                <div class="field-container">
+                    <mat-form-field appearance="fill" color="accent">
+                        <mat-label>Gender</mat-label>
+                        <!-- <input matInput formControlName="genderId" autocomplete="off"> -->
+                        <mat-select formControlName="genderId">
+                            <mat-option *ngFor="let gender of gender" [value]="gender.genderId"> {{gender.name}} </mat-option>
+                            <!-- <mat-option value="2"> Female </mat-option> -->
+                        </mat-select>
+                        <!-- <mat-error *ngIf="form.genderId.errors?.required">genderId is reqiured</mat-error>
+                        <mat-error *ngIf="form.genderId.errors?.minlength">genderId must have atleast 1 digit
+                        </mat-error>
+                        <mat-error *ngIf="form.genderId.errors?.maxlength">genderId should not be more then 1 digit
+                        </mat-error>
+                        <mat-error *ngIf="form.genderId.errors?.pattern">genderId must have contain digit
+                        </mat-error> -->
+                    </mat-form-field>
+                </div>
+
+            </div>
+            <div class="second">
+
+                <div class="field-container">
+                    <mat-form-field appearance="fill" color="accent">
+                        <mat-label>Profile Pic</mat-label>
+                        <ngx-mat-file-input formControlName="profilePicture">
+                            <mat-icon color="accent" ngxMatFileInputIcon>folder</mat-icon>
+                        </ngx-mat-file-input>
+                        <!-- <mat-error *ngIf="form.profilePicture.errors?.required">
+                            is reqiured
+                        </mat-error>
+                        <mat-error *ngIf="form.profilePicture.errors?.minlength">
+                            must have atleast 4 characters
+                        </mat-error>
+                        <mat-error *ngIf="form.profilePicture.errors?.maxlength">
+                            must have less than 500 characters
+                        </mat-error> -->
+                    </mat-form-field>
+                </div>
+
                 <div class="field-container">
                     <mat-form-field appearance="fill" color="accent">
                         <mat-label>Email</mat-label>

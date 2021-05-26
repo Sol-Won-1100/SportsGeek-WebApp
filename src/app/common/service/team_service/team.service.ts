@@ -17,15 +17,16 @@ export class TeamService {
     return await this.http.get<TeamModel>(teamBaseURL  , { observe: 'response' }).toPromise();
   }
 
-  async addTeam(teamModel: TeamModel): Promise<any> {
-    return await this.http.post<UserModel>(teamBaseURL, teamModel, { observe: 'response' }).toPromise();
+  // async addTeam(teamModel: TeamModel): Promise<any> {
+    async addTeam(formData:FormData):Promise<any>{
+    return await this.http.post<TeamModel>(teamBaseURL, formData, { observe: 'response' }).toPromise();
   }
 
   async updateTeam(teamId: number, model: TeamModel): Promise<any> {
-    return await this.http.put<UserModel>(teamBaseURL + '/' + teamId, model, { observe: 'response' }).toPromise();
+    return await this.http.put<TeamModel>(teamBaseURL + '/' + teamId, model, { observe: 'response' }).toPromise();
   }
 
-  // async updateActiveStatus(userId: number, isActive: boolean): Promise<any> {
-  //   return await this.http.put<any>(updatestatus + '/' + userId + '/' + isActive, { observe: 'response' }).toPromise();
-  // }
+  async deleteTeam(teamId: number): Promise<any> {
+    return await this.http.delete<TeamModel>(teamBaseURL + '/' + teamId , { observe: 'response' }).toPromise();
+  }
 }
