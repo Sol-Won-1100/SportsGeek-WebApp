@@ -67,6 +67,9 @@ import { InsertUpdateContestComponent } from './user/betting-page/insert-update-
 import {MatSelectModule} from '@angular/material/select';
 import { AdminManageOldMatchesComponent } from './admin/admin-manage-old-matches/admin-manage-old-matches.component';
 import { NgxMatFileInputModule } from '@angular-material-components/file-input';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatRippleModule} from '@angular/material/core';
+import { AssignRoleComponent } from './admin/CRUD/assign-role/assign-role.component';
 
 
 @NgModule({
@@ -104,7 +107,8 @@ import { NgxMatFileInputModule } from '@angular-material-components/file-input';
     UpdateMatchResultComponent,
     ConfirmBoxComponent,
     InsertUpdateContestComponent,
-    AdminManageOldMatchesComponent
+    AdminManageOldMatchesComponent,
+    AssignRoleComponent
 
   ],
   imports: [
@@ -142,7 +146,9 @@ import { NgxMatFileInputModule } from '@angular-material-components/file-input';
     MatCardModule,
     LayoutModule,
     MatSelectModule,
-    NgxMatFileInputModule
+    NgxMatFileInputModule,
+    MatAutocompleteModule,
+    MatRippleModule
   ],
   providers: [
     {

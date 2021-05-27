@@ -29,7 +29,7 @@
 
     <!-- PLACE BET ON 1 OF 2 TEAM -->
 
-    <button mat-raised-button *ngIf="!checkk?.userId" color="accent" (click)="openInsertDialog()"> Place Bets</button>
+    <button mat-raised-button *ngIf="!checkk?.userId" matRipple color="accent" (click)="openInsertDialog()"> Place Bets</button>
     <button mat-raised-button *ngIf="checkk?.userId" color="accent" (click)="openUpdateDialog(checkk)">Update Bet</button>
     <!-- [disabled]="!botForm.valid" -->
 

@@ -3,6 +3,7 @@ import { Injectable, Injector } from '@angular/core';
 import { promise } from 'selenium-webdriver';
 import { usersBaseURL } from '../../constants/http-urls';
 import { NewPasswordModel } from '../../model/change-password/NewPassword';
+import { RoleModel } from '../../model/role/role';
 import { UserModel } from '../../model/user/user-model';
 import { UserWithPasswordModel } from '../../model/user/user-with-password-model';
 import { AuthenticationService } from '../authentication_service/authentication.service';
@@ -25,6 +26,10 @@ export class UserService {
 
   async getUserById(userId:number): Promise<any> {
     return await this.http.get<UserModel>(usersBaseURL + '/' + userId , { observe: 'response' }).toPromise();
+  }
+
+  async updateRole(userId:number,roleId:number): Promise<any> {
+    return await this.http.put<RoleModel>(usersBaseURL + '/' + userId + '/update-role' + '/' + roleId, { observe: 'response' }).toPromise();
   }
 
   // async signup(userWithPasswordModel: UserWithPasswordModel): Promise<any> 

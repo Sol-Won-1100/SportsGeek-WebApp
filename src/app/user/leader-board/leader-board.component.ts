@@ -23,7 +23,7 @@ export class LeaderBoardComponent implements OnInit {
 
   userStats: UserStats[] = [];
   userFutureBets:UserFutureBets[] = [];
-  displayedColumns: string[] = ['rank','profilePicture','firstName','availablePoints'];
+  displayedColumns: string[] = ['rank','firstName','availablePoints'];
 
   dataSource: MatTableDataSource<UserStats> = new MatTableDataSource();
 

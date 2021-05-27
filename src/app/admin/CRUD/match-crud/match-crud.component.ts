@@ -172,8 +172,8 @@ export class MatchCRUDComponent implements OnInit {
         this.matchData.matchId = this.form.matchId.value;
         this.matchData.minimumPoints = this.form.minimumPoints.value;
         // this.matchData.name = this.form.name.value;
-        // this.matchData.startDatetime = this.form.startDatetime.value;
-        this.matchData.startDatetime ="2021-07-21T19:30:00";
+        this.matchData.startDatetime = this.form.startDatetime.value;
+        // this.matchData.startDatetime ="2021-07-21T19:30:00";
         this.matchData.team1 = this.form.team1.value;
         this.matchData.team2 = this.form.team2.value;
         this.matchData.tournamentId =this.form.tournamentId.value;
@@ -212,7 +212,8 @@ export class MatchCRUDComponent implements OnInit {
         this.matchData.matchId = this.form.matchId.value;
         this.matchData.minimumPoints = this.form.minimumPoints.value;
         // this.matchData.name = this.form.name.value;
-        this.matchData.startDatetime = "2021-07-21T19:30:00";
+        // this.matchData.startDatetime = "2021-07-21T19:30:00";
+        this.matchData.startDatetime = this.form.startDatetime.value;
 
 
         this.matchData.team1 = this.form.team1.value;

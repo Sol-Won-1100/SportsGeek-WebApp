@@ -81,3 +81,7 @@ mat-paginator {
     color: #fff;
     background: #282850;
 }
+
+.right {
+    margin-left: 70%;
+}

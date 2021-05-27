@@ -16,6 +16,6 @@ export class MatchModel
     tournamentId!: number;
     venue!: string;
     winnerTeamId!: number;
-    startDatetime!:any;
+    startDatetime!:Date;
     venueId!:number;
 }

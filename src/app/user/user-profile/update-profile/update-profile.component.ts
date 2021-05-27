@@ -82,12 +82,7 @@ export class UpdateProfileComponent implements OnInit {
         formData.append("email", this.form.email.value);
         formData.append("mobileNumber", this.form.mobilenumber.value);
         formData.append("genderId", this.form.genderId.value);
-        if (this.form.profilePicture.value) {
-          formData.append("profilePicture", this.form.profilePicture.value);
-        }else{
-          formData.append("profilePicture", 0);
-        }
-        
+        formData.append("profilePicture", this.form.profilePicture.value);
 
       let panelClass = 'green';
       let snackbarMsg = '';

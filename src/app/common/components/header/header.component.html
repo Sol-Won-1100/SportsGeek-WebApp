@@ -44,17 +44,6 @@
         </a>
     </div>
 
-
-    <!-- SHIFT RIGHT -->
-
-    <span class="example-spacer"></span>
-
-    <div class="profile" *ngIf="isRoleUser()">
-        <a routerLink="User/view-your-profile" class="ahome">
-            <mat-icon>account_box</mat-icon>
-        </a>
-    </div>
-
     <!-- ADMIN -->
     <div class="row">
         <div class="col">
@@ -70,6 +59,16 @@
             </div>
         </div>
 
+    </div>
+
+    <!-- SHIFT RIGHT -->
+
+    <span class="example-spacer"></span>
+
+    <div class="profile" *ngIf="isRoleUser()">
+        <a routerLink="User/view-your-profile" class="ahome">
+            <mat-icon>account_box</mat-icon>
+        </a>
     </div>
 
     <a mat-raised-button color="accent" *ngIf="authservice1.isLoggedIn()" (click)="logout()">Logout</a>

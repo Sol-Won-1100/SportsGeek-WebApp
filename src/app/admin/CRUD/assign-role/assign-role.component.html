@@ -1,0 +1,43 @@
+<div class="sub-container-1-inner">
+    <form [formGroup]="assignRole" (ngSubmit)="updateRole()">
+        <div class="title">
+            <span>Match Information</span>
+        </div>
+        <div class="signup-container">
+            <div class="first">
+
+                <div class="field-container">
+                    <mat-form-field appearance="fill" color="accent">
+                        <mat-label>Username</mat-label>
+                        <!-- <input matInput formControlName="resultStatus" autocomplete="off"> -->
+                        <mat-select formControlName="userId">
+                            <mat-option *ngFor="let userdata of userData" [value]="userdata.userId"> {{userdata?.username}} </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="form.userId.errors?.required">resultStatus is reqiured </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="field-container">
+                    <mat-form-field appearance="fill" color="accent">
+                        <mat-label>Role</mat-label>
+                        <!-- <input matInput formControlName="winnerTeamId" autocomplete="off"> -->
+                        <mat-select formControlName="roleId">
+                            <mat-option *ngFor="let role of roles" [value]="role.roleId"> {{role.name}} </mat-option>
+                            <!-- <mat-option value="2"> Female </mat-option> -->
+                        </mat-select>
+                        <mat-error *ngIf="form.roleId.errors?.required">Role is reqiured
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+
+            </div>
+        </div>
+        <div class="action-container">
+            <!-- <button mat-raised-button *ngIf="matchData" color="accent" type="submit">Update</button> -->
+            <button mat-raised-button color="accent" type="submit" (click)="$event.stopPropagation()">Update</button>
+            <!-- *ngIf="!matchResultData" -->
+            <span (click)="closeDialogBox()" class="cancel-btn">Cancel</span>
+        </div>
+    </form>
+</div>
