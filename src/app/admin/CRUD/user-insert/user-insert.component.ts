@@ -79,7 +79,8 @@ export class UserInsertComponent implements OnInit {
         roleId: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(1), Validators.pattern('[1-2]+')]],
 
         availablePoints: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(4), Validators.pattern('[0-9]+')]],
-        profilePicture: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(500)]]
+        profilePicture: ['']
+        // , [Validators.required, Validators.minLength(4), Validators.maxLength(500)]
 
       });
     }

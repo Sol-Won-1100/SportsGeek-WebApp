@@ -39,7 +39,7 @@ export class UserRegistrationComponent implements OnInit {
       lastname: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(100), Validators.pattern('[a-zA-Z ]+')]],
       email: ['', [Validators.required, Validators.email, Validators.maxLength(30), Validators.pattern(/^[A-Za-z0-9._%+-]+@bbd.co.za$/)]],
       gender : ['',Validators.required],
-      profilePicture: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(500)]]
+      profilePicture: ['']
     });
   }
 

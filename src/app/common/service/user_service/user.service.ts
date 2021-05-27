@@ -35,7 +35,7 @@ export class UserService {
   // async signup(userWithPasswordModel: UserWithPasswordModel): Promise<any> 
   async signup(formData:FormData): Promise<any> 
   {
-    return await this.http.post<UserWithPasswordModel>(usersBaseURL + '/register-with-profile-picture', formData, { observe: 'response' }).toPromise();
+    return await this.http.post<UserWithPasswordModel>(usersBaseURL + '/register', formData, { observe: 'response' }).toPromise();
   }
 
   // async addUser(userModel: UserModel): Promise<any> {
