@@ -48,8 +48,8 @@ export class MatchCRUDComponent implements OnInit {
         minimumPoints: [ this.data.minimumPoints ,[Validators.required, Validators.minLength(2)
         , Validators.maxLength(3), Validators.pattern('[0-9]+') ]],
 
-        // name: [this.data.name, [Validators.required, Validators.minLength(5)
-        //   , Validators.maxLength(50), Validators.pattern('[a-zA-Z ]+')]],
+        name: [this.data.name, [Validators.required, Validators.minLength(5)
+          , Validators.maxLength(50), Validators.pattern('[a-zA-Z ]+')]],
 
         startDatetime: [this.data.startDatetime, [Validators.required]],
         
@@ -73,8 +73,8 @@ export class MatchCRUDComponent implements OnInit {
         minimumPoints: [ '' ,[Validators.required, Validators.minLength(2)
         , Validators.maxLength(3)]],
 
-        // name: ['', [Validators.required, Validators.minLength(5)
-        //   , Validators.maxLength(50), Validators.pattern('[a-zA-Z ]+')]],
+        name: ['', [Validators.required, Validators.minLength(5)
+          , Validators.maxLength(50), Validators.pattern('[a-zA-Z ]+')]],
 
         startDatetime: ['', [Validators.required]],
 
@@ -171,7 +171,7 @@ export class MatchCRUDComponent implements OnInit {
         this.matchData = new MatchModel();
         this.matchData.matchId = this.form.matchId.value;
         this.matchData.minimumPoints = this.form.minimumPoints.value;
-        // this.matchData.name = this.form.name.value;
+        this.matchData.name = this.form.name.value;
         this.matchData.startDatetime = this.form.startDatetime.value;
         // this.matchData.startDatetime ="2021-07-21T19:30:00";
         this.matchData.team1 = this.form.team1.value;
@@ -211,7 +211,7 @@ export class MatchCRUDComponent implements OnInit {
       else {
         this.matchData.matchId = this.form.matchId.value;
         this.matchData.minimumPoints = this.form.minimumPoints.value;
-        // this.matchData.name = this.form.name.value;
+        this.matchData.name = this.form.name.value;
         // this.matchData.startDatetime = "2021-07-21T19:30:00";
         this.matchData.startDatetime = this.form.startDatetime.value;
 

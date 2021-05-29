@@ -16,7 +16,7 @@
             </section>
         </div>
         <div class="right">
-            <form [formGroup]="signupForm" (ngSubmit)="signup()">
+            <form [formGroup]="signupForm" (ngSubmit)="signup()" fxFlexFill>
                 <!-- <div class="form-row">
                 <mat-toolbar class="tool" color="primary"> Sign Up to start Winning Big </mat-toolbar>
                 <div class="col-lg-7 my-1 p-1">
@@ -26,11 +26,11 @@
                     <h2>Sign Up</h2>
                     <!-- <p> already have an account! <a [routerLink]="'/login'">Login now.</a></p> -->
                 </section>
-                <div class="inner-container">
+                <div class="inner-container" fxFlexFill="auto" fxLayoutGap="20px">
                     <div class="first">
 
                         <div class="field-container">
-                            <mat-form-field appearance="fill" color="accent">
+                            <mat-form-field appearance="fill" [style.width.%]="100" color="accent">
                                 <mat-label>First Name</mat-label>
                                 <input matInput formControlName="firstname" autocomplete="off">
                                 <mat-error *ngIf="form.firstname.errors?.required">first name is reqiured
@@ -158,12 +158,13 @@
                         </div>
 
                     </div>
-                    <div class="field-container">
-                        <button type="submit" mat-raised-button matRipple class="btnlog mt-2 mb-2">Sign Up</button>
-                        <button mat-raised-button class="btnlog mt-2 mb-2" matRipple routerLink="/login">Already Have an Account? Sign In </button>
-                    </div>
-                </div>
 
+                </div>
+                <div>
+                    <button type="submit" mat-raised-button matRipple class="btnlog mt-2 mb-2">Sign Up</button>
+                    <!-- <button mat-raised-button class="btnlog mt-2 mb-2" matRipple routerLink="/login">Already Have an Account? Sign In </button> -->
+                    <p> already have an account! <a [routerLink]="'/login'">Login now.</a>
+                </div>
 
             </form>
         </div>

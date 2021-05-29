@@ -19,21 +19,20 @@ form {
     background: blur;
 }
 
-mat-form-field {
+
+/* mat-form-field {
     display: block;
     width: 250px;
     border: none;
     outline: none;
-    /* font-size: 20px; */
     border-bottom: 1px solid white;
-    /* background: transparent; */
-}
+} */
 
 .btnlog {
     border: none;
     outline: none;
     height: 50px;
-    width: 600px;
+    width: 400px;
     background-color: black;
     color: white;
     border-radius: 4px;
@@ -64,7 +63,7 @@ h2 {
 
 a {
     text-decoration: none;
-    color: var(--primary-blue);
+    color: blue;
 }
 
 a:hover {
@@ -123,12 +122,6 @@ a:hover {
     font-size: 0.875rem;
 }
 
-.right form {
-    width: 300px;
-    /* align-self: center; */
-    /* margin-left: 100px; */
-}
-
 mat-label {
     display: block;
     margin-bottom: 0.5rem;
@@ -146,6 +139,10 @@ mat-label {
         width: 50%;
         height: auto;
     }
+    .inner-container {
+        display: flex;
+        flex-direction: column;
+    }
 }
 
 input {
@@ -154,18 +151,16 @@ input {
     box-sizing: border-box;
 }
 
-.first {
-    float: left;
-}
+.first {}
 
-.second {
-    width: 30px;
-    float: right;
-}
+.second {}
+
+.bottom {}
 
 .inner-container {
-    margin-left: -150px;
-    margin-right: 100px;
+    display: flex;
+    flex-direction: row;
+    flex-flow: row;
 }
 
 .mat-button-container {

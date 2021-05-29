@@ -1,6 +1,7 @@
 <body [style.background-image]="'url(' + stadium + ')'">
     <div class="card" *ngFor="let matchdata of matchData" routerLink="betting-page/{{matchdata.matchId}}">
-        <h2>Upcoming Match No. {{matchdata.matchId}}</h2>
+        <!-- <h2>Upcoming Match No. {{matchdata.matchId}}</h2> -->
+        <h2> {{matchdata.name}}</h2>
         <div class="match-details">
             <div class="team1">
                 <img loading="lazy" style="border-radius: 50%; " src={{matchdata.team1Logo}} />

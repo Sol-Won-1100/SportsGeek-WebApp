@@ -56,6 +56,38 @@ export class AdminManageOldMatchesComponent implements OnInit {
   }
 
   async getOldMatches(): Promise<any> {
+
+    let panelClass = 'green';
+    let snackbarMsg = '';
+    let snackbarRef = null;
+    const dialogRef = this.dialog.open(LoadingComponent, { disableClose: true });
+    let matchModel: MatchModel[] = [];
+    let resp = null;
+    try {
+      resp = await this.matchservice.getAllOldMatches();
+      matchModel = resp.body;
+      if (matchModel) {
+        dialogRef.close();
+        return matchModel;
+      } else {
+        snackbarMsg = NO_RESP;
+        panelClass = 'red';
+      }
+    } catch (ex) {
+      snackbarMsg = getErrorMessage(ex);
+      panelClass = 'red';
+    } finally {
+      dialogRef.close();
+    }
+    if (snackbarMsg) {
+      snackbarRef = this.snackbar.openFromComponent(SnackbarComponent,
+        getSnackbarProperties(snackbarMsg, panelClass));
+    }
+    return [];
+  }
+
+
+  async deleteMatch(oldMatchData: MatchModel): Promise<any> {
     if (this.dialog.openDialogs.length == 0) {
       const dialogRef1 = this.dialog.open(ConfirmBoxComponent, {
         panelClass: 'no-padding-dialog',
@@ -67,14 +99,16 @@ export class AdminManageOldMatchesComponent implements OnInit {
         let snackbarMsg = '';
         let snackbarRef = null;
         const dialogRef = this.dialog.open(LoadingComponent, { disableClose: true });
-        let matchModel: MatchModel[] = [];
+        // let matchModel: MatchModel[] = [];
+        let msg;
         let resp = null;
         try {
-          resp = await this.matchservice.getAllOldMatches();
-          matchModel = resp.body;
-          if (matchModel) {
+          resp = await this.matchservice.deleteMatch(oldMatchData.matchId);
+          msg = resp.message;
+          if (msg) {
             dialogRef.close();
-            return matchModel;
+            snackbarMsg = msg;
+            location.reload();
           } else {
             snackbarMsg = NO_RESP;
             panelClass = 'red';
@@ -92,38 +126,6 @@ export class AdminManageOldMatchesComponent implements OnInit {
         return [];
       }
     }
-  }
-
-  async deleteMatch(oldMatchData: MatchModel): Promise<any> {
-    let panelClass = 'green';
-    let snackbarMsg = '';
-    let snackbarRef = null;
-    const dialogRef = this.dialog.open(LoadingComponent, { disableClose: true });
-    // let matchModel: MatchModel[] = [];
-    let msg;
-    let resp = null;
-    try {
-      resp = await this.matchservice.deleteMatch(oldMatchData.matchId);
-      msg = resp.message;
-      if (msg) {
-        dialogRef.close();
-        snackbarMsg = msg;
-        location.reload();
-      } else {
-        snackbarMsg = NO_RESP;
-        panelClass = 'red';
-      }
-    } catch (ex) {
-      snackbarMsg = getErrorMessage(ex);
-      panelClass = 'red';
-    } finally {
-      dialogRef.close();
-    }
-    if (snackbarMsg) {
-      snackbarRef = this.snackbar.openFromComponent(SnackbarComponent,
-        getSnackbarProperties(snackbarMsg, panelClass));
-    }
-    return [];
   }
 
   updateMatchForm(data: any) {

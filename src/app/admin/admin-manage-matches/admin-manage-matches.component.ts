@@ -22,7 +22,7 @@ export class AdminManageMatchesComponent implements OnInit {
 
   matchData: MatchModel[] = [];
 
-  displayedColumns: string[] = ['matchId', 'startDatetime', 'team1Logo', 'team1Short', 'team2Logo', 'team2Short', 'venue', 'minimumPoints', 'resultStatus', 'winnerTeamId', 'delete'];
+  displayedColumns: string[] = ['matchId','name', 'startDatetime', 'team1Logo', 'team1Short', 'team2Logo', 'team2Short', 'venue', 'minimumPoints', 'resultStatus', 'winnerTeamId', 'delete'];
 
   // 'team1','team1Id', 'team2', 'team2Id',
 
