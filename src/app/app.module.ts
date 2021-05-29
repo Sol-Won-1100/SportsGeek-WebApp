@@ -70,7 +70,11 @@ import { NgxMatFileInputModule } from '@angular-material-components/file-input';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatRippleModule} from '@angular/material/core';
 import { AssignRoleComponent } from './admin/CRUD/assign-role/assign-role.component';
-
+import { AboutUsComponent } from './user/footer/about-us/about-us.component';
+import { ContactUsComponent } from './user/footer/contact-us/contact-us.component';
+import { RulesComponent } from './user/footer/rules/rules.component';
+import { AgmCoreModule } from '@agm/core';
+import {} from 'googlemaps';
 
 @NgModule({
   declarations: [
@@ -108,7 +112,10 @@ import { AssignRoleComponent } from './admin/CRUD/assign-role/assign-role.compon
     ConfirmBoxComponent,
     InsertUpdateContestComponent,
     AdminManageOldMatchesComponent,
-    AssignRoleComponent
+    AssignRoleComponent,
+    AboutUsComponent,
+    ContactUsComponent,
+    RulesComponent
 
   ],
   imports: [
@@ -148,7 +155,10 @@ import { AssignRoleComponent } from './admin/CRUD/assign-role/assign-role.compon
     MatSelectModule,
     NgxMatFileInputModule,
     MatAutocompleteModule,
-    MatRippleModule
+    MatRippleModule,
+    AgmCoreModule.forRoot({
+      apiKey: "AIzaSyD3saA5pXYFGE4O6qGpST_8cKDmY_NxCBw"
+    })
   ],
   providers: [
     {

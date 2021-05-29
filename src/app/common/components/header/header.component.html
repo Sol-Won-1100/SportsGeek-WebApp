@@ -1,76 +1,78 @@
-<mat-toolbar color="primary" class="mat-elevation-z8">
+<header>
+    <mat-toolbar color="primary" class="mat-elevation-z8">
 
-    <!-- SHIFT LEFT -->
+        <!-- SHIFT LEFT -->
 
-    <!-- USER -->
+        <!-- USER -->
 
-    <div class="home">
-        <a (click)="goToHome()" class="ahome" href>
-            <mat-icon class="home_icon">home</mat-icon>
-            <!-- <span class="space"> <a class="ahome">SportsGeek</a>  </span> -->
-        </a>
-    </div>
-
-    <div class="bets" *ngIf="isRoleUser()">
-        <a routerLink="User/match-list" class="ahome">
-            <div *ngIf="deviceXs">
-                <mat-icon>monetization_on</mat-icon>
-            </div>
-            <div *ngIf="!deviceXs">
-                <mat-icon>monetization_on</mat-icon>Place Bets
-            </div>
-        </a>
-    </div>
-
-    <div class="leader-board" *ngIf="isRoleUser()">
-        <a routerLink="User/leader-board" class="ahome">
-            <div *ngIf="deviceXs">
-                <mat-icon>leaderboard</mat-icon>
-            </div>
-            <div *ngIf="!deviceXs">
-                <mat-icon>leaderboard</mat-icon>Leader Board
-            </div>
-        </a>
-    </div>
-
-    <div class="my-matches" *ngIf="isRoleUser()">
-        <a routerLink="User/my-matches" class="ahome">
-            <div *ngIf="deviceXs">
-                <mat-icon>sports_cricket</mat-icon>
-            </div>
-            <div *ngIf="!deviceXs">
-                <mat-icon>sports_cricket</mat-icon>My Matches
-            </div>
-        </a>
-    </div>
-
-    <!-- ADMIN -->
-    <div class="row">
-        <div class="col">
-            <div ngbDropdown class="d-inline-block dropdownbtn">
-                <button class="btn btn-primary" id="dropdownBasic1" ngbDropdownToggle *ngIf="authservice1.isLoggedIn() &&isRoleAdmin()">Manage</button>
-                <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                    <button ngbDropdownItem routerLink="Admin/manage-matches">Matches</button>
-                    <button ngbDropdownItem routerLink="Admin/manage-old-matches">Update Match Result</button>
-                    <button ngbDropdownItem routerLink="Admin/manage-user">Users</button>
-                    <button ngbDropdownItem routerLink="Admin/manage-team">Team</button>
-                    <button ngbDropdownItem routerLink="Admin/manage-recharge">Recharge</button>
-                </div>
-            </div>
+        <div class="home">
+            <a (click)="goToHome()" class="ahome" href>
+                <mat-icon class="home_icon">home</mat-icon>
+                <!-- <span class="space"> <a class="ahome">SportsGeek</a>  </span> -->
+            </a>
         </div>
 
-    </div>
+        <div class="bets" *ngIf="isRoleUser()">
+            <a routerLink="User/match-list" class="ahome">
+                <div *ngIf="deviceXs">
+                    <mat-icon>monetization_on</mat-icon>
+                </div>
+                <div *ngIf="!deviceXs">
+                    <mat-icon>monetization_on</mat-icon>Place Bets
+                </div>
+            </a>
+        </div>
 
-    <!-- SHIFT RIGHT -->
+        <div class="leader-board" *ngIf="isRoleUser()">
+            <a routerLink="User/leader-board" class="ahome">
+                <div *ngIf="deviceXs">
+                    <mat-icon>leaderboard</mat-icon>
+                </div>
+                <div *ngIf="!deviceXs">
+                    <mat-icon>leaderboard</mat-icon>Leader Board
+                </div>
+            </a>
+        </div>
 
-    <span class="example-spacer"></span>
+        <div class="my-matches" *ngIf="isRoleUser()">
+            <a routerLink="User/my-matches" class="ahome">
+                <div *ngIf="deviceXs">
+                    <mat-icon>sports_cricket</mat-icon>
+                </div>
+                <div *ngIf="!deviceXs">
+                    <mat-icon>sports_cricket</mat-icon>My Matches
+                </div>
+            </a>
+        </div>
 
-    <div class="profile" *ngIf="isRoleUser()">
-        <a routerLink="User/view-your-profile" class="ahome">
-            <mat-icon>account_box</mat-icon>
-        </a>
-    </div>
+        <!-- ADMIN -->
+        <div class="row">
+            <div class="col">
+                <div ngbDropdown class="d-inline-block dropdownbtn">
+                    <button class="btn btn-primary" id="dropdownBasic1" ngbDropdownToggle *ngIf="authservice1.isLoggedIn() &&isRoleAdmin()">Manage</button>
+                    <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                        <button ngbDropdownItem routerLink="Admin/manage-matches">Matches</button>
+                        <button ngbDropdownItem routerLink="Admin/manage-old-matches">Update Match Result</button>
+                        <button ngbDropdownItem routerLink="Admin/manage-user">Users</button>
+                        <button ngbDropdownItem routerLink="Admin/manage-team">Team</button>
+                        <button ngbDropdownItem routerLink="Admin/manage-recharge">Recharge</button>
+                    </div>
+                </div>
+            </div>
 
-    <a mat-raised-button color="accent" *ngIf="authservice1.isLoggedIn()" (click)="logout()">Logout</a>
+        </div>
 
-</mat-toolbar>
+        <!-- SHIFT RIGHT -->
+
+        <span class="example-spacer"></span>
+
+        <div class="profile" *ngIf="isRoleUser()">
+            <a routerLink="User/view-your-profile" class="ahome">
+                <mat-icon>account_box</mat-icon>
+            </a>
+        </div>
+
+        <a mat-raised-button color="accent" *ngIf="authservice1.isLoggedIn()" (click)="logout()">Logout</a>
+
+    </mat-toolbar>
+</header>

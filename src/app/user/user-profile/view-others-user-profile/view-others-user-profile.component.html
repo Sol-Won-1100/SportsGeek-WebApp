@@ -26,15 +26,15 @@
                 <div class="projects_data">
                     <div class="data">
                         <h4>Available Points</h4>
-                        <p *ngFor="let userstats of userStats"> {{userstats?.totalWinningPoints}}</p>
+                        <p class="blue" *ngFor="let userstats of userStats"> {{userstats?.totalWinningPoints}}</p>
                     </div>
                     <div class="data">
                         <h4>Winning Points</h4>
-                        <p> {{usersWinningLoosingPoints?.winningPoints}} </p>
+                        <p class="green"> {{usersWinningLoosingPoints?.winningPoints}} </p>
                     </div>
                     <div class="data">
                         <h4>Loosing Points</h4>
-                        <p> {{usersWinningLoosingPoints?.losingPoints}} </p>
+                        <p class="red"> {{usersWinningLoosingPoints?.losingPoints}} </p>
                     </div>
                 </div>
             </div>

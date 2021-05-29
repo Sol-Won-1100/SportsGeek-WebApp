@@ -36,7 +36,8 @@ export class TeamComponent implements OnInit {
 
         shortName: [this.data.shortName, [Validators.required, Validators.minLength(2)]],
 
-        teamLogo: [this.data.teamLogo, [Validators.required, Validators.minLength(6), Validators.maxLength(200)]],
+        teamLogo: [this.data.teamLogo],
+        // , [Validators.required, Validators.minLength(6), Validators.maxLength(200)]
 
         // createdOn: [this.data.createdOn, [Validators.required]],
 
@@ -50,7 +51,8 @@ export class TeamComponent implements OnInit {
 
         shortName: ['', [Validators.required, Validators.minLength(2)]],
 
-        teamLogo: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(200)]],
+        teamLogo: [''],
+        // , [Validators.required, Validators.minLength(6), Validators.maxLength(200)]
 
         // createdOn: ['', [Validators.required]],
 
@@ -103,8 +105,9 @@ export class TeamComponent implements OnInit {
           resp = await this.teamservice.addTeam(formData);
           this.teamData = resp.body;
           if (this.teamData != null && this.teamData.teamId > 0) {
-            snackbarMsg = 'User successfully added!';
+            snackbarMsg = 'Team successfully added!';
             this.matDialogRef.close(this.teamData);
+            this.reload();
           } else {
             snackbarMsg = NO_RESP;
             panelClass = 'red';
@@ -142,6 +145,7 @@ export class TeamComponent implements OnInit {
           if (this.teamData != null) {
             snackbarMsg = 'Team successfully updated!';
             this.matDialogRef.close();
+            this.reload();
           } else {
             snackbarMsg = NO_RESP;
             panelClass = 'red';

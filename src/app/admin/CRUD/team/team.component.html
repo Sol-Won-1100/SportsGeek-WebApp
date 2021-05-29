@@ -41,22 +41,12 @@
                         <ngx-mat-file-input formControlName="teamLogo">
                             <mat-icon ngxMatFileInputIcon>folder</mat-icon>
                         </ngx-mat-file-input>
-                        <mat-error *ngIf="form.teamLogo.errors?.required"> teamLogo is reqiured
+                        <!-- <mat-error *ngIf="form.teamLogo.errors?.required"> teamLogo is reqiured
                         </mat-error>
                         <mat-error *ngIf="form.teamLogo.errors?.minlength"> teamLogo must have atleast 6 characters</mat-error>
-                        <mat-error *ngIf="form.teamLogo.errors?.maxlength"> teamLogo must have less than 100 characters</mat-error>
+                        <mat-error *ngIf="form.teamLogo.errors?.maxlength"> teamLogo must have less than 100 characters</mat-error> -->
                     </mat-form-field>
                 </div>
-
-                <!-- <div class="field-container">
-                    <mat-form-field appearance="fill" color="accent">
-                        <mat-label>Created Date</mat-label>
-                        <input [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1" matInput formControlName="createdOn" autocomplete="off">
-                        <owl-date-time #dt1></owl-date-time>
-                        <mat-error *ngIf="form.createdOn.errors?.required"> createdOn is reqiured
-                        </mat-error>
-                    </mat-form-field>
-                </div> -->
 
             </div>
         </div>

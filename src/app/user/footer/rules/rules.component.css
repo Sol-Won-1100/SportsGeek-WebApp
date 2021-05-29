@@ -1,0 +1,12 @@
+* {
+    background: linear-gradient(to right, #333333, #dd1818);
+}
+
+body {
+    background: linear-gradient(to right, #12c2e9, #c471ed, #f64f59);
+}
+
+.container {
+    color: #fff;
+    height: 105vh;
+}

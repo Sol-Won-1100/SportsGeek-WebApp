@@ -6,13 +6,15 @@ import { AdminManageOldMatchesComponent } from './admin/admin-manage-old-matches
 import { AdminManageRechargeComponent } from './admin/admin-manage-recharge/admin-manage-recharge.component';
 import { AdminManageTeamComponent } from './admin/admin-manage-team/admin-manage-team.component';
 import { AdminManageUserComponent } from './admin/admin-manage-user/admin-manage-user.component';
-import { AppComponent } from './app.component';
 import { ForgotPasswordComponent } from './common/components/forgot-password/forgot-password.component';
 import { LoadingComponent } from './common/components/loading/loading.component';
 import { NotFoundComponent } from './common/components/not-found/not-found.component';
 import { AuthGuard } from './common/guard/auth.guard';
 import { LoginComponent } from './login/login.component';
 import { BettingPageComponent } from './user/betting-page/betting-page.component';
+import { AboutUsComponent } from './user/footer/about-us/about-us.component';
+import { ContactUsComponent } from './user/footer/contact-us/contact-us.component';
+import { RulesComponent } from './user/footer/rules/rules.component';
 import { LeaderBoardComponent } from './user/leader-board/leader-board.component';
 import { MatchListComponent } from './user/match-list/match-list.component';
 import { MyMatchesComponent } from './user/my-matches/my-matches.component';
@@ -55,6 +57,10 @@ const routes: Routes = [
   { path: 'User/my-matches/view-upcoming-match/:id', component: ViewUpcomingMatchComponent, canActivate: [AuthGuard], data: { roles: ['User'] }  },
   { path: 'User/my-matches/view-live-match/:id', component: ViewLiveMatchesComponent, canActivate: [AuthGuard], data: { roles: ['User'] }  },
   { path: 'User/my-matches/view-old-match/:id', component: ViewOldMatchesComponent, canActivate: [AuthGuard], data: { roles: ['User'] }  },
+  { path: 'User/about-us', component: AboutUsComponent, canActivate: [AuthGuard], data: { roles: ['User'] }  },
+  { path: 'User/contact-us', component: ContactUsComponent, canActivate: [AuthGuard], data: { roles: ['User'] }  },
+  { path: 'User/rules', component: RulesComponent, canActivate: [AuthGuard], data: { roles: ['User'] }  },
+  
   { path: '**', component: NotFoundComponent },
 ];
 
