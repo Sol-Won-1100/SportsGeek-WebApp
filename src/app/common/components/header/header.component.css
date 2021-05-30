@@ -46,3 +46,7 @@ mat-icon {
 .profile {
     margin-right: 20px;
 }
+
+mat-toolbar {
+    background: linear-gradient(45deg, #1318a5, #cc1ab3);
+}

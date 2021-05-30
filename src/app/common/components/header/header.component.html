@@ -1,5 +1,5 @@
 <header>
-    <mat-toolbar color="primary" class="mat-elevation-z8">
+    <mat-toolbar class="mat-elevation-z8">
 
         <!-- SHIFT LEFT -->
 
@@ -72,7 +72,7 @@
             </a>
         </div>
 
-        <a mat-raised-button color="accent" *ngIf="authservice1.isLoggedIn()" (click)="logout()">Logout</a>
+        <a mat-raised-button style="background: #ccff00;" *ngIf="authservice1.isLoggedIn()" (click)="logout()">Logout</a>
 
     </mat-toolbar>
 </header>

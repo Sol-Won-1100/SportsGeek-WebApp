@@ -11,24 +11,24 @@ body {
     flex-direction: column;
     align-items: center;
     background-attachment: fixed;
-    background-repeat: repeat;
+    background-repeat: no-repeat;
     background-position: center;
-    height: 100%;
+    height: auto;
     align-self: flex-start;
 }
 
 .card {
     /* position: absolute; */
     /* top: 50%; */
-    left: 50%;
-    transform: translate(-50%, 5%);
-    width: 650px;
+    left: 5%;
+    transform: translate(-4%, 5%);
+    width: auto;
     background: rgba(255, 255, 255, 0.5);
     border-radius: 10px;
     overflow: hidden;
     transition: 0.5s;
     box-shadow: 0 0 0 10px rgba(255, 255, 255, 0.2);
-    height: 380px;
+    height: auto;
     margin: 40px;
     /* margin-bottom: 40px; */
 }
@@ -77,7 +77,7 @@ body {
 }
 
 .card h2 {
-    width: 100%;
+    width: auto;
     margin: 0;
     padding: 20px;
     text-align: center;
@@ -112,31 +112,35 @@ body {
 }
 
 .team1 {
-    width: 200px;
+    width: auto;
     float: left;
     padding: 10px 20px 20px;
     box-sizing: border-box;
     text-align: center;
+    height: auto;
 }
 
 .team2 {
-    width: 200px;
+    width: auto;
     float: left;
     padding: 10px 20px 20px;
     box-sizing: border-box;
     text-align: center;
+    height: auto;
 }
 
 .team1 img,
 .team2 img {
-    width: 100%;
+    width: 150px;
+    height: auto;
 }
 
 .details {
-    width: 200px;
+    width: auto;
     min-height: 200px;
     float: left;
     text-align: center;
+    height: auto;
 }
 
 h3.team-name {
@@ -157,10 +161,10 @@ h3.team-name {
 }
 
 mat-tab-group {
-    width: 1000px;
-    height: 700px;
+    width: auto;
+    height: 82.3vh;
 }
 
 .mat-tab-body-content {
-    overflow: hidden;
+    overflow-y: hidden;
 }

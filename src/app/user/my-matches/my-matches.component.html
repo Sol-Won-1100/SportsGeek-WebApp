@@ -1,4 +1,4 @@
-<body>
+<body class="pt-0 pb-0 mt-0 mb-0">
     <mat-tab-group mat-align-tabs="center">
 
         <mat-tab label="Upcoming">
@@ -52,7 +52,8 @@
         <mat-tab label="Results">
 
             <div class="card" *ngFor="let oldmatches of oldMatches" routerLink="view-old-match/{{oldmatches.matchId}}">
-                <h2>Match No. {{oldmatches?.matchId}} Winner : {{oldmatches.winnerTeamName}} </h2>
+                <!-- <h2>Match No. {{oldmatches?.matchId}} Winner : {{oldmatches.winnerTeamName}} </h2> -->
+                <h2> Winner : {{oldmatches.winnerTeamName}} </h2>
                 <div class="match-details">
                     <div class="team1">
                         <img loading="lazy" style="border-radius: 50%; " src="{{oldmatches?.team1Logo}}" />

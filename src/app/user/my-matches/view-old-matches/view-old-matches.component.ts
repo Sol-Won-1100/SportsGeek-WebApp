@@ -23,28 +23,28 @@ import { MatchesService } from 'src/app/common/service/matches_service/matches.s
 export class ViewOldMatchesComponent implements OnInit {
 
   fetchBotDetails: BotModel[] = [];
-  calc!:MatchModel;
-  displayedColumns: string[] = [ 'username', 'teamshortname', 'contestPoints','winningPoints'];
+  calc!: MatchModel;
+  displayedColumns: string[] = ['username', 'teamshortname', 'contestPoints', 'winningPoints'];
 
   dataSource: MatTableDataSource<BotModel> = new MatTableDataSource();
 
   @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort!: MatSort;
 
-  matchId!:number;
+  matchId!: number;
   matchData!: MatchModel;
 
   constructor(
-    private route:ActivatedRoute,
+    private route: ActivatedRoute,
     private botservice: BotService,
     private snackbar: MatSnackBar,
-    private dialog: MatDialog,    
-    private matchservice:MatchesService,
+    private dialog: MatDialog,
+    private matchservice: MatchesService,
   ) { }
 
-  async ngOnInit(){
-    this.route.params.subscribe(data=>{
-      this.matchId=data.id;
+  async ngOnInit() {
+    this.route.params.subscribe(data => {
+      this.matchId = data.id;
     });
     this.calc = await this.getAllPlayerBetsByMatchIdForCalculation(this.matchId);
 
@@ -54,19 +54,19 @@ export class ViewOldMatchesComponent implements OnInit {
     this.dataSource.data = this.fetchBotDetails;
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
-   
+
     this.matchData = await this.getMatchById(this.matchId);
     console.log(this.matchData);
+
+    
   }
 
-  
-  applyFilter(event:Event) {
+  applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  async getMatchById(matchId:number): Promise<any>
-  {
+  async getMatchById(matchId: number): Promise<any> {
     let panelClass = 'green';
     let snackbarMsg = '';
     let snackbarRef = null;
@@ -98,8 +98,7 @@ export class ViewOldMatchesComponent implements OnInit {
 
   // GET ALL PLAYER BETS ON TEAM
 
-  async getAllPlayerBetsByMatchId(matchId:number): Promise<any>
-  {
+  async getAllPlayerBetsByMatchId(matchId: number): Promise<any> {
     let panelClass = 'green';
     let snackbarMsg = '';
     let snackbarRef = null;
@@ -131,22 +130,21 @@ export class ViewOldMatchesComponent implements OnInit {
   }
 
   // THIS IS FOR CALCULATION PURPOSE ONLY
-  
-  team1points=0;
-  team2points=0;
 
-  findsum(data:any){    
-    data.forEach((element:any) => {      
+  team1points = 0;
+  team2points = 0;
+
+  findsum(data: any) {
+    data.forEach((element: any) => {
       if (element.teamShortName == this.calc.team1Short) {
-        this.team1points+=element.contestPoints;
-      }else if(element.teamShortName == this.calc.team2Short)
-        this.team2points+=element.contestPoints;
-    });   
-  }  
+        this.team1points += element.contestPoints;
+      } else if (element.teamShortName == this.calc.team2Short)
+        this.team2points += element.contestPoints;
+    });
+  }
 
-    async getAllPlayerBetsByMatchIdForCalculation(matchId:number): Promise<any>
-    {
-      let panelClass = 'green';
+  async getAllPlayerBetsByMatchIdForCalculation(matchId: number): Promise<any> {
+    let panelClass = 'green';
     let snackbarMsg = '';
     let snackbarRef = null;
     const dialogRef = this.dialog.open(LoadingComponent, { disableClose: true });
@@ -173,6 +171,6 @@ export class ViewOldMatchesComponent implements OnInit {
         getSnackbarProperties(snackbarMsg, panelClass));
     }
     return [];
-    }
+  }
 
 }

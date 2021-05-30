@@ -1,7 +1,9 @@
 <body>
 
-    <div class="card">
-        <h2>Match No. {{matchData?.matchId}}</h2>
+    <div class="card ">
+        <!-- <h2>Match No. {{matchData?.matchId}}</h2> -->
+        <h2 *ngIf="matchData?.winnerTeamId==matchData?.team1Id"> Winner : {{matchData?.team1}} </h2>
+        <h2 *ngIf="matchData?.winnerTeamId==matchData?.team2Id"> Winner : {{matchData?.team2}} </h2>
         <div class="match-details">
             <div class="team1">
                 <img loading="lazy" style="border-radius: 50%; " src="{{matchData?.team1Logo}}" />
@@ -27,7 +29,7 @@
 
     <div class="parent-container container-fluid">
         <div class="mat-elevation-z20 container main-container">
-            <div class="conatiner-header"> Bet Details </div>
+            <div class="conatiner-header"> Bet Result </div>
             <div class="inner-conatiner">
                 <div class="inner-container-actions">
                     <mat-form-field appearance="outline" color="accent">

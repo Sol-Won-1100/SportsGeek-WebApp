@@ -3,6 +3,8 @@
     left: 0;
     bottom: 0;
     width: 100%;
+    /* background: linear-gradient(45deg, #ccff00, maroon, #FF5F1F); */
+    background: linear-gradient(45deg, #cc1ab3, #1318a5);
     /* text-align: center; */
 }
 
