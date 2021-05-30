@@ -32,7 +32,7 @@ form {
     border: none;
     outline: none;
     height: 50px;
-    width: 400px;
+    width: 300px;
     background-color: black;
     color: white;
     border-radius: 4px;
@@ -92,7 +92,6 @@ a:hover {
 }
 
 .left {
-    /* background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0, 5), url('/assets/register.jpg')); */
     background-size: cover;
 }
 
@@ -128,20 +127,25 @@ mat-label {
     font-size: 0.75rem;
 }
 
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 700px) {
     .split-screen {
         flex-direction: row;
-        height: 100vh;
+        height: auto;
+        min-height: 100vh;
     }
     .left,
     .right {
         display: flex;
         width: 50%;
         height: auto;
+        min-height: 100vh;
     }
     .inner-container {
-        display: flex;
-        flex-direction: column;
+        min-width: 10px;
+        max-width: 500px;
+        width: 100%;
+        justify-content: space-around;
+        min-height: 100vh;
     }
 }
 
@@ -151,16 +155,16 @@ input {
     box-sizing: border-box;
 }
 
-.first {}
-
-.second {}
-
-.bottom {}
-
 .inner-container {
     display: flex;
     flex-direction: row;
-    flex-flow: row;
+    align-items: stretch;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+mat-form-field {
+    width: 200px;
 }
 
 .mat-button-container {

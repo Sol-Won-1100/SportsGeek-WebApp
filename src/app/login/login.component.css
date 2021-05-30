@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Mate+SC&display=swap');
 * {
     padding: 0;
     margin: 0;
@@ -6,7 +7,16 @@
 
 .section {
     background: #343148;
-    height: auto;
+    height: 100vh;
+}
+
+.toolbar {
+    font-family: 'Mate SC', serif;
+    font-size: large;
+    background: rgb(60, 60, 182);
+    color: #fff;
+    padding: 15px;
+    width: 100%;
 }
 
 .row {
@@ -37,29 +47,7 @@ img {
     color: black;
 }
 
-
-/* .box
-  {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-  } */
-
-@media screen and (min-width: 900px) {
-    .section {
-        flex-direction: row;
-        height: 100vh;
-    }
-    .left,
-    .right {
-        display: flex;
-        width: 50%;
-        height: auto;
-    }
-}
-
 mat-form-field {
     padding-top: 10px;
-    width: 300px;
+    width: 100%;
 }
