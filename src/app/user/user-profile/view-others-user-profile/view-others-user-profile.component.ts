@@ -50,11 +50,11 @@ export class ViewOthersUserProfileComponent implements OnInit {
       this.userId=data.id;
     });
 
-    this.userFutureBets = await this.getUsersFutureContest();
-    console.log(this.userFutureBets);
+    // this.userFutureBets = await this.getUsersFutureContest();
+    // console.log(this.userFutureBets);
 
-    this.userStats = await this.getUserStats();
-    console.log(this.userStats);
+    // this.userStats = await this.getUserStats();
+    // console.log(this.userStats);
 
     this.userData = await this.getUsers();
     console.log(this.userData);

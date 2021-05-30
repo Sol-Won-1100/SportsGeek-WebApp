@@ -32,10 +32,10 @@ export class ViewUserProfileComponent implements OnInit {
 
   showForm:boolean = false;
 
-  newform()
-  {
-    this.showForm =!this.showForm;
-  }
+  // newform()
+  // {
+  //   this.showForm =!this.showForm;
+  // }
 
   constructor(
     private userservice: UserService,
@@ -47,11 +47,11 @@ export class ViewUserProfileComponent implements OnInit {
 
   async ngOnInit() {
 
-    this.userFutureBets = await this.getUsersFutureContest();
-    console.log(this.userFutureBets);
+    // this.userFutureBets = await this.getUsersFutureContest();
+    // console.log(this.userFutureBets);
 
-    this.userStats = await this.getUserStats();
-    console.log(this.userStats);
+    // this.userStats = await this.getUserStats();
+    // console.log(this.userStats);
     
     this.userData = await this.getUsers();
     console.log(this.userData);

@@ -1,7 +1,7 @@
 <body [style.background-image]="'url(' + profile + ')'">
     <div class="wrapper">
         <div class="left">
-            <img src="{{userData?.profilePicture}}" loading="lazy" alt="user" width="100">
+            <img src="{{userData?.profilePicture}}" loading="lazy" onerror="this.src='assets/img/user.png'" width="100">
             <h4> {{userData?.firstName | uppercase}} {{userData?.lastName | uppercase}} </h4>
             <p> @{{userData?.username}}</p>
         </div>
@@ -26,7 +26,8 @@
                 <div class="projects_data">
                     <div class="data">
                         <h4>Available Points</h4>
-                        <p class="blue" *ngFor="let userstats of userStats"> {{userstats?.totalWinningPoints}} </p>
+                        <!-- <p class="blue" *ngFor="let userstats of userStats"> {{userstats?.totalWinningPoints}} </p> -->
+                        <p class="blue"> {{userData?.availablePoints}} </p>
                     </div>
                     <div class="data">
                         <h4>Winning Points</h4>

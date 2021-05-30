@@ -1,7 +1,8 @@
 <body>
     <!-- [style.background-image]="'url(' + placebets + ')'" -->
     <div class="card">
-        <h2>Upcoming Match No. {{matchData?.matchId}}</h2>
+        <!-- <h2>Upcoming Match No. {{matchData?.matchId}}</h2> -->
+        <h2>{{matchData?.name}}</h2>
         <div class="match-details">
             <div class="team1">
                 <img loading="lazy" style="border-radius: 50%; " src="{{matchData?.team1Logo}}" />
