@@ -19,14 +19,15 @@ import { SnackbarComponent } from '../snackbar/snackbar.component';
 export class ForgotPasswordComponent implements OnInit {
 
   generateOtp: FormGroup;
-  otpWithNewPassword:FormGroup;
+  otpWithNewPassword: FormGroup;
+  hide = true;
 
   constructor(
     private fb: FormBuilder,
     private snackbar: MatSnackBar,
     private dialog: MatDialog,
     private resetPassword: ResetPasswordWithOtpService,
-    private router:Router
+    private router: Router
     // private matDialogRef: MatDialogRef<ForgotPasswordComponent>
   ) {
     this.generateOtp = this.fb.group({
@@ -37,7 +38,7 @@ export class ForgotPasswordComponent implements OnInit {
     this.otpWithNewPassword = this.fb.group({
       otp: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(40)]],
       newPassword: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(40)]],
-      newConfPassword: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(40)]],  
+      newConfPassword: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(40)]],
     });
   }
 
@@ -48,7 +49,7 @@ export class ForgotPasswordComponent implements OnInit {
     return this.generateOtp.controls;
   }
 
-  get otpWithNewPasswordForm(){
+  get otpWithNewPasswordForm() {
     return this.otpWithNewPassword.controls;
   }
 
@@ -64,12 +65,12 @@ export class ForgotPasswordComponent implements OnInit {
       this.snackbar.dismiss();
       const dialogRef = this.dialog.open(LoadingComponent, { disableClose: true });
       let resp = null;
-      try{
+      try {
         resp = await this.resetPassword.sendOtp(sendOtpModel);
         const msg = resp.body;
         if (msg) {
-          localStorage.setItem('userId',resp.body.userId);
-          snackbarMsg = msg + '! please check your email for otp.';
+          localStorage.setItem('userId', resp.body.userId);
+          snackbarMsg = 'Please check your Email for OTP.';
           // this.matDialogRef.close();
         } else {
           snackbarMsg = NO_RESP;
@@ -88,13 +89,16 @@ export class ForgotPasswordComponent implements OnInit {
     }
   }
 
-  userId=localStorage.getItem('userId');
+  getUserId() {
+    let userId = localStorage.getItem('userId');
+    return userId;
+  }
 
   async newPasswordWithOtp() {
     if (this.otpWithNewPassword.valid) {
       const otpWithNewPassword: ChangeForgotPassword = new ChangeForgotPassword();
       otpWithNewPassword.otp = this.otpWithNewPasswordForm.otp.value;
-      otpWithNewPassword.userId = this.userId;
+      otpWithNewPassword.userId = this.getUserId();
       otpWithNewPassword.password = this.otpWithNewPasswordForm.newPassword.value;
 
       let panelClass = 'green';
@@ -103,21 +107,22 @@ export class ForgotPasswordComponent implements OnInit {
       this.snackbar.dismiss();
       const dialogRef = this.dialog.open(LoadingComponent, { disableClose: true });
       let resp = null;
-      try{
+      try {
         resp = await this.resetPassword.updateForgotPassword(otpWithNewPassword);
         const msg = resp.body;
         if (msg) {
-          snackbarMsg = msg + '! Please Login to Continue.';
-          this.router.navigate(['/login']);
+          snackbarMsg = 'Password Changed Sucessfully! Please Login to Continue.';
+          // snackbarMsg = 'Password Changed! Please Login to Continue.';
           localStorage.removeItem('userId');
+          this.router.navigate(['/login']);
           // this.matDialogRef.close();
         } else {
           snackbarMsg = NO_RESP;
           panelClass = 'red';
         }
       } catch (ex) {
-        this.router.navigate(['/login']);
-          localStorage.removeItem('userId');
+        // this.router.navigate(['/login']);
+        // localStorage.removeItem('userId');
         snackbarMsg = getErrorMessage(ex);
         panelClass = 'red';
       } finally {

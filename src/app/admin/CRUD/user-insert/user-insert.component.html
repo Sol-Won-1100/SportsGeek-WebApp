@@ -60,8 +60,8 @@
                         <mat-label>Gender</mat-label>
                         <!-- <input matInput formControlName="genderId" autocomplete="off"> -->
                         <mat-select formControlName="genderId">
-                            <mat-option value="1"> Male </mat-option>
-                            <mat-option value="2"> Female </mat-option>
+                            <mat-option *ngFor="let gender of genderId" [value]="gender.genderId"> {{gender.name}} </mat-option>
+                            <!-- <mat-option value="2"> Female </mat-option> -->
                         </mat-select>
                         <mat-error *ngIf="form.genderId.errors?.required">genderId is reqiured</mat-error>
                         <mat-error *ngIf="form.genderId.errors?.minlength">genderId must have atleast 1 digit

@@ -53,7 +53,8 @@ export class UserInsertComponent implements OnInit {
         availablePoints: [{value:this.data.availablePoints,disabled:true}],
         // [Validators.required, Validators.minLength(2), Validators.maxLength(4), Validators.pattern('[0-9]+')]
 
-        profilePicture: [this.data.profilePicture, [Validators.required, Validators.minLength(4), Validators.maxLength(500)]]
+        profilePicture: [this.data.profilePicture]
+        // , [Validators.required, Validators.minLength(4), Validators.maxLength(500)]
 
       });
     } else {
@@ -100,6 +101,8 @@ export class UserInsertComponent implements OnInit {
   reset(field: string) {
     this.form[field].setValue('');
   }
+
+  genderId:any[]=[{genderId:1,name:"Male"},{genderId:2,name:"Female"}];
 
   async addEmployee() {
     if (this.userForm.valid) {

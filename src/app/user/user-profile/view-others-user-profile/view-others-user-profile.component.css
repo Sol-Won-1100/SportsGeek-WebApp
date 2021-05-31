@@ -83,6 +83,19 @@ body {
     margin-bottom: 5px;
 }
 
+@media screen and (max-width: 700px) {
+    .wrapper {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: auto;
+        /* min-width: 650px; */
+        display: flex;
+        box-shadow: 0 1px 20px 0 rgba(69, 90, 100, 0.08);
+    }
+}
+
 
 /* ,.wrapper .right .projects_data .data p */
 

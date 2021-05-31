@@ -6,9 +6,10 @@
     /* font-family: ;    */
 }
 
-body {
+
+/* body {
     background: #1954a1;
-}
+} */
 
 .wrapper {
     position: absolute;
@@ -16,8 +17,22 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     width: 650px;
+    /* min-width: 650px; */
     display: flex;
     box-shadow: 0 1px 20px 0 rgba(69, 90, 100, 0.08);
+}
+
+@media screen and (max-width: 700px) {
+    .wrapper {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: auto;
+        /* min-width: 650px; */
+        display: flex;
+        box-shadow: 0 1px 20px 0 rgba(69, 90, 100, 0.08);
+    }
 }
 
 .wrapper .left {
