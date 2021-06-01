@@ -1,11 +1,20 @@
 <body [style.background-image]="'url(' + stadium + ')'">
     <div class="card" *ngFor="let matchdata of matchData" routerLink="betting-page/{{matchdata.matchId}}">
+
+        <div class="left" [style.background]="matchdata.team1Id ? teamColor[matchdata.team1Id] : teamColor.t1" [style.border-top]="matchdata.team1Id ? borderTop[matchdata.team1Id] : borderTop.t1">
+            <!-- {{matchdata.team1Id ? teamColor[matchdata.team1Id] : teamColor.t1 }} -->
+        </div>
+
+        <div class="right" [style.background]="matchdata.team2Id ? teamColor[matchdata.team2Id] : teamColor.t2" [style.border-top]="matchdata.team2Id ? borderTop[matchdata.team2Id] : borderTop.t2">
+            <!-- {{ matchdata.team2Id ? teamColor[matchdata.team2Id] : teamColor.t2}} -->
+        </div>
+
         <!-- <h2>Upcoming Match No. {{matchdata.matchId}}</h2> -->
         <h2> {{matchdata.name}}</h2>
         <div class="match-details">
             <div class="team1">
                 <img loading="lazy" style="border-radius: 50%; " src={{matchdata.team1Logo}} />
-                <h3 class="team-name"> {{matchdata.team1}} </h3>
+                <h3 class="team-name" [style.color]="matchdata.team1Id ? teamFontColor[matchdata.team1Id] : teamFontColor.t1"> {{matchdata.team1}} </h3>
             </div>
             <div class="details">
                 <h3 class="date"> {{matchdata.startDatetime | date :'medium':'UTC' }} </h3>
@@ -14,7 +23,7 @@
             </div>
             <div class="team2">
                 <img loading="lazy" style="border-radius: 50%; " src="{{matchdata.team2Logo}}" />
-                <h3 class="team-name">{{matchdata.team2}} </h3>
+                <h3 class="team-name" [style.color]="matchdata.team2Id ? teamFontColor[matchdata.team2Id] : teamFontColor.t2">{{matchdata.team2}} </h3>
             </div>
         </div>
     </div>

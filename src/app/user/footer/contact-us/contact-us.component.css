@@ -95,7 +95,7 @@
         width: 80%;
         display: block;
         margin: auto;
-        padding-top: 50px;
+        padding-top: 20px;
     }
     .content-section {
         float: none;
@@ -106,12 +106,14 @@
     .image-section {
         float: none;
         width: 100%;
+        padding-bottom: 70px;
     }
     .image-section img {
         width: 100%;
         height: auto;
         display: block;
         margin: auto;
+        padding-bottom: 70px;
     }
     .content-section .title {
         text-align: center;

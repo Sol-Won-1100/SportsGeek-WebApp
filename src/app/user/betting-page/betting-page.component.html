@@ -1,13 +1,15 @@
 <body>
     <!-- [style.background-image]="'url(' + placebets + ')'" -->
     <div class="card">
+        <div class="left" [style.border-top]="getBorderColorForTeam1()" [style.background-color]="getColorForTeam1()"></div>
+        <div class="right" [style.border-top]="getBorderColorForTeam2()" [style.background-color]="getColorForTeam2()"></div>
         <!-- <h2>Upcoming Match No. {{matchData?.matchId}}</h2> -->
         <h2>{{matchData?.name}}</h2>
         <div class="match-details">
             <div class="team1">
                 <img loading="lazy" style="border-radius: 50%; " src="{{matchData?.team1Logo}}" />
-                <h3 class="team-name">{{matchData?.team1}} </h3>
-                <h3 class="team-points">{{team1points}}</h3>
+                <h3 class="team-name" [style.color]="getFontColorForTeam1()">{{matchData?.team1}} </h3>
+                <h3 class="team-points" [style.color]="getFontColorForTeam1()">{{team1points}}</h3>
             </div>
             <div class="details">
                 <h3 class="date">{{matchData?.startDatetime | date: 'medium'}} </h3>
@@ -16,8 +18,8 @@
             </div>
             <div class="team2">
                 <img loading="lazy" style="border-radius: 50%; " src="{{matchData?.team2Logo}}" />
-                <h3 class="team-name">{{matchData?.team2}} </h3>
-                <h3 class="team-points">{{team2points}}</h3>
+                <h3 class="team-name" [style.color]="getFontColorForTeam2()">{{matchData?.team2}} </h3>
+                <h3 class="team-points" [style.color]="getFontColorForTeam2()">{{team2points}}</h3>
             </div>
         </div>
     </div>

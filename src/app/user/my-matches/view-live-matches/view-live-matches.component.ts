@@ -22,6 +22,49 @@ import { MatchesService } from 'src/app/common/service/matches_service/matches.s
 })
 export class ViewLiveMatchesComponent implements OnInit {
 
+  teamColor:any = {
+    1: '#ff0', //csk
+    2: '#2561ae', //dc
+    3: '#7300ab', //kkr
+    4: '#004f91', //mi
+    5: '#ed1f27', //pk
+    6: 'RGB(37 ,74 ,165)', //rr
+    7: '#d5152c', //rcb
+    8: '#f7a721', //srh
+    //in case if the ids of the above teams changes, default colors will be used
+    t1: 'pink', //
+    t2: 'silver' //
+  };
+
+  teamFontColor:any = {
+    1: 'black', //csk
+    2: '#fff', //dc
+    3: '#fff', //kkr
+    4: '#fff', //mi
+    5: '#fff', //pk
+    6: 'white', //rr
+    7: '#fff', //rcb
+    8: 'black', //srh
+    //in case if the ids of the above teams changes, default colors will be used
+    t1: 'black', //
+    t2: 'black' //
+  }
+
+  borderTop:any = {
+    1: '5px solid #ef9b0f', //csk
+    2: '5px solid #4B9CD3', //dc
+    3: '5px solid #430064', //kkr
+    4: '5px solid blue', //mi
+    5: '5px solid #4A0000', //pk
+    6: '5px solid #1877F2', //rr
+    7: '5px solid #800000', //rcb
+    8: '5px solid #F05E23', //srh
+    //in case if the ids of the above teams changes, default colors will be used
+    t1: 'pink', //
+    t2: 'silver' //
+  };
+
+
   fetchBotDetails: BotModel[] = [];
   calc!:MatchModel;
   displayedColumns: string[] = [ 'username', 'teamshortname', 'contestPoints'];
@@ -177,5 +220,27 @@ export class ViewLiveMatchesComponent implements OnInit {
     return [];
     }
 
-
+    getColorForTeam1(){
+      return this.matchData && this.matchData.team1Id ? this.teamColor[this.matchData.team1Id] : this.teamColor.t1;
+    }
+  
+    getColorForTeam2(){
+      return this.matchData && this.matchData.team2Id ? this.teamColor[this.matchData.team2Id] : this.teamColor.t2;
+    }
+  
+    getFontColorForTeam1(){
+      return this.matchData && this.matchData.team1Id ? this.teamFontColor[this.matchData.team1Id] : this.teamFontColor.t1;
+    }
+  
+    getFontColorForTeam2(){
+      return this.matchData && this.matchData.team2Id ? this.teamFontColor[this.matchData.team2Id] : this.teamFontColor.t2;
+    }
+  
+    getBorderColorForTeam1(){
+      return this.matchData && this.matchData.team1Id ? this.borderTop[this.matchData.team1Id] : this.borderTop.t1;
+    }
+  
+    getBorderColorForTeam2(){
+      return this.matchData && this.matchData.team2Id ? this.borderTop[this.matchData.team2Id] : this.borderTop.t2;
+    }
 }

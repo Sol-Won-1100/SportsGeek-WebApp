@@ -19,7 +19,7 @@
 
                 <div class="field-container">
                     <mat-form-field appearance="fill" color="accent">
-                        <mat-label>Result Status</mat-label>
+                        <mat-label>Result </mat-label>
                         <!-- <input matInput formControlName="resultStatus" autocomplete="off"> -->
                         <mat-select formControlName="resultStatus">
                             <mat-option value="0"> Draw </mat-option>
@@ -36,12 +36,18 @@
 
                 <div class="field-container">
                     <mat-form-field appearance="fill" color="accent">
-                        <mat-label>Winner Team ID</mat-label>
+                        <mat-label>Winner Team </mat-label>
                         <!-- <input matInput formControlName="winnerTeamId" autocomplete="off"> -->
-                        <mat-select formControlName="winnerTeamId">
+                        <mat-select *ngIf="form.resultStatus.value == 0" [disabled]="true" formControlName="winnerTeamId">
                             <mat-option value="0"> None </mat-option>
+                        </mat-select>
+                        <mat-select *ngIf="form.resultStatus.value != 0 && form.resultStatus.value != 2" formControlName="winnerTeamId">
+                            <!-- <mat-option *ngIf="form.resultStatus.value == 0" value="0"> None </mat-option> -->
                             <mat-option [value]="matchById?.team1Id"> {{matchById?.team1}} </mat-option>
                             <mat-option [value]="matchById?.team2Id"> {{matchById?.team2}} </mat-option>
+                        </mat-select>
+                        <mat-select *ngIf="form.resultStatus.value == 2" [disabled]="true" formControlName="winnerTeamId">
+                            <mat-option value="2"> None </mat-option>
                         </mat-select>
                         <mat-error *ngIf="form.winnerTeamId.errors?.required">winnerTeamId is reqiured
                         </mat-error>

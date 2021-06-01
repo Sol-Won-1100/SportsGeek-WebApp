@@ -38,7 +38,8 @@ body {
     /* box-shadow: 0 0 0 10px rgba(255, 255, 255, 0.2); */
 }
 
-.card:before {
+
+/* .card:before {
     content: '';
     position: absolute;
     bottom: -70%;
@@ -74,6 +75,38 @@ body {
 
 .card:hover:after {
     right: -50%;
+} */
+
+.left {
+    position: absolute;
+    bottom: 0%;
+    left: -120%;
+    width: 60%;
+    height: 30%;
+    transition: 0.5s;
+    box-sizing: border-box;
+    /* border-top: 5px solid #430064; */
+    transform: skewX(-5deg);
+}
+
+.card:hover>.left {
+    left: -10%;
+}
+
+.right {
+    position: absolute;
+    bottom: 0%;
+    right: -120%;
+    width: 60%;
+    height: 30%;
+    transition: 0.5s;
+    box-sizing: border-box;
+    /* border-top: 5px solid #ef9b0f; */
+    transform: skewX(-5deg);
+}
+
+.card:hover>.right {
+    right: -9%;
 }
 
 .card h2 {
@@ -156,8 +189,19 @@ h3.team-name {
     text-align: left;
 }
 
-.card:hover .team1 h3.team-name {
+
+/* .card:hover .team1 h3.team-name {
     color: white;
+} */
+
+.card:hover .team1 h3.team-name {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: x-large;
+}
+
+.card:hover .team2 h3.team-name {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: x-large;
 }
 
 mat-tab-group {

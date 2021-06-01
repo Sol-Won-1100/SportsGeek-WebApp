@@ -20,6 +20,48 @@ import { MatchesService } from 'src/app/common/service/matches_service/matches.s
 })
 export class MyMatchesComponent implements OnInit {
 
+  teamColor:any = {
+    CSK: '#ff0', //csk
+    DC: '#2561ae', //dc
+    KKR: '#7300ab', //kkr
+    MI: '#004f91', //mi
+    PBKS: '#ed1f27', //pk
+    RR: 'RGB(37 ,74 ,165)', //rr
+    RCB: '#d5152c', //rcb
+    SRH: '#f7a721', //srh
+    //in case if the ids of the above teams changes, default colors will be used
+    t1: 'pink', //
+    t2: 'silver' //
+  };
+
+  teamFontColor:any = {
+    CSK: 'black', //csk
+    DC: '#fff', //dc
+    KKR: '#fff', //kkr
+    MI: '#fff', //mi
+    PBKS: '#fff', //pk
+    RR: 'white', //rr
+    RCB: '#fff', //rcb
+    SRH: 'black', //srh
+    //in case if the ids of the above teams changes, default colors will be used
+    t1: 'black', //
+    t2: 'black' //
+  }
+
+  borderTop:any = {
+    CSK: '5px solid #ef9b0f', //csk
+    DC: '5px solid #4B9CD3', //dc
+    KKR: '5px solid #430064', //kkr
+    MI: '5px solid blue', //mi
+    PBKS: '5px solid #4A0000', //pk
+    RR: '5px solid #1877F2', //rr
+    RCB: '5px solid #800000', //rcb
+    SRH: '5px solid #F05E23', //srh
+    //in case if the ids of the above teams changes, default colors will be used
+    t1: 'pink', //
+    t2: 'silver' //
+  };
+
   upcoming = "../assets/img/upcoming.jpg";
 
   upcomingMatches!: UpcomingMatch[];
@@ -150,5 +192,13 @@ export class MyMatchesComponent implements OnInit {
     }
     return [];
   }
+
+  // getColorForTeam1(){
+  //   return this.upcomingMatches && this.upcomingMatches.team1Id ? this.teamColor[this.upcomingMatches.team1Id] : this.teamColor.t1;
+  // }
+
+  // getColorForTeam2(){
+  //   return this.upcomingMatches && this.upcomingMatches.team2Id ? this.teamColor[this.upcomingMatches.team2Id] : this.teamColor.t2;
+  // }
 
 }

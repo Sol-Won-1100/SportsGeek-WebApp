@@ -78,7 +78,7 @@ export class LoginComponent implements OnInit {
             this.loginStateService.createSession(loginStateModel);
             // localStorage.setItem('token', resp.body.token);
             // localStorage.setItem('userId', resp.body.data.userId);
-            const url: any[] = ['/' + this.loginStateService.getLoginState().role + '/home'];
+            const url: any = ['/' + this.loginStateService.getLoginState().role + '/home'];
             this.router.navigate(url);
           } else {
             if (this.loginStateService.role === 'User') {
