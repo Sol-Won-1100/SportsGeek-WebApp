@@ -53,7 +53,7 @@ export class MyMatchesComponent implements OnInit {
     DC: '5px solid #4B9CD3', //dc
     KKR: '5px solid #430064', //kkr
     MI: '5px solid blue', //mi
-    PBKS: '5px solid #4A0000', //pk
+    PBKS: '5px solid #af002a', //pk
     RR: '5px solid #1877F2', //rr
     RCB: '5px solid #800000', //rcb
     SRH: '5px solid #F05E23', //srh

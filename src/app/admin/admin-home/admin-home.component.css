@@ -1,21 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital@1&display=swap');
+body {
+    background: linear-gradient(to right, rgb(38, 185, 136), rgb(0, 98, 128));
+    height: 140vh;
+}
+
+.admin {
+    font-family: 'Lora', serif;
+}
+
 mat-grid-tile {
-    background: lightblue;
+    background: rgb(75, 66, 214);
+    border-style: double;
+    border-color: rgb(123, 179, 86);
+    border-width: 10px;
+}
+
+.baap h1 {
+    margin-top: 20px;
+    width: 100%;
+    background: blue;
+    color: #fff;
 }
 
 .parent {
-    /* margin-top: 5%; */
+    padding: 20px;
 }
 
-body {
-    background: linear-gradient(to right, rgb(38, 185, 136), rgb(0, 98, 128));
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    background-position: center;
-    height: auto;
+.baap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
 }
 
 .inner-content {
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
+    background: blue;
+    color: #fff;
 }

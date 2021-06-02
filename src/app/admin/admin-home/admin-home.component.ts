@@ -7,6 +7,7 @@ import { getErrorMessage, NO_RESP } from 'src/app/common/constants/error-message
 import { getSnackbarProperties } from 'src/app/common/constants/snackbar-properties';
 import { MatchModel } from 'src/app/common/model/match/match-model';
 import { TeamModel } from 'src/app/common/model/team/team-model';
+import { ActiveInactiveUsers } from 'src/app/common/model/user/active-inactive-users';
 import { UserModel } from 'src/app/common/model/user/user-model';
 import { VenueModel } from 'src/app/common/model/venue/venue';
 import { MatchesService } from 'src/app/common/service/matches_service/matches.service';
@@ -27,6 +28,7 @@ export class AdminHomeComponent implements OnInit {
   upcomingMatches: MatchModel[] = [];
   teamData: TeamModel[] = [];
   venueData: VenueModel[]=[];
+  userStatus!: ActiveInactiveUsers;
 
   constructor(
     private teamservice: TeamService,
@@ -40,6 +42,9 @@ export class AdminHomeComponent implements OnInit {
   async ngOnInit() {
     this.userData = await this.getUsers();
     console.log(this.userData);
+
+    this.userStatus = await this.getActiveInactiveUsers();
+    console.log(this.userStatus);
 
     this.allMatch = await this.getMatches();
     console.log(this.allMatch);
@@ -67,6 +72,36 @@ export class AdminHomeComponent implements OnInit {
     let resp = null;
     try {
       resp = await this.userservice.getAllUser();
+      userModel = resp.body;
+      if (userModel) {
+        dialogRef.close();
+        return userModel;
+      } else {
+        snackbarMsg = NO_RESP;
+        panelClass = 'red';
+      }
+    } catch (ex) {
+      snackbarMsg = getErrorMessage(ex);
+      panelClass = 'red';
+    } finally {
+      dialogRef.close();
+    }
+    if (snackbarMsg) {
+      snackbarRef = this.snackbar.openFromComponent(SnackbarComponent,
+        getSnackbarProperties(snackbarMsg, panelClass));
+    }
+    return [];
+  }
+
+  async getActiveInactiveUsers(): Promise<any> {
+    let panelClass = 'green';
+    let snackbarMsg = '';
+    let snackbarRef = null;
+    const dialogRef = this.dialog.open(LoadingComponent, { disableClose: true });
+    let userModel: UserModel[] = [];
+    let resp = null;
+    try {
+      resp = await this.userservice.getAllActiveInactiveUser();
       userModel = resp.body;
       if (userModel) {
         dialogRef.close();

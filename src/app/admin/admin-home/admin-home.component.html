@@ -1,7 +1,29 @@
 <body>
+    <div class="container">
+        <h1 class="admin"> <b> Admin Dashboard </b></h1>
+    </div>
+
     <div class="container parent">
-        <mat-grid-list cols="2" rowHeight="2:1">
+
+        <mat-grid-list style="margin-bottom: 10px;" cols="1" rowHeight="4:1">
             <mat-grid-tile>
+                <div class="baap">
+                    <div class="inner-content ">
+                        <div>
+                            <h1>Total Users : {{userData?.length}}</h1>
+                        </div>
+
+                    </div>
+                    <div>
+                        <h1>Active Users: {{userStatus?.active}} <span style="padding: 100px;"></span> InActive Users: {{userStatus?.inactive}}</h1>
+                    </div>
+                </div>
+            </mat-grid-tile>
+        </mat-grid-list>
+
+        <mat-grid-list cols="2" rowHeight="3:1">
+
+            <!-- <mat-grid-tile>
                 <div class="inner-content">
                     <div>
                         <h1>Total Users : </h1>
@@ -10,7 +32,7 @@
                         <h2> {{userData?.length}}</h2>
                     </div>
                 </div>
-            </mat-grid-tile>
+            </mat-grid-tile> -->
 
             <mat-grid-tile>
                 <div class="inner-content">

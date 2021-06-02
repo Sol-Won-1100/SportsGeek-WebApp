@@ -49,7 +49,7 @@ export class MatchListComponent implements OnInit {
     2: '5px solid #4B9CD3', //dc
     3: '5px solid #430064', //kkr
     4: '5px solid blue', //mi
-    5: '5px solid #4A0000', //pk
+    5: '5px solid #af002a', //pk
     6: '5px solid #1877F2', //rr
     7: '5px solid #800000', //rcb
     8: '5px solid #F05E23', //srh

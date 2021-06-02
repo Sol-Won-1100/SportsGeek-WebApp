@@ -24,6 +24,10 @@ export class UserService {
     return await this.http.get<UserModel>(usersBaseURL, { observe: 'response' }).toPromise();
   }
 
+  async getAllActiveInactiveUser(): Promise<any> {
+    return await this.http.get<UserModel>(usersBaseURL + '/Active-Inactive-Users', { observe: 'response' }).toPromise();
+  }
+
   async getUserById(userId:number): Promise<any> {
     return await this.http.get<UserModel>(usersBaseURL + '/' + userId , { observe: 'response' }).toPromise();
   }

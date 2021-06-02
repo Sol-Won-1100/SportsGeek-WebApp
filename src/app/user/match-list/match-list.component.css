@@ -166,12 +166,12 @@ h3.team-points {
 
 .card:hover .team1 h3.team-name {
     font-family: 'Times New Roman', Times, serif;
-    font-size: x-large;
+    font-size: large;
 }
 
 .card:hover .team2 h3.team-name {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: x-large;
+    font-size: large;
 }
 
 
