@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { LoadingComponent } from 'src/app/common/components/loading/loading.component';
 import { SnackbarComponent } from 'src/app/common/components/snackbar/snackbar.component';
 import { getErrorMessage, NO_RESP } from 'src/app/common/constants/error-message';
@@ -76,10 +77,12 @@ export class MyMatchesComponent implements OnInit {
     private dialog: MatDialog,    
     private matchservice:MatchesService,
     public loginStateService: LoginstateService,
+    private router:Router
   ) { }
 
   loginState = this.loginStateService.getLoginState();
   userId = this.loginState.userId;
+  role = this.loginState.role;
 
   async ngOnInit() {
 
@@ -192,6 +195,12 @@ export class MyMatchesComponent implements OnInit {
     }
     return [];
   }
+
+
+  gotoBettingPage(id:number){
+      // this.location.replaceState('');
+      this.router.navigate([this.role+`/match-list/betting-page/${id}`]);
+    }
 
   // getColorForTeam1(){
   //   return this.upcomingMatches && this.upcomingMatches.team1Id ? this.teamColor[this.upcomingMatches.team1Id] : this.teamColor.t1;

@@ -46,6 +46,59 @@
         </div>
 
         <!-- ADMIN -->
+
+        <div class="bets" *ngIf="!isRoleUser()">
+            <a routerLink="Admin/match-list" class="ahome">
+                <div *ngIf="deviceXs">
+                    <mat-icon>monetization_on</mat-icon>
+                </div>
+                <div *ngIf="!deviceXs">
+                    <mat-icon>monetization_on</mat-icon>Place Bets
+                </div>
+            </a>
+        </div>
+
+        <div class="leader-board" *ngIf="!isRoleUser()">
+            <a routerLink="Admin/leader-board" class="ahome">
+                <div *ngIf="deviceXs">
+                    <mat-icon>leaderboard</mat-icon>
+                </div>
+                <div *ngIf="!deviceXs">
+                    <mat-icon>leaderboard</mat-icon>Leader Board
+                </div>
+            </a>
+        </div>
+
+        <div class="my-matches" *ngIf="!isRoleUser()">
+            <a routerLink="Admin/my-matches" class="ahome">
+                <div *ngIf="deviceXs">
+                    <mat-icon>sports_cricket</mat-icon>
+                </div>
+                <div *ngIf="!deviceXs">
+                    <mat-icon>sports_cricket</mat-icon>My Matches
+                </div>
+            </a>
+        </div>
+
+        <!-- SHIFT RIGHT -->
+
+        <span class="example-spacer"></span>
+
+        <div class="profile" *ngIf="isRoleUser()">
+            <a routerLink="User/view-your-profile" class="ahome">
+                <mat-icon>account_box</mat-icon>
+            </a>
+        </div>
+
+        <div class="profile" *ngIf="!isRoleUser()">
+            <a routerLink="Admin/view-your-profile" class="ahome">
+                <mat-icon>account_box</mat-icon>
+            </a>
+        </div>
+
+
+        <!-- ADMIN -->
+
         <div class="row">
             <div class="col">
                 <div ngbDropdown class="d-inline-block dropdownbtn">
@@ -60,16 +113,6 @@
                 </div>
             </div>
 
-        </div>
-
-        <!-- SHIFT RIGHT -->
-
-        <span class="example-spacer"></span>
-
-        <div class="profile" *ngIf="isRoleUser()">
-            <a routerLink="User/view-your-profile" class="ahome">
-                <mat-icon>account_box</mat-icon>
-            </a>
         </div>
 
         <a mat-raised-button style="background: #ccff00;" *ngIf="authservice1.isLoggedIn()" (click)="logout()">Logout</a>

@@ -76,43 +76,20 @@ import { RulesComponent } from './common/components/footer/rules/rules.component
 import { AgmCoreModule } from '@agm/core';
 import {} from 'googlemaps';
 
+console.log("app module loaded");
+
 @NgModule({
   declarations: [
     AppComponent,
-    AdminManageUserComponent,
-    AdminManageRechargeComponent,
-    AdminManageTeamComponent,
-    AdminManageMatchesComponent,
     HeaderComponent,
     FooterComponent,
     LoadingComponent,
     NotFoundComponent,
-    AdminHomeComponent,
     SnackbarComponent,
-    UserInsertComponent,
-    MatchCRUDComponent,
-    RechargeComponent,
-    TeamComponent,
     LoginComponent,
-    UserDashboardComponent,
-    UserRegistrationComponent,
-    MatchListComponent,
-    LeaderBoardComponent,
-    BettingPageComponent,
-    UpdateProfileComponent,
-    ViewUserProfileComponent,
     ChangePasswordComponent,
     ForgotPasswordComponent,
-    MyMatchesComponent,
-    ViewUpcomingMatchComponent,
-    ViewLiveMatchesComponent,
-    ViewOldMatchesComponent,
-    ViewOthersUserProfileComponent,
-    UpdateMatchResultComponent,
     ConfirmBoxComponent,
-    InsertUpdateContestComponent,
-    AdminManageOldMatchesComponent,
-    AssignRoleComponent,
     AboutUsComponent,
     ContactUsComponent,
     RulesComponent

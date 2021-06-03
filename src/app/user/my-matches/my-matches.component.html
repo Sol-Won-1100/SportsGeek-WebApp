@@ -3,7 +3,9 @@
 
         <mat-tab label="Upcoming">
 
-            <div class="card" *ngFor="let upcomingmatches of upcomingMatches" routerLink="/User/match-list/betting-page/{{upcomingmatches.matchId}}">
+            <!-- <div class="card" *ngFor="let upcomingmatches of upcomingMatches" routerLink="/User/match-list/betting-page/{{upcomingmatches.matchId}}"> -->
+
+            <div class="card" *ngFor="let upcomingmatches of upcomingMatches" (click)="gotoBettingPage(upcomingmatches.matchId)">
 
                 <div class="left" [style.background]="upcomingmatches.team1Short ? teamColor[upcomingmatches.team1Short] : teamColor.t1" [style.border-top]="upcomingmatches.team1Short ? borderTop[upcomingmatches.team1Short] : borderTop.t1"></div>
 

@@ -24,9 +24,9 @@ export class LoginComponent implements OnInit {
   hide = true;
 
   isLoggedIn = false;
-  isLoginFailed = false;
+  // isLoginFailed = false;
 
-  errorMessage!: '';
+  // errorMessage!: '';
 
   constructor(
     private fb: FormBuilder,
