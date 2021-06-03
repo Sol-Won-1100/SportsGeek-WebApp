@@ -14,59 +14,47 @@
                         </div>
 
                     </div>
-                    <div>
-                        <h1>Active Users: {{userStatus?.active}} <span style="padding: 100px;"></span> InActive Users: {{userStatus?.inactive}}</h1>
+                    <div class="sub-data">
+                        <div>
+                            <h1> Active Users: </h1>
+                            <h1 class="green"> {{ activeStatusCounter(userData) }} </h1>
+                        </div>
+                        <span></span>
+                        <div>
+                            <h1> InActive Users: </h1>
+                            <h1 class="red"> {{ inactiveStatusCounter(userData) }} </h1>
+                        </div>
+                    </div>
+                </div>
+            </mat-grid-tile>
+        </mat-grid-list>
+
+        <mat-grid-list style="margin-bottom: 10px;" cols="1" rowHeight="4:1">
+            <mat-grid-tile>
+                <div class="baap">
+                    <div class="inner-content ">
+                        <div>
+                            <h1>Total Matches : {{allMatch?.length}}</h1>
+                        </div>
+
+                    </div>
+                    <div class="sub-data">
+                        <div>
+                            <h1>Matches Left :</h1>
+                            <h1 class="green"> {{upcomingMatches?.length}}
+                            </h1>
+                        </div>
+                        <span></span>
+                        <div>
+                            <h1>Matches Declaration Left :</h1>
+                            <h1 class="red"> {{oldMatchData?.length}} </h1>
+                        </div>
                     </div>
                 </div>
             </mat-grid-tile>
         </mat-grid-list>
 
         <mat-grid-list cols="2" rowHeight="3:1">
-
-            <!-- <mat-grid-tile>
-                <div class="inner-content">
-                    <div>
-                        <h1>Total Users : </h1>
-                    </div>
-                    <div>
-                        <h2> {{userData?.length}}</h2>
-                    </div>
-                </div>
-            </mat-grid-tile> -->
-
-            <mat-grid-tile>
-                <div class="inner-content">
-                    <div>
-                        <h1>Total Matches : </h1>
-                    </div>
-                    <div>
-                        <h2> {{allMatch?.length}}</h2>
-                    </div>
-                </div>
-                <h1> </h1>
-            </mat-grid-tile>
-
-            <mat-grid-tile>
-                <div class="inner-content">
-                    <div>
-                        <h1>Matches Declaration Left : </h1>
-                    </div>
-                    <div>
-                        <h2> {{oldMatchData?.length}}</h2>
-                    </div>
-                </div>
-            </mat-grid-tile>
-
-            <mat-grid-tile>
-                <div class="inner-content">
-                    <div>
-                        <h1>Matches Left : </h1>
-                    </div>
-                    <div>
-                        <h2> {{upcomingMatches?.length}}</h2>
-                    </div>
-                </div>
-            </mat-grid-tile>
 
             <!-- <mat-grid-tile>
                 <div class="inner-content">

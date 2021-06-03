@@ -70,9 +70,9 @@ import { NgxMatFileInputModule } from '@angular-material-components/file-input';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatRippleModule} from '@angular/material/core';
 import { AssignRoleComponent } from './admin/CRUD/assign-role/assign-role.component';
-import { AboutUsComponent } from './user/footer/about-us/about-us.component';
-import { ContactUsComponent } from './user/footer/contact-us/contact-us.component';
-import { RulesComponent } from './user/footer/rules/rules.component';
+import { AboutUsComponent } from './common/components/footer/about-us/about-us.component';
+import { ContactUsComponent } from './common/components/footer/contact-us/contact-us.component';
+import { RulesComponent } from './common/components/footer/rules/rules.component';
 import { AgmCoreModule } from '@agm/core';
 import {} from 'googlemaps';
 

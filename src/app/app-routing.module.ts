@@ -12,9 +12,9 @@ import { NotFoundComponent } from './common/components/not-found/not-found.compo
 import { AuthGuard } from './common/guard/auth.guard';
 import { LoginComponent } from './login/login.component';
 import { BettingPageComponent } from './user/betting-page/betting-page.component';
-import { AboutUsComponent } from './user/footer/about-us/about-us.component';
-import { ContactUsComponent } from './user/footer/contact-us/contact-us.component';
-import { RulesComponent } from './user/footer/rules/rules.component';
+import { AboutUsComponent } from './common/components/footer/about-us/about-us.component';
+import { ContactUsComponent } from './common/components/footer/contact-us/contact-us.component';
+import { RulesComponent } from './common/components/footer/rules/rules.component';
 import { LeaderBoardComponent } from './user/leader-board/leader-board.component';
 import { MatchListComponent } from './user/match-list/match-list.component';
 import { MyMatchesComponent } from './user/my-matches/my-matches.component';
